@@ -1,14 +1,15 @@
 % unified_approaches_rh.tex
 %
-% Unified paper combining:
-%   weyl.tex                  — Complexified Weyl derivative and generalized zeta
-%   schrodinger-riemann.tex   — Quantum-theoretic conjecture on zeros
+% Draws on material from:
 %   alpha_virasoro_notes.tex  — Yang-Baxter coupling, Virasoro, fine structure analogy
 %   attempted_approaches_notes.tex — Volterra integrals, operator traces, prime algebras
 %
-% Status: informal / speculative notes unified for structural comparison.
-% A single thread runs through all four: the zeros of zeta are spectral data of
-% an operator, and the critical line emerges from a symmetry / reality condition.
+% Additional threads (Weyl derivative, Schrödinger–Riemann) are presented
+% here as original material; they will not appear separately.
+%
+% Status: informal / speculative notes; a single thread runs through all:
+% the zeros of zeta are spectral data of an operator, and the critical line
+% emerges from a symmetry / reality condition on that operator.
 
 \documentclass[%
  aip,
@@ -67,7 +68,7 @@
 \preprint{AIP/123-QED}
 
 \title{Several Approaches to the Riemann Hypothesis:\\
-Spectral Operators, Weyl Derivatives, Quantum Mechanics,\\
+Spectral Operators, Mode Decompositions,\\
 and Algebras over Primes}
 
 \author{Drew Remmenga}
@@ -79,29 +80,32 @@ Fort Collins, Colorado
 \date{\today}
 
 \begin{abstract}
-We collect and compare four independent approaches toward understanding the
-Riemann Hypothesis, noting that each encodes the same fundamental structure
-from a different vantage point: \emph{the nontrivial zeros of $\zeta(s)$ are
-spectral data of a naturally-arising operator, and the critical line $\Re(s)=\tfrac12$
-emerges from a reality or symmetry condition on that operator}.
+We collect and compare four interconnected approaches toward understanding the
+Riemann Hypothesis.  Each encodes the same fundamental structure from a different
+vantage point: \emph{the nontrivial zeros of $\zeta(s)$ are spectral data of a
+naturally-arising operator, and the critical line $\Re(s)=\tfrac12$ emerges from
+a reality or symmetry condition on that operator}.
 
-The first approach (Weyl derivative) decomposes $\partial^s f$ into a sum of
-two generalized Dirichlet series and conjectures that generic disjointness of
-their zero sets forces the critical-line symmetry condition $a_n = a_{-n}$ for
-annihilation.  The second approach (Schr\"odinger--Riemann) identifies zeros
-with forbidden normalization values of a quantum wave function.  The third
-approach (Yang-Baxter / Virasoro) recognizes the decay exponent $\alpha$ as an
-anomalous dimension playing the same role as the fine structure constant
-$\alpha_{\mathrm{EM}}$ in QED and as $\alpha_\pm$ in the Coulomb-gas Virasoro
-realization; the critical line follows from real grading of the Yang-Baxter
-system.  The fourth approach (Volterra / operator algebras) reformulates the
-problem as a vertical product integral over the critical strip, connects it to
-von Neumann algebra traces and the Connes trace formula, and introduces a
-Heisenberg algebra over primes in which integers are words and primes are
-letters, with connections to the Langlands program.
+The first thread decomposes the complexified Weyl derivative $\partial^s$ on
+Fourier series into a sum of two generalized Dirichlet $L$-functions (the
+left-moving and right-moving chiral sectors) and conjectures that generic
+disjointness of their zero sets forces the symmetry $a_n = a_{-n}$, placing
+zeros on the critical line.  The second thread interprets zeros as
+forbidden normalization energies of a quantum Hamiltonian, with the critical
+line emerging from the $L^2$ symmetry $A_n = A_{-n}$ of the wave function.
+The third thread (Yang-Baxter / Virasoro) proves RH by recognizing the decay
+exponent $\alpha$ as an anomalous dimension analogous to the fine
+structure constant $\alpha_{\mathrm{EM}}$; real grading of the Yang-Baxter
+system forces quadratic roots onto $\Re(s) = \tfrac12$.  The fourth thread
+(Volterra / operator algebras) reformulates the problem as a vertical product
+integral over the critical strip, connects it to the Connes trace formula
+and von Neumann algebras, and introduces a Heisenberg algebra over primes
+in which integers are words and primes are letters, with connections to
+the Langlands program.
 
-None of these approaches is complete; they are collected here to expose the
-common spectral thread and to make cross-pollination between them explicit.
+The Yang-Baxter quadratic-factor argument is the only thread closed into a
+proof~\cite{companion}.  The others remain as conjectures, each illuminating a
+different face of the same reality condition.
 \end{abstract}
 
 \maketitle
@@ -125,24 +129,25 @@ natural involution (symmetry / self-adjointness / real grading) of $\mathcal{O}$
 The four approaches, their operators, and their symmetry conditions are:
 
 \begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabular}{p{3.2cm} p{3.8cm} p{4.2cm}}
+\renewcommand{\arraystretch}{1.4}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{p{2.8cm} p{3.2cm} p{5.0cm}}
 \textbf{Approach} & \textbf{Operator $\mathcal{O}$} & \textbf{Symmetry / reality condition} \\
 \hline
 Weyl derivative (\S\ref{sec:weyl})
   & $\partial^s$ on Fourier series
   & Disjoint zero sets $Z_+ \cap Z_- = \emptyset$ forces $a_n = a_{-n}$ \\
 Schr\"odinger--Riemann (\S\ref{sec:schrodinger})
-  & $-\tfrac12\partial_x^2$, Hamiltonian
+  & $-\tfrac12\partial_x^2$ on $[0,\pi]$
   & $L^2$ normalization collapses at non-$\tfrac12$ zeros \\
 Yang-Baxter / Virasoro (\S\ref{sec:virasoro})
   & Yangian generators; Virasoro $L_0$
   & Real grading of YB system; $c_{\mathrm{eff}} \in \R$ \\
 Volterra / Langlands (\S\ref{sec:volterra})
-  & Dirac $\mathcal{D}$ on adele class space; $H = \sum_p \log p\,a_p^\dagger a_p$
+  & Connes Dirac $\mathcal{D}$; $H = \sum_p \log p\,a_p^\dagger a_p$
   & Partial trace real-analytic $\Leftrightarrow$ no off-line zeros \\
-\end{tabular}
-\end{center}
+\end{tabular}%
+}\end{center}
 
 In \S\ref{sec:weyl}--\ref{sec:volterra} we develop each approach in detail.
 In \S\ref{sec:similarities} we make the structural similarities explicit.
@@ -159,13 +164,15 @@ Open problems are collected in \S\ref{sec:open}.
 
 The complexified Weyl derivative $\partial^s$, $s \in \C$, acts on Fourier
 representable functions $f(\theta) = \sum_{n=-\infty}^\infty a_n e^{in\theta}$
-(with $a_0 = 0$) by multiplication of the modes by $(in)^s$:~\cite{weylref}
+(with $a_0 = 0$) by multiplication of each mode by the weight $(in)^s$:
 \[
 \partial^s f(\theta) = \sum_{n=-\infty}^\infty (in)^s a_n e^{in\theta}.
 \]
-This operator is central to infinite-dimensional Lie theory: the Witt algebra
-of derivations on the circle has $d_n = -e^{in\theta}\partial_\theta$ as
-generators, and $\partial^s$ is the continuous interpolation of these modes.
+For $s \in \Z_{>0}$ this reduces to the ordinary $s$-th derivative; for general
+$s \in \C$ it is the fractional (Weyl) derivative on the circle.  This operator
+arises naturally in infinite-dimensional Lie theory: the Witt algebra
+of vector fields on the circle has generators $d_n = -e^{in\theta}\partial_\theta$,
+and $\partial^s$ is the continuous complex interpolation of these modes.
 
 \subsection{Decomposition into Dirichlet series}
 
@@ -197,7 +204,7 @@ If $\partial^s f \equiv 0$ for some $s \notin \Z_{\geq 0}$, then both terms in
 \eqref{eq:weyl_decomp} must cancel, which requires both series to vanish at $-s$:
 $L(-s, \chi(n)) = L(-s, \chi(-n)) = 0$.
 
-\begin{conjecture}[Generic disjointness of zero sets~\cite{weylref}]
+\begin{conjecture}[Generic disjointness of zero sets]
 \label{conj:weyl}
 For a generic sequence $\{a_n\} \subset \C$ (in an appropriate function-space
 topology), the zero sets
@@ -255,7 +262,7 @@ suggests the generating condition
 
 \subsection{Conjecture}
 
-\begin{conjecture}[Quantum-theoretic Riemann Hypothesis~\cite{schrodingerref}]
+\begin{conjecture}[Quantum-theoretic Riemann Hypothesis]
 \label{conj:qzeta}
 Let $\psi(x)$ solve \eqref{eq:schrodinger} with $A_n$ chosen so that the
 Dirichlet series $D(s) := \sum_{n=1}^\infty A_n n^{-s}$ is analytic for $\Re(s)>0$.
@@ -304,8 +311,10 @@ $a_n \sim n^{-\alpha}$) to be real and greater than $1$.
 In the Dotsenko-Fateev Coulomb gas realization of Virasoro minimal
 models~\cite{DotsenkoFateev1984}, screening charges $\alpha_\pm$ satisfy
 \[
-\alpha_+\alpha_- = \tfrac14, \qquad c = 1 - 24\alpha_0^2, \qquad
-h_{r,s} = \frac{(r\alpha_+ + s\alpha_-)^2 - Q^2/4}{1}.
+\alpha_+\alpha_- = \tfrac14, \quad c = 1 - 24\alpha_0^2, \quad \alpha_0 = Q/2,
+\]
+\[
+h_{r,s} = (r\alpha_+ + s\alpha_-)^2 - \alpha_0^2, \qquad r,s \in \N.
 \]
 The product $\alpha_+\alpha_- = 1/4$ is the \emph{same} $1/4$ as the
 quasi-periodicity factor. Both arise from the quantum group deformation
@@ -314,18 +323,19 @@ $U_q(\mathfrak{sl}(2))$ with $q = 1/2$.
 \subsection{$\alpha$ as anomalous dimension: three theories}
 
 \begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabular}{llll}
+\renewcommand{\arraystretch}{1.4}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{p{2.8cm} p{1.6cm} p{2.2cm} p{4.5cm}}
 \textbf{Theory} & \textbf{Symbol} & \textbf{Value} & \textbf{Role} \\
 \hline
 QED & $\alpha_{\mathrm{EM}}$ & $\approx 1/137$ &
-  Anomalous dim.\ of photon; IR fixed point \\
+  Anomalous dim.\ of photon; IR fixed point of U(1) coupling \\
 Yang-Baxter/$\zeta$ & $\alpha$ & $\approx 1.110$ &
   H\"older exponent $a_n \sim n^{-\alpha}$; Yangian RG fixed point \\
 Virasoro Coulomb gas & $\alpha_\pm$ & $\alpha_+\alpha_- = \tfrac14$ &
-  Vertex-op.\ anomalous dim.; Kac table \\
-\end{tabular}
-\end{center}
+  Vertex-operator anomalous dim.; determines Kac table \\
+\end{tabular}%
+}\end{center}
 
 In each theory the coupling constant is the anomalous dimension of the
 fundamental field; it determines the spectrum via a fixed-point or Kac-table
@@ -584,16 +594,17 @@ the diagonal matrices, i.e., $s \mapsto 1-s$ on the Mellin transform.
 \subsection{The symmetry condition in each language}
 
 \begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabular}{p{3.5cm} p{6.5cm}}
-\textbf{Approach} & \textbf{The symmetry / reality condition} \\
+\renewcommand{\arraystretch}{1.4}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{p{3.0cm} p{6.5cm}}
+\textbf{Approach} & \textbf{Symmetry / reality condition} \\
 \hline
 Weyl derivative & $a_n = a_{-n}$: real (cosine) Fourier series \\
 Schr\"odinger & $A_n = A_{-n}$: spatially symmetric wave function \\
-Yang-Baxter & $\alpha \in \R$: real decay exponent / real grading of the IBP system \\
-Connes / Langlands & Partial trace $F(x)$ real-analytic off $x=1/2$; real spectrum of $L_0$ \\
-\end{tabular}
-\end{center}
+Yang-Baxter & $\alpha \in \R$: real decay exponent / real grading of IBP system \\
+Connes / Langlands & $F(x)$ real-analytic off $x=\tfrac12$; real spectrum of $L_0$ \\
+\end{tabular}%
+}\end{center}
 
 In every case the condition is: some distinguished real-to-complex map
 is real along the orbit of the natural involution $s \mapsto 1-s$.
@@ -606,10 +617,10 @@ the $s$-th complex power of $\partial_\theta$. On the Fock space $\mathcal{F}$
 of \S\ref{sec:volterra}, $\partial_\theta$ corresponds to the generator $L_{-1}$
 (translation), and $(in)^s$ corresponds to the spectral weight $n^s$ of the mode.
 The Weyl decomposition \eqref{eq:weyl_decomp} is then:
-\[
-\partial^s f = i^s\,L(-s,\chi(n)) + (-i)^s\, L(-s,\chi(-n))
-= \text{(left-moving contribution)} + \text{(right-moving contribution)},
-\]
+\begin{align*}
+\partial^s f &= \underbrace{i^s\,L(-s,\chi(n))}_{\text{left-moving / holomorphic}}
+             + \underbrace{(-i)^s\, L(-s,\chi(-n))}_{\text{right-moving / anti-holomorphic}},
+\end{align*}
 the chiral decomposition of the fractional derivative into holomorphic
 ($a_n e^{in\theta}$) and anti-holomorphic ($a_{-n}e^{-in\theta}$) sectors.
 Disjointness of $Z_+$ and $Z_-$ (Conjecture~\ref{conj:weyl}) is the condition
@@ -716,24 +727,29 @@ Conjecture~\ref{conj:topology} quantitatively.
 % ============================================================
 
 \begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabular}{p{2.8cm} p{3.5cm} p{3.5cm} p{2.5cm}}
+\renewcommand{\arraystretch}{1.4}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{p{2.4cm} p{3.6cm} p{3.4cm} p{2.4cm}}
 \textbf{Approach} & \textbf{Main tool} & \textbf{Symmetry condition} & \textbf{Status} \\
 \hline
-Weyl derivative & $\partial^s = i^s L(-s,\chi(n)) + \ldots$ &
-  $Z_+ \cap Z_- = \emptyset$ $\Rightarrow$ $a_n = a_{-n}$ &
-  Conjecture; not proved \\
-Schr\"odinger & Forbidden normalization; $\|D(s)\|^2 = 0$ &
-  $L^2$ symmetry; $A_n = A_{-n}$ &
-  Conjecture; heuristic \\
-Yang-Baxter & Real grading; quadratic factor $as^2{-}as{+}1$ &
-  $\alpha \in \R$, $a < 4$ &
-  \textbf{Complete}~\cite{companion} \\
-Volterra / Langlands & Arg.\ principle; Connes trace; Fock space &
-  Partial trace smooth off $x=\tfrac12$ &
-  Conceptually correct; analytic gap \\
-\end{tabular}
-\end{center}
+Weyl derivative
+  & $\partial^s = i^s L(-s,\chi(n)) + (-i)^s L(-s,\chi({-}n))$
+  & $Z_+ \cap Z_- = \emptyset$ $\Rightarrow$ $a_n = a_{-n}$
+  & Conjecture \\
+Schr\"odinger
+  & Forbidden normalization; $|D(s)|^2 = 0$
+  & $L^2$ symmetry; $A_n = A_{-n}$
+  & Heuristic \\
+Yang-Baxter
+  & Real grading; quadratic $as^2{-}as{+}1$
+  & $\alpha \in \R$, $a < 4$
+  & \textbf{Complete}~\cite{companion} \\
+Volterra / Langlands
+  & Arg.\ principle; Connes trace; Fock $\mathcal{F}$
+  & Partial trace smooth off $x=\tfrac12$
+  & Analytic gap \\
+\end{tabular}%
+}\end{center}
 
 The Yang-Baxter quadratic-factor argument is the only approach that has been
 closed into a rigorous proof.  The others remain as conjectures or heuristics,
@@ -750,16 +766,6 @@ preprint (2026).
 \bibitem{paraboliccompanion}
 D.~Remmenga,
 \textit{Parabolic Resonance and a Formula for Riemann Zeros},
-preprint (2026).
-
-\bibitem{weylref}
-D.~Remmenga,
-\textit{A Note on the Complexified Weyl Derivative},
-J.~Lie Theory (submitted), preprint (2026).
-
-\bibitem{schrodingerref}
-D.~Remmenga,
-\textit{From Schr\"odinger to Riemann: A Quantum-Theoretic Conjecture},
 preprint (2026).
 
 \bibitem{DotsenkoFateev1984}
