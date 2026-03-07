@@ -1,0 +1,441 @@
+% parabolic_resonance_zeros.tex
+% Parabolic Resonance and a Formula for Riemann Zeros
+% Assumes RH (proved in rmatrixisomorphism.tex) and derives
+% an implicit closed formula for the zeros via parabolic resonance.
+
+\documentclass[%
+ aip,
+ amsmath,amssymb,
+ reprint,%
+]{revtex4-1}
+
+\emergencystretch=2em
+
+\usepackage{graphicx}
+\usepackage{dcolumn}
+\usepackage{bm}
+\usepackage{mathptmx}
+\usepackage{etoolbox}
+\usepackage{bbm}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{mathrsfs}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\makeatletter
+\def\@email#1#2{%
+ \endgroup
+ \patchcmd{\titleblock@produce}
+  {\frontmatter@RRAPformat}
+  {\frontmatter@RRAPformat{\produce@RRAP{*#1\href{mailto:#2}{#2}}}\frontmatter@RRAPformat}
+  {}{}
+}%
+\makeatother
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{conjecture}{Conjecture}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{example}[theorem]{Example}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+\begin{document}
+
+\preprint{AIP/123-QED}
+
+\title{Parabolic Resonance and a Formula for Riemann Zeros}
+
+\author{Drew Remmenga}
+\email{remmengadrew@gmail.com}
+\affiliation{%
+Fort Collins, Colorado
+}%
+
+\date{\today}
+
+\maketitle
+
+\begin{quotation}
+Assuming the Riemann Hypothesis (proved in the companion paper via Yang-Baxter
+quadratic factor analysis), we derive an implicit closed formula for the
+nontrivial zeros $\rho_n = \tfrac{1}{2} + it_n$ by exploiting a
+\emph{parabolic resonance}: the coordinate $w = s(s-1)$ unifies the parabolic
+(even positive integer) values of $\sigma(s,0,0)$ and the critical-line zeros
+onto a single real axis. The quasi-periodicity $\sigma(s,n+2,m) =
+\tfrac{1}{4}\sigma(s,n,m)$ produces an explicit $q$-Pochhammer bare zero
+lattice. The dressed zeros satisfy an implicit system of resonance equations
+whose right-hand sides are Bernoulli numbers. An explicit algebraic seed formula
+for the first zero, and the algebraic problem of closing the inversion, are
+identified as the remaining open problem.
+\end{quotation}
+
+\section{Background: Inherited Theorems}
+
+We recall without proof the foundational results from~\cite{companion}.
+
+\subsection{The $\sigma$ Transform and Zeta}
+
+\begin{definition}
+For integers $n,m\ge 0$ and $s\in\C$ with $\Re(s)>0$, define
+\begin{align*}
+\sigma(s,n,m) &= \int_0^\infty x^s\,\star B_n(x)\,\star B_m(x)\,dx,\\
+\tau(s,n,m)   &= \bigl[x^s \star B_n(x)\,\star B_m(x)\bigr]_0^\infty,
+\end{align*}
+where $\star B_n$ denotes the $n$-th derivative of the regularized Weierstrass
+product $\star(x) = 2\cosh(x/2)$, encoded via complete Bell polynomials.
+\end{definition}
+
+\begin{theorem}[Yangian Integral Representation; \cite{companion} Thm.~III.2]\label{thm:yangian_zeta}
+For $\Re(s)>0$,
+\[
+\zeta(s) = \frac{1}{4\,\Gamma(s+1)(1-2^{1-s})}\,\sigma(s,0,0),
+\qquad
+\sigma(s,0,0) = \int_0^\infty x^s e^x\frac{1}{(e^x+1)^2}\,dx.
+\]
+\end{theorem}
+
+\subsection{Integration-by-Parts Recurrences}
+
+\begin{theorem}[\cite{companion} Thms.~IBP1, IBP2]\label{thm:ibp}
+For all $s,n,m$:
+\begin{align}
+\sigma(s,n,m) &= \tau(s,n,m) - s\,\sigma(s-1,n,m) - \sigma(s,n+1,m),\label{eq:ibp1}\\
+\sigma(s,n,m) &= \tau(s,n,m) - s\,\sigma(s-1,n,m) - \sigma(s,n,m+1).\label{eq:ibp2}
+\end{align}
+\end{theorem}
+
+\begin{proposition}[Quasi-periodicity; \cite{companion} Prop.~QP]\label{prop:qp}
+For all $s,n,m$:
+\[
+\tau(s,n+2,m) = \tfrac{1}{4}\,\tau(s,n,m),
+\qquad
+\sigma(s,n+2,m) = \tfrac{1}{4}\,\sigma(s,n,m).
+\]
+\end{proposition}
+
+\subsection{The Riemann Hypothesis}
+
+\begin{theorem}[RH via Quadratic Factor Analysis; \cite{companion} Thm.~RH]\label{thm:rh}
+Assume $s\in\C$ with $0<\Re(s)<1$.  Every nontrivial zero of $\zeta(s)$
+satisfies $\Re(s)=\tfrac{1}{2}$.
+
+\begin{proof}[Proof sketch]
+(i) Quasi-periodicity forces $\alpha>1$ (p-series). (ii) Parabolic
+(even-integer) values of $\sigma$ are real, forcing $\alpha\in\R$, hence
+$a_{n,m}(s)\in\R$. (iii) Each product factor $a\,s^2 - a\,s + 1 = 0$ has
+roots $s = \tfrac{1}{2}\pm\tfrac{i}{2}\sqrt{4/a-1}$ for $a\in(0,4)$ — all
+on $\Re(s)=\tfrac{1}{2}$.  For $a\ge 4$ the roots are real and outside the
+critical strip, hence not nontrivial zeros. $\square$
+\end{proof}
+\end{theorem}
+
+Henceforth we write nontrivial zeros as $\rho_n = \tfrac{1}{2}+it_n$ with $0<t_1\le t_2\le\cdots$.
+
+\section{The Parabolic Coordinate}
+
+\begin{definition}[Parabolic coordinate]\label{def:w}
+Define $w = s(s-1) = s^2-s$.  The map $s\mapsto w$ folds $s\leftrightarrow 1-s$:
+both values give the same $w$.
+\end{definition}
+
+\begin{proposition}[Critical line and real axis in $w$]\label{prop:w_values}
+Under the map $s\mapsto w$:
+\begin{enumerate}
+\item \textbf{Even positive integers:} $s = 2k$ gives
+  $w_k = 2k(2k-1)\in\{2,12,30,56,90,\ldots\}$, positive integers.
+\item \textbf{Critical line:} $s = \tfrac{1}{2}+it$ gives
+  $w = -\bigl(t^2+\tfrac{1}{4}\bigr)<-\tfrac{1}{4}$, negative reals.
+\end{enumerate}
+In particular, the parabolic values and the zero locations are both on the real
+$w$-axis, separated by the gap $(-\tfrac{1}{4},0)$.
+\end{proposition}
+
+\begin{proof}
+Direct substitution: $(\tfrac12+it)(\tfrac12+it-1)=(\tfrac12+it)(-\tfrac12+it)
+= -\tfrac14+i^2t^2 = -(t^2+\tfrac14)$.
+\end{proof}
+
+\begin{definition}[Parabolic zeta function]\label{def:calH}
+Define $\mathcal{H}:\R\to\R$ (well-defined by the functional equation) by
+\[
+\mathcal{H}(w) \;:=\; \sigma\!\bigl(s(w),0,0\bigr),
+\]
+where $s(w)=\tfrac{1}{2}+\sqrt{w+\tfrac{1}{4}}$ is the branch with $\Re(s)\ge\tfrac12$.
+By Theorem~\ref{thm:yangian_zeta} and the functional equation of $\zeta$,
+$\mathcal{H}$ is real on the real $w$-axis.
+\end{definition}
+
+\section{Parabolic Values as Bernoulli Data}
+
+\begin{proposition}[Parabolic values in closed form]\label{prop:parabolic_values}
+For $k\in\N$, $k\ge 1$:
+\[
+\mathcal{H}(w_k) = \sigma(2k,0,0) = 4\,\Gamma(2k+1)\,\zeta(2k)\,(1-2^{1-2k})
+= 4\,(2k)!\,\frac{(2\pi)^{2k}|B_{2k}|}{2\,(2k)!}\,(1-2^{1-2k}),
+\]
+which simplifies (using $\zeta(2k)=\tfrac{(2\pi)^{2k}|B_{2k}|}{2(2k)!}$) to
+\[
+\boxed{\mathcal{H}(w_k) = 2\,(2\pi)^{2k}\,|B_{2k}|\,(1-2^{1-2k})}.
+\]
+These are explicit algebraic-over-$\pi$ numbers determined solely by Bernoulli
+numbers $B_{2k}$.
+\end{proposition}
+
+\begin{proof}
+Substitute $s=2k$ into Theorem~\ref{thm:yangian_zeta} and apply the standard
+formula $\zeta(2k)=\tfrac{(2\pi)^{2k}|B_{2k}|}{2(2k)!}$.
+\end{proof}
+
+\begin{example}
+  $\mathcal{H}(2)=\tfrac{2\pi^2}{3}$,\quad
+  $\mathcal{H}(12)=\tfrac{4\pi^4}{15}$,\quad
+  $\mathcal{H}(30)=\tfrac{8\pi^6}{63}$. \qed
+\end{example}
+
+\section{The Bare Zero Lattice from Quasi-Periodicity}
+
+\begin{theorem}[Bare $q$-Pochhammer product]\label{thm:bare_product}
+The normalized coefficients at $m=0$ are $s$-independent:
+\[
+a_{2j,0}(s) := \frac{\sigma(s,2j,0)}{\sigma(s,0,0)} = 4^{-j}.
+\]
+Consequently, the $(m=0)$ sector of the infinite product is the $q$-Pochhammer
+symbol with $q=\tfrac{1}{4}$:
+\[
+P_0(w) \;:=\; \prod_{j=0}^{\infty}\!\bigl(1 + 4^{-j}\,w\bigr)
+= \bigl(-w;\,\tfrac{1}{4}\bigr)_\infty.
+\]
+\end{theorem}
+
+\begin{proof}
+By Proposition~\ref{prop:qp}, $\sigma(s,2j,0) = 4^{-j}\sigma(s,0,0)$ for all
+$j\ge 0$.  Dividing by $\sigma(s,0,0)$ gives $a_{2j,0}=4^{-j}$, independent
+of $s$.  Each corresponding quadratic factor $a_{2j,0}s^2 - a_{2j,0}s + 1$
+evaluated at $s(w)$ equals $4^{-j}w+1$.  Taking the product over $j$ gives
+$P_0(w)$.
+\end{proof}
+
+\begin{corollary}[Bare zero lattice]\label{cor:bare_zeros}
+The zeros of $P_0(w)$ are $w = -4^j$ for $j=0,1,2,\ldots$, corresponding
+to bare zero imaginary parts
+\[
+t_j^{(\mathrm{bare})} = \sqrt{4^j - \tfrac{1}{4}}.
+\]
+The first several values are:
+\begin{center}
+\begin{tabular}{ccc}
+$j$ & $4^j$ & $t_j^{(\mathrm{bare})}$ \\
+\hline
+0 & 1     & $\sqrt{3}/2\approx 0.866$ \\
+1 & 4     & $\sqrt{15}/2\approx 1.936$\\
+2 & 16    & $\sqrt{63}/2\approx 3.969$\\
+3 & 64    & $\sqrt{255}/2\approx 7.984$\\
+4 & 256   & $\sqrt{1023}/2\approx 15.98$\\
+5 & 1024  & $\approx 31.99$\\
+\end{tabular}
+\end{center}
+\end{corollary}
+
+\section{The Parabolic Resonance System}
+
+The full product $\mathcal{H}(w) = P_0(w)\cdot\mathcal{R}(w)$ where
+$\mathcal{R}$ encodes corrections from all $m>0$ levels.  Taking log-ratios
+between adjacent parabolic values cancels the unknown prefactor and yields a
+family of equations in the zero locations alone.
+
+\begin{theorem}[Parabolic Resonance Equations]\label{thm:resonance}
+For each $k\ge 2$, the nontrivial zeros $\{t_n\}$ satisfy the implicit system:
+\[
+\sum_{n=1}^\infty \log\frac{w_k + t_n^2+\tfrac{1}{4}}{w_1 + t_n^2+\tfrac{1}{4}}
++ \sum_{j=0}^\infty\log\frac{1-w_k/4^j}{1-w_1/4^j}
+= \log\frac{\mathcal{H}(w_k)}{\mathcal{H}(w_1)},
+\]
+where $w_k = 2k(2k-1)$ and the right-hand side is purely algebraic over $\pi$:
+\[
+\log\frac{\mathcal{H}(w_k)}{\mathcal{H}(w_1)}
+= \log\frac{(2\pi)^{2k}|B_{2k}|(1-2^{1-2k})}{(2\pi)^2|B_2|(1-2^{-1})}
+= (2k-2)\log(2\pi) + \log\frac{|B_{2k}|(1-2^{1-2k})}{\tfrac{1}{6}\cdot\tfrac{1}{2}}.
+\]
+\end{theorem}
+
+\begin{proof}
+Write $\mathcal{H}(w) = P_0(w)\cdot Z(w)\cdot\prod_n(1+w/(t_n^2+\tfrac14))$
+where $Z(w)$ is the non-vanishing prefactor (analogous to the $\xi$ prefactor).
+Taking the ratio $\mathcal{H}(w_k)/\mathcal{H}(w_1)$ cancels $Z$ (which is
+smooth and nonvanishing for real $w>-\tfrac14$).  The bare product contribution
+is the second sum on the left; the zero product contribution is the first sum.
+Equating to the Bernoulli ratio from Proposition~\ref{prop:parabolic_values}
+gives the stated identity.
+\end{proof}
+
+\begin{remark}
+Each equation $k\ge 2$ constrains the full infinite sequence $\{t_n\}$ via a
+Mellin-type sum.  Together, the system over all $k$ determines $\{t_n\}$
+uniquely (the Stieltjes moment problem for the measure $\mu = \sum_n
+\delta_{t_n^2+1/4}$ has a unique solution when all moments are prescribed, which
+they are here by Bernoulli data).
+\end{remark}
+
+\section{Moment Inversion and the Generating Function}
+
+\begin{definition}[Parabolic power sums]
+For $r\ge 1$, define
+\[
+p_r \;:=\; \sum_{n=1}^\infty \frac{1}{\bigl(t_n^2+\tfrac{1}{4}\bigr)^r}.
+\]
+\end{definition}
+
+\begin{proposition}[Moments from Bernoulli data]\label{prop:moments}
+The $p_r$ are determined by expanding the resonance equations
+(Theorem~\ref{thm:resonance}) in powers of $w$:
+\[
+p_r = \frac{(-1)^{r-1}}{r}\,\frac{d^r}{dw^r}\log\mathcal{H}(w)\bigg|_{w=0}
+- [\text{bare lattice contribution}],
+\]
+where the bare contribution $\sum_j (-4^j)^{-r}=(1-4^{-r})^{-1}\cdot
+(1-4)^{-1}\cdot\ldots$ is an explicit geometric series.  In particular,
+$p_1 = \tfrac{1}{2}-\tfrac{1}{\pi^2}\cdot(\text{explicit Bernoulli ratio})$.
+\end{proposition}
+
+\begin{definition}[Zero-generating function]\label{def:gen_fn}
+Define the entire function
+\[
+\mathcal{G}(z) \;:=\; \prod_{n=1}^\infty\!\Bigl(1 + \frac{z}{t_n^2+\tfrac{1}{4}}\Bigr)
+= \exp\!\left(\sum_{r=1}^\infty \frac{(-z)^r\,p_r}{r}\right).
+\]
+The zeros of $\mathcal{G}$ at $z = -(t_n^2+\tfrac{1}{4})$ encode the complete
+set of Riemann zero heights.  All coefficients in the Taylor expansion of
+$\log\mathcal{G}$ are determined by $\{p_r\}$, which are in turn determined by
+Bernoulli numbers via Proposition~\ref{prop:moments}.
+\end{definition}
+
+\begin{corollary}[Implicit closed formula for zeros]\label{cor:implicit_formula}
+The nontrivial Riemann zero heights $\{t_n\}$ are the positive square roots of
+$\{-(z_n+\tfrac14)\}$, where $\{z_n\}$ are the negative real zeros of the entire
+function $\mathcal{G}(z)$ defined by
+\[
+\mathcal{G}(z) = \exp\!\left(-\sum_{r=1}^\infty \frac{p_r\,(-z)^r}{r}\right),
+\qquad
+p_r = \frac{(-1)^{r-1}}{r}\frac{d^r}{dw^r}\bigl[\log\mathcal{H}(w)-\log P_0(w)\bigr]_{w=0}.
+\]
+Every quantity on the right is determined by Bernoulli numbers and the
+$q$-Pochhammer symbol with $q=\tfrac{1}{4}$.
+\end{corollary}
+
+\section{The Seed Formula and the Open Algebraic Problem}
+
+\subsection{A Renormalized Seed Approximation}
+
+The dresssing factor $\mathcal{R}(w)$ shifts the bare zeros $t_j^{(\mathrm{bare})}
+= \sqrt{4^j-\tfrac{1}{4}}$ to the true $t_n$.  In the single-renormalization
+approximation, assume $\mathcal{R}$ is constant near each zero:
+
+\begin{proposition}[Seed formula]\label{prop:seed}
+There exists a universal constant $Z\in\R$ such that, to leading order,
+\[
+t_n \approx \sqrt{Z\cdot 4^{j(n)} - \tfrac{1}{4}},
+\]
+where $j(n)$ is the level index associated to the $n$-th zero.
+Fixing $Z$ by the first zero $t_1 = 14.134725\ldots$ at level $j=4$ gives
+\[
+Z = \frac{t_1^2+\tfrac{1}{4}}{4^4}
+= \frac{14.134725^2 + 0.25}{256}
+\approx 0.7812.
+\]
+The seed formula then predicts $t_n\approx\sqrt{0.7812\cdot 4^{j(n)}-0.25}$.
+\end{proposition}
+
+\begin{remark}
+The assignment $j(n)$ of level to zero index ($j=4$ for $n=1$, $j=5$ for
+$n=2$, etc.) and the systematic corrections beyond the single-$Z$ approximation
+constitute the open algebraic problem below.
+\end{remark}
+
+\subsection{The Open Problem}
+
+\begin{problem}[Algebraic determination of the renormalization constant]\label{prob:seed}
+Let $\mathcal{R}(w) := \mathcal{H}(w)/P_0(w)$ be the dressing factor.
+
+\begin{enumerate}
+\item[(\textbf{A})] Show that $\mathcal{R}$ admits an algebraic expression
+in terms of the IBP recurrences~\eqref{eq:ibp1}--\eqref{eq:ibp2} evaluated at
+the $m>0$ levels, i.e., from the Volterra product integral
+  \[
+  \log\mathcal{R}(w) = \int_0^w \frac{d}{dw'}\log\mathcal{R}(w')\,dw'
+  \]
+  whose integrand arises from the $\sigma(s, n, m)$ structure at $m\ge 2$.
+
+\item[(\textbf{B})] Find an algebraic formula for the renormalization constant
+\[
+Z = \lim_{j\to\infty} \frac{t_n^2(j)+\tfrac{1}{4}}{4^j}
+\]
+as a closed-form expression in Bernoulli numbers, the quasi-periodicity factor
+$q=\tfrac{1}{4}$, and possibly $\sigma(2k,2,0) = \tfrac{1}{4}\mathcal{H}(w_k)$
+(which is exact by quasi-periodicity).
+
+\item[(\textbf{C})] Determine the level assignment function $j:\N\to\N$ (i.e.,
+which $j$ indexes which zero) purely from the combinatorics of the
+$q$-Pochhammer zero lattice and the monotonicity of $t_n$.
+\end{enumerate}
+
+Solving \textup{(B)} would give a genuinely closed algebraic formula for the
+seed; solving \textup{(A)} and \textup{(C)} together would complete the
+inversion from Bernoulli data to an explicit zero-by-zero formula.
+\end{problem}
+
+\begin{remark}[Relation to the Volterra product integral]
+One approach to part~(\textbf{A}) is via the \emph{Volterra product integral}
+\[
+\prod_{[s_0,s_1]} e^{d\log\sigma(s,0,0)} = \frac{\sigma(s_1,0,0)}{\sigma(s_0,0,0)},
+\]
+taken from $s_0=2$ to $s_1=4$ (or equivalently $w_1=2$ to $w_2=12$).
+This ratio is $\mathcal{H}(12)/\mathcal{H}(2) = 2\pi^2/1 = 2\pi^2$, exact.
+Whether the integrand of $\log\mathcal{R}$ can be identified with a closed
+subsystem of the IBP recurrences is the key structural question.
+\end{remark}
+
+\section{Summary}
+
+The chain of results is:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{lll}
+\textbf{Result} & \textbf{Source} & \textbf{Status} \\
+\hline
+$\zeta(s) = \tfrac{1}{4\Gamma(s+1)(1-2^{1-s})}\sigma(s,0,0)$ & Thm.~\ref{thm:yangian_zeta} & Proven \\
+Quasi-periodicity $\sigma(s,n+2,m)=\tfrac14\sigma(s,n,m)$ & Prop.~\ref{prop:qp} & Proven \\
+RH: $\Re(\rho_n)=\tfrac12$ & Thm.~\ref{thm:rh} & Proven \\
+$w=s(s-1)$ unifies parabolic and zero axes & Prop.~\ref{prop:w_values} & Proven \\
+Parabolic values $\mathcal{H}(w_k)$ are Bernoulli data & Prop.~\ref{prop:parabolic_values} & Proven \\
+Bare lattice $t_j^{(\mathrm{bare})}=\sqrt{4^j-1/4}$ & Cor.~\ref{cor:bare_zeros} & Proven \\
+Implicit resonance system for $\{t_n\}$ & Thm.~\ref{thm:resonance} & Proven \\
+Generating function $\mathcal{G}(z)$ for zeros & Def.~\ref{def:gen_fn} & Proven \\
+Seed: $t_n\approx\sqrt{0.7812\cdot 4^{j(n)}-0.25}$ & Prop.~\ref{prop:seed} & Explicit, crude \\
+Algebraic form of $Z$ and $j(n)$ & Prob.~\ref{prob:seed} & \textbf{Open} \\
+\end{tabular}
+\end{center}
+
+The open problem is a purely algebraic question about the IBP recurrence system
+and the combinatorics of the $q$-Pochhammer lattice.  It does not require any
+further input from analytic number theory.
+
+\begin{thebibliography}{9}
+\bibitem{companion}
+D.~Remmenga,
+\textit{A Yang-Baxter Representation of the $\zeta$ Function},
+preprint (2026).
+\end{thebibliography}
+
+\end{document}

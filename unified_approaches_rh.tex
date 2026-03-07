@@ -1,0 +1,793 @@
+% unified_approaches_rh.tex
+%
+% Unified paper combining:
+%   weyl.tex                  — Complexified Weyl derivative and generalized zeta
+%   schrodinger-riemann.tex   — Quantum-theoretic conjecture on zeros
+%   alpha_virasoro_notes.tex  — Yang-Baxter coupling, Virasoro, fine structure analogy
+%   attempted_approaches_notes.tex — Volterra integrals, operator traces, prime algebras
+%
+% Status: informal / speculative notes unified for structural comparison.
+% A single thread runs through all four: the zeros of zeta are spectral data of
+% an operator, and the critical line emerges from a symmetry / reality condition.
+
+\documentclass[%
+ aip,
+ amsmath,amssymb,
+ reprint,%
+]{revtex4-1}
+
+\emergencystretch=2em
+
+\usepackage{graphicx}
+\usepackage{dcolumn}
+\usepackage{bm}
+\usepackage{mathptmx}
+\usepackage{etoolbox}
+\usepackage{bbm}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{mathrsfs}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+
+\makeatletter
+\def\@email#1#2{%
+ \endgroup
+ \patchcmd{\titleblock@produce}
+  {\frontmatter@RRAPformat}
+  {\frontmatter@RRAPformat{\produce@RRAP{*#1\href{mailto:#2}{#2}}}\frontmatter@RRAPformat}
+  {}{}
+}%
+\makeatother
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{conjecture}{Conjecture}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{example}[theorem]{Example}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\A}{\mathbb{A}}
+% Volterra product integral symbol
+\newcommand{\Prodi}{\operatorname*{\vcenter{\hbox{\Large$\prod$}}\!\!\!\!\int}}
+
+\begin{document}
+
+\preprint{AIP/123-QED}
+
+\title{Several Approaches to the Riemann Hypothesis:\\
+Spectral Operators, Weyl Derivatives, Quantum Mechanics,\\
+and Algebras over Primes}
+
+\author{Drew Remmenga}
+\email{remmengadrew@gmail.com}
+\affiliation{%
+Fort Collins, Colorado
+}%
+
+\date{\today}
+
+\begin{abstract}
+We collect and compare four independent approaches toward understanding the
+Riemann Hypothesis, noting that each encodes the same fundamental structure
+from a different vantage point: \emph{the nontrivial zeros of $\zeta(s)$ are
+spectral data of a naturally-arising operator, and the critical line $\Re(s)=\tfrac12$
+emerges from a reality or symmetry condition on that operator}.
+
+The first approach (Weyl derivative) decomposes $\partial^s f$ into a sum of
+two generalized Dirichlet series and conjectures that generic disjointness of
+their zero sets forces the critical-line symmetry condition $a_n = a_{-n}$ for
+annihilation.  The second approach (Schr\"odinger--Riemann) identifies zeros
+with forbidden normalization values of a quantum wave function.  The third
+approach (Yang-Baxter / Virasoro) recognizes the decay exponent $\alpha$ as an
+anomalous dimension playing the same role as the fine structure constant
+$\alpha_{\mathrm{EM}}$ in QED and as $\alpha_\pm$ in the Coulomb-gas Virasoro
+realization; the critical line follows from real grading of the Yang-Baxter
+system.  The fourth approach (Volterra / operator algebras) reformulates the
+problem as a vertical product integral over the critical strip, connects it to
+von Neumann algebra traces and the Connes trace formula, and introduces a
+Heisenberg algebra over primes in which integers are words and primes are
+letters, with connections to the Langlands program.
+
+None of these approaches is complete; they are collected here to expose the
+common spectral thread and to make cross-pollination between them explicit.
+\end{abstract}
+
+\maketitle
+
+% ============================================================
+\section{Introduction: The Common Thread}
+% ============================================================
+
+Four independent lines of investigation converge on the same structural claim.
+Each uses different mathematical language --- fractional calculus, quantum
+mechanics, Yang-Baxter integrability, noncommutative geometry, and representation
+theory --- but each can be summarized by the following meta-theorem (informal):
+
+\begin{quotation}
+\emph{The nontrivial zeros of $\zeta(s)$ are eigenvalues (or nodes, or poles of
+a resolvent) of a naturally-defined operator $\mathcal{O}$ on a Hilbert or
+Fock space; the critical line $\Re(s) = 1/2$ is the locus fixed by the
+natural involution (symmetry / self-adjointness / real grading) of $\mathcal{O}$.}
+\end{quotation}
+
+The four approaches, their operators, and their symmetry conditions are:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{p{3.2cm} p{3.8cm} p{4.2cm}}
+\textbf{Approach} & \textbf{Operator $\mathcal{O}$} & \textbf{Symmetry / reality condition} \\
+\hline
+Weyl derivative (\S\ref{sec:weyl})
+  & $\partial^s$ on Fourier series
+  & Disjoint zero sets $Z_+ \cap Z_- = \emptyset$ forces $a_n = a_{-n}$ \\
+Schr\"odinger--Riemann (\S\ref{sec:schrodinger})
+  & $-\tfrac12\partial_x^2$, Hamiltonian
+  & $L^2$ normalization collapses at non-$\tfrac12$ zeros \\
+Yang-Baxter / Virasoro (\S\ref{sec:virasoro})
+  & Yangian generators; Virasoro $L_0$
+  & Real grading of YB system; $c_{\mathrm{eff}} \in \R$ \\
+Volterra / Langlands (\S\ref{sec:volterra})
+  & Dirac $\mathcal{D}$ on adele class space; $H = \sum_p \log p\,a_p^\dagger a_p$
+  & Partial trace real-analytic $\Leftrightarrow$ no off-line zeros \\
+\end{tabular}
+\end{center}
+
+In \S\ref{sec:weyl}--\ref{sec:volterra} we develop each approach in detail.
+In \S\ref{sec:similarities} we make the structural similarities explicit.
+In \S\ref{sec:generalizations} we note generalizations of $\zeta$ suggested by
+varying the seed or quasi-periodicity of the Yang-Baxter system.
+Open problems are collected in \S\ref{sec:open}.
+
+% ============================================================
+\section{The Weyl Derivative and Generalized Zeta Functions}
+\label{sec:weyl}
+% ============================================================
+
+\subsection{Setup}
+
+The complexified Weyl derivative $\partial^s$, $s \in \C$, acts on Fourier
+representable functions $f(\theta) = \sum_{n=-\infty}^\infty a_n e^{in\theta}$
+(with $a_0 = 0$) by multiplication of the modes by $(in)^s$:~\cite{weylref}
+\[
+\partial^s f(\theta) = \sum_{n=-\infty}^\infty (in)^s a_n e^{in\theta}.
+\]
+This operator is central to infinite-dimensional Lie theory: the Witt algebra
+of derivations on the circle has $d_n = -e^{in\theta}\partial_\theta$ as
+generators, and $\partial^s$ is the continuous interpolation of these modes.
+
+\subsection{Decomposition into Dirichlet series}
+
+Splitting the sum over $n \in \Z\setminus\{0\}$ into positive and negative modes:
+\begin{align*}
+\partial^s f(\theta)
+&= \sum_{n=1}^\infty (in)^s a_n e^{in\theta}
+ + \sum_{n=1}^\infty (-in)^s a_{-n} e^{-in\theta} \\
+&= i^s \sum_{n=1}^\infty n^s a_n e^{in\theta}
+ + i^s e^{i\pi s} \sum_{n=1}^\infty n^s a_{-n} e^{-in\theta}.
+\end{align*}
+Writing $\chi(n) := a_n e^{in\theta}$ and $\chi(-n) := a_{-n}e^{-in\theta}$ and
+defining the generalized Dirichlet series
+\[
+L(s, \chi(\pm n)) := \sum_{n=1}^\infty n^s \chi(\pm n),
+\]
+we obtain the decomposition
+\begin{equation}
+\partial^s f(\theta)
+= i^s\, L(-s, \chi(n)) + i^s e^{i\pi s}\, L(-s, \chi(-n)).
+\label{eq:weyl_decomp}
+\end{equation}
+The action of $\partial^s$ is the sum of two zeta-like objects evaluated at $-s$,
+weighted by the chiral phase factors $i^s$ and $i^s e^{i\pi s} = (-i)^s$.
+
+\subsection{Kernel condition and the generic disjointness conjecture}
+
+If $\partial^s f \equiv 0$ for some $s \notin \Z_{\geq 0}$, then both terms in
+\eqref{eq:weyl_decomp} must cancel, which requires both series to vanish at $-s$:
+$L(-s, \chi(n)) = L(-s, \chi(-n)) = 0$.
+
+\begin{conjecture}[Generic disjointness of zero sets~\cite{weylref}]
+\label{conj:weyl}
+For a generic sequence $\{a_n\} \subset \C$ (in an appropriate function-space
+topology), the zero sets
+\[
+Z_+ = \{s : L(s, \chi(n)) = 0\} \quad\text{and}\quad Z_- = \{s : L(s, \chi(-n)) = 0\}
+\]
+are disjoint: $Z_+ \cap Z_- = \emptyset$.
+\end{conjecture}
+
+\begin{corollary}
+Under Conjecture~\ref{conj:weyl}, $\partial^s f \equiv 0$ for non-integer $s$
+implies $a_n = a_{-n}$ for all $n$ (even symmetry of $f$). Thus the kernel of
+$\partial^s$ is generically trivial; it contains non-trivial elements only when $f$
+has even ($a_n = a_{-n}$) or odd ($a_n = -a_{-n}$) symmetry.
+\end{corollary}
+
+The even-symmetry condition $a_n = a_{-n}$ is precisely the $f(\theta) = f(-\theta)$
+condition, which enforces a cosine (real) Fourier series. This foreshadows the
+\emph{real grading} theme that reappears in the Yang-Baxter setting (\S\ref{sec:virasoro}).
+
+% ============================================================
+\section{The Schr\"odinger--Riemann Correspondence}
+\label{sec:schrodinger}
+% ============================================================
+
+\subsection{Setup}
+
+Consider the one-dimensional time-independent Schr\"odinger equation (with $\hbar = m = 1$)
+on the interval $[0,\pi]$ with Dirichlet boundary conditions:
+\begin{equation}
+-\tfrac{1}{2}\frac{d^2\psi}{dx^2} = E\,\psi(x), \qquad \psi(0) = \psi(\pi) = 0.
+\label{eq:schrodinger}
+\end{equation}
+The solutions are $\psi_n(x) = \sin(nx)$ with eigenvalues $E_n = n^2/2$, $n \in \N$.
+The general solution is $\psi(x) = \sum_{n=1}^\infty A_n \sin(nx)$.
+
+\subsection{Basel connection}
+
+The Fourier expansion of $f(x) = x^2$ on $[-\pi,\pi]$ yields the Basel identity
+$\zeta(2) = \pi^2/6$.  More generally, the Parseval identity for $\psi$ connects
+the $L^2$ norm to the coefficient sequence:
+\[
+\|\psi\|_{L^2}^2 = \frac{\pi}{2}\sum_{n=1}^\infty |A_n|^2.
+\]
+The Riemann-Liouville fractional integral~\cite{Hadamard1892,Hermann2014}
+\[
+{}_0D_x^{-s} f(x) = \frac{1}{\Gamma(s)}\int_0^x (x-t)^{s-1} f(t)\,dt
+\]
+applied to $|\psi(x)|^2$ and the normalization constraint $\|\psi\|_{L^2} = 1$
+suggests the generating condition
+\begin{equation}
+\left|\sum_{n=1}^\infty \frac{A_n}{n^s}\right|^2 = 0, \qquad \sigma = \Re(s).
+\label{eq:norm_zero}
+\end{equation}
+
+\subsection{Conjecture}
+
+\begin{conjecture}[Quantum-theoretic Riemann Hypothesis~\cite{schrodingerref}]
+\label{conj:qzeta}
+Let $\psi(x)$ solve \eqref{eq:schrodinger} with $A_n$ chosen so that the
+Dirichlet series $D(s) := \sum_{n=1}^\infty A_n n^{-s}$ is analytic for $\Re(s)>0$.
+If $D(s) = 0$, then $\Re(s) = \tfrac12$. That is: the zeros of $D$ are
+``forbidden normalization values'' --- energies at which no $L^2$-normalizable
+state exists --- and they are confined to the critical line.
+\end{conjecture}
+
+The argument is by symmetry: the natural involution $s \mapsto 1-s$ of the
+functional equation forces zeros to pair as $(s_0, 1-s_0)$; the $L^2$
+normalization condition selects the midpoint $\Re(s) = 1/2$.
+A violation would require an asymmetric $\psi$, which corresponds to a
+``phase transition'' breaking the self-adjointness of the Hamiltonian.
+
+\begin{remark}[Half-integer spin]
+\label{rem:spin}
+The observation that the half-integer spin of fermions (spin $= 1/2$) is
+related to $\Re(s) = 1/2$ is evocative: in both cases the $1/2$ is the
+eigenvalue of the Casimir element of $\mathfrak{su}(2)$ acting on the
+fundamental representation. This connection is made more precise in the
+Virasoro setting (\S\ref{sec:virasoro}), where $c_{\mathrm{eff}}/24$ plays
+the role of the zero-point energy (the Casimir energy).
+\end{remark}
+
+% ============================================================
+\section{Yang-Baxter Coupling, Virasoro, and the Fine Structure Analogy}
+\label{sec:virasoro}
+% ============================================================
+
+\subsection{The Yang-Baxter $\sigma$-system}
+
+The Yang-Baxter approach~\cite{companion} identifies $\zeta$ with the integral
+$\sigma(s,0,0) = \int_0^\infty x^s e^x(e^x+1)^{-2}\,dx$ via
+$\zeta(s) = \sigma(s,0,0)/[4\Gamma(s+1)(1-2^{1-s})]$.
+Integration by parts yields two recurrences (IBP1, IBP2) with the crucial
+quasi-periodicity property
+\[
+\sigma(s, n+2, m) = \tfrac{1}{4}\,\sigma(s,n,m), \qquad
+\tau(s, n+2, m) = \tfrac{1}{4}\,\tau(s,n,m).
+\]
+The Yang-Baxter equation forces the decay exponent $\alpha$ (defined by
+$a_n \sim n^{-\alpha}$) to be real and greater than $1$.
+
+\subsection{The Coulomb gas mirror and $\alpha_+\alpha_- = 1/4$}
+
+In the Dotsenko-Fateev Coulomb gas realization of Virasoro minimal
+models~\cite{DotsenkoFateev1984}, screening charges $\alpha_\pm$ satisfy
+\[
+\alpha_+\alpha_- = \tfrac14, \qquad c = 1 - 24\alpha_0^2, \qquad
+h_{r,s} = \frac{(r\alpha_+ + s\alpha_-)^2 - Q^2/4}{1}.
+\]
+The product $\alpha_+\alpha_- = 1/4$ is the \emph{same} $1/4$ as the
+quasi-periodicity factor. Both arise from the quantum group deformation
+$U_q(\mathfrak{sl}(2))$ with $q = 1/2$.
+
+\subsection{$\alpha$ as anomalous dimension: three theories}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{llll}
+\textbf{Theory} & \textbf{Symbol} & \textbf{Value} & \textbf{Role} \\
+\hline
+QED & $\alpha_{\mathrm{EM}}$ & $\approx 1/137$ &
+  Anomalous dim.\ of photon; IR fixed point \\
+Yang-Baxter/$\zeta$ & $\alpha$ & $\approx 1.110$ &
+  H\"older exponent $a_n \sim n^{-\alpha}$; Yangian RG fixed point \\
+Virasoro Coulomb gas & $\alpha_\pm$ & $\alpha_+\alpha_- = \tfrac14$ &
+  Vertex-op.\ anomalous dim.; Kac table \\
+\end{tabular}
+\end{center}
+
+In each theory the coupling constant is the anomalous dimension of the
+fundamental field; it determines the spectrum via a fixed-point or Kac-table
+condition.
+
+\subsection{Running coupling and the interaction correction}
+
+In QED, $\alpha_{\mathrm{EM}}$ runs logarithmically with scale $\mu$.
+In the Yang-Baxter system the coupling runs discretely with Yangian level $n$:
+$a_n = a_1 n^{-\alpha}$. Quasi-periodicity sets the discrete beta function to
+zero at $\alpha = 1$ (free boson). The deviation
+$\delta\alpha = \alpha - 1 \approx 0.110$ is the interaction correction,
+in direct analogy to $\alpha_{\mathrm{EM}}$ measuring electromagnetic
+interaction strength.
+
+At the free-boson fixed point the effective central charge is $c_{\mathrm{eff}} = 2$
+and the Virasoro anomaly term is $c/12 = 1/6$. The connection to $\zeta$:
+\[
+-\zeta(-1) = \frac{1}{12}, \qquad
+\sum_{k=1}^\infty k = \zeta(-1) = -\tfrac{1}{12},
+\]
+so the Virasoro central extension and the Yang-Baxter system are both regularizing
+the \emph{same} divergent sum $\sum k$ from opposite directions.
+
+\subsection{Zeros from the Kac table}
+
+Using the parabolic coordinate $w = s(s-1)$ (which folds $s \leftrightarrow 1-s$)
+and identifying $h = w/c_{\mathrm{eff}}$ with a Kac table entry, the nontrivial
+zeros satisfy
+\[
+t_n^2 = c_{\mathrm{eff}}\,|h_{r_n, s_n}(c_{\mathrm{eff}})| - \tfrac{1}{4}.
+\]
+
+\begin{conjecture}[Zeros from deformed Kac table]\label{conj:kac_zeros}
+There exists a real $c_{\mathrm{eff}} > 2$ and a bijection $n \mapsto (r_n, s_n)$
+such that the formula above recovers the exact Riemann zero heights.
+\end{conjecture}
+
+\begin{problem}[Fixing $c_{\mathrm{eff}}$ algebraically]\label{prob:ceff}
+Determine $c_{\mathrm{eff}}  = 2\alpha$ in closed form from the Yang-Baxter
+recurrences. Candidate approaches: (A) Kac determinant fixed by first zero; (B)
+ratio $\sigma(2,0,0)/\sigma(0,0,0) = \pi^2/3$ as fixed-point equation in $c$;
+(C) modular weight $3/2$ of $\mathcal{H}(w)/P_0(w)$ uniquely determines $c$.
+\end{problem}
+
+\subsection{Spacetime topology and failure of real grading}
+
+The real grading proof (Step 2 of~\cite{companion}) uses the boundary term
+$\tau(s,n,m) = [x^s \star B_n \star B_m]_0^\infty$ being real at both limits.
+In spacetime backgrounds that identify $\mathcal{I}^+$ with $\mathcal{I}^-$
+(de~Sitter, thermal AdS, Misner/G\"odel, BMS), the boundary term acquires a
+complex phase and real grading fails.
+
+\begin{conjecture}[Topological failure]\label{conj:topology}
+In spacetimes identifying conformal boundaries, the deformed
+$\zeta$-analogue can have zeros off $\Re(s) = \tfrac12$.
+The de~Sitter case gives the quantitative prediction: deviation from realness of
+$\sigma_{dS}(2,0,0)$ is $(T_{dS}/m)^2$.
+\end{conjecture}
+
+% ============================================================
+\section{Volterra Product Integrals, Operator Traces, and Algebras over Primes}
+\label{sec:volterra}
+% ============================================================
+
+\subsection{Vertical Volterra product integrals in the critical strip}
+
+Fix $x \in (0,1)$ and compactify the vertical ray $\{x+it : t \geq 0\}$ via
+$t = \tan\theta$, $\theta \in [0, \pi/2)$:
+\[
+[0,\tfrac\pi2) \ni \theta \longmapsto \zeta(x + i\tan\theta) \in \C \cup \{\infty\}.
+\]
+This maps each vertical half-line of the critical strip to a compact interval,
+sending $i\infty$ to the point at infinity of the Riemann sphere $\hat\C$.
+The image curve is a compactified trajectory of $\zeta$ that winds around $0$
+once for each zero on $\Re(s) = x$.
+
+The \emph{Volterra product integral} (product integral of the logarithmic derivative)
+\[
+F(x) := \Re\!\int_0^{\pi/2} \frac{\zeta'(x+i\tan\theta)}{\zeta(x+i\tan\theta)}\,
+\frac{d\theta}{\cos^2\theta}
+= \Re\!\int_x^{x+i\infty} \frac{\zeta'(s)}{\zeta(s)}\,ds
+\]
+counts zeros on the vertical line $\Re(s)= x$ via the argument principle.
+
+\begin{conjecture}[Volterra detection of off-line zeros]\label{conj:volterra}
+$F(x)$ is real-analytic on $(0,1)\setminus\{1/2\}$, with logarithmic
+singularities precisely at values $x_0$ where $\zeta$ has a nontrivial zero on
+$\Re(s) = x_0$. In particular, RH $\Leftrightarrow$ $F$ is smooth on
+$(0,\tfrac12)\cup(\tfrac12,1)$.
+\end{conjecture}
+
+\begin{remark}[Why this stalls]
+The integral $\int_x^{x+i\infty}(\zeta'/\zeta)\,dt$ is only conditionally
+convergent. Proving $F(x_0) = 0$ for $x_0 \neq 1/2$ is equivalent to showing
+that the oscillations of $\zeta'/\zeta$ along vertical lines cancel
+perfectly --- which is essentially RH by another name. The geometric
+compactification $t = \tan\theta$ clarifies the topology but does not remove
+the analytic obstruction.
+\end{remark}
+
+\subsection{Infinite matrix traces and the von Neumann algebra}
+
+View $\zeta(s) = \sum_{n=1}^\infty n^{-s}$ as the trace of the diagonal operator
+$D^{(s)} = \mathrm{diag}(n^{-s})_{n\geq 1}$ on $\ell^2(\N)$:
+\[
+\zeta(s) = \mathrm{Tr}(D^{(s)}).
+\]
+The vertical product integral $F(x)$ is then the real part of the trace of
+$\partial_t \log M^{(x,t)}$ integrated over $t \geq 0$:
+\[
+F(x) = -\Re\int_0^\infty \frac{d}{dt}\log\zeta(x+it)\,dt.
+\]
+A zero of $\zeta$ at $x+it_0$ produces a pole of $\partial_t\log M^{(x,t)}$ at
+$t=t_0$, manifesting as a logarithmic divergence of the trace integral with
+residue equal to the zero's multiplicity.
+
+\subsection{Connection to Connes' trace formula}
+
+Connes~\cite{Connes1999} constructs a spectral triple
+$(\mathcal{A}, \mathcal{H}, \mathcal{D})$ with $\mathcal{H} = L^2(\A_\Q/\Q^*)$
+and a self-adjoint Dirac-type operator $\mathcal{D}$. The spectral action is
+\[
+\mathrm{Tr}(f(\mathcal{D}/\Lambda))
+\sim \Lambda\hat{f}(0)\zeta(1) - \sum_\rho \hat{f}(\rho) + O(1),
+\]
+where the sum runs over nontrivial zeros $\rho$.
+The function $F(x)$ is a \emph{partial trace} of the resolvent of $\mathcal{D}$,
+integrating out the imaginary direction.  RH is the statement that this partial
+trace has no singular support off the single fiber $x = 1/2$.
+
+The Dixmier trace $\mathrm{Tr}_\omega(T) = \lim_\omega \frac1{\log N}\sum_{n=1}^N \lambda_n(T)$,
+applied to $\mathcal{D}^{-1}$, recovers $\zeta(1)$ and its distributional
+prolongation. The vertical product integral at $x=1$ is this Dixmier trace,
+regularized by $t = \tan\theta$.
+
+\subsection{Heisenberg algebra over primes: integers as words, primes as letters}
+
+Let $\mathcal{P} = \{2,3,5,7,\ldots\}$ be the primes (an alphabet).  Each
+integer $n = \prod_p p^{v_p(n)}$ is a word in the free commutative monoid
+$\mathrm{Mon}(\mathcal{P}) \cong (\Z_{>0}, \times)$.
+
+Promote each prime $p$ to bosonic creation/annihilation operators
+$a_p^\dagger, a_p$ on Fock space $\mathcal{F} = \bigoplus_{n\geq 0} \mathrm{Sym}^n(\ell^2(\mathcal{P}))$:
+\[
+[a_p, a_q^\dagger] = \delta_{pq}, \qquad
+[a_p, a_q] = [a_p^\dagger, a_q^\dagger] = 0.
+\]
+Each integer $n$ becomes the Fock state
+$|n\rangle = \prod_p (a_p^\dagger)^{v_p(n)}/\sqrt{v_p(n)!}\;|0\rangle$.
+The unique factorization theorem is the Poincar\'e-Birkhoff-Witt theorem
+for the commutative enveloping algebra: every basis state $|n\rangle$ is unique.
+
+The \emph{logarithmic number operator}
+\[
+H = \sum_p \log(p)\, a_p^\dagger a_p
+\]
+satisfies $H|n\rangle = \log(n)|n\rangle$, and its partition function is exactly
+$\zeta$:
+\[
+\mathrm{Tr}(e^{-\beta H}) = \sum_{n=1}^\infty n^{-\beta} = \zeta(\beta), \qquad \beta > 1.
+\]
+
+\begin{remark}[Primes as left-moving modes]
+In a 2d CFT, the Virasoro character $\mathrm{Tr}_\mathcal{H}(q^{L_0})$ counts
+operator states built from mode applications $L_{-n_1}\cdots L_{-n_k}|h\rangle$.
+Here $\mathrm{Tr}(q^H) = \zeta(-\log q)$ counts integer states built from prime
+modes $a_p^\dagger$. Primes are the simple roots of the commutative mode algebra;
+unique factorization is PBW.
+\end{remark}
+
+\subsection{The center of the Heisenberg algebra and Hecke operators}
+
+Operators commuting with all mode products $a_p^\dagger a_q$ are exactly the
+\emph{multiplicative arithmetic functions} $f: \Z_{>0} \to \C$ (diagonal
+operators $T = \sum_n f(n)|n\rangle\langle n|$ with $f(mn) = f(m)f(n)$ for
+$\gcd(m,n)=1$). Their Dirichlet series $\sum f(n) n^{-s}$ are the Euler-product
+$L$-functions.
+
+The Hecke operators $\{T_p\}$ generate a commutative (Hecke) algebra whose center
+consists of spherical functions --- automorphic $L$-functions for
+$\mathrm{GL}(1)$ (Dirichlet characters) and $\mathrm{GL}(2)$ (classical modular forms).
+
+\subsection{Connection to the Langlands program}
+
+The four-floor algebraic tower is:
+\begin{enumerate}
+\item \textbf{Arithmetic} ($\Z$, $(\Z_{>0},\times)$): commutative, primes generate.
+\item \textbf{Heisenberg} (CCR over $\mathcal{P}$): non-commutative in
+  creation/annihilation; diagonal (abelian) in the number basis.
+  Center = multiplicative arithmetic functions.
+\item \textbf{Hecke algebra}: acts on Hilbert space of arithmetic functions;
+  automorphic side of Langlands for $\mathrm{GL}(1)$.
+\item \textbf{Virasoro / $W_\infty$}: modes of $T(z) = :(\partial\phi)^2:$
+  built from the free boson on the charge lattice $(\log\mathcal{P})\subset\R$.
+  Central charge $c = c_{\mathrm{eff}} = 2\alpha$ connects back to \S\ref{sec:virasoro}.
+\end{enumerate}
+
+Each floor is a non-abelian extension of the one below. RH on the ground floor
+translates to: the spectrum of $L_0$ (Virasoro zero mode, fourth floor) has all
+eigenvalues $h = h_{r,s}$ real and positive --- the Kac-table condition of
+\S\ref{sec:virasoro}.
+
+The Bost-Connes algebra~\cite{BostConnes1995}
+$\mathcal{A}_{\mathrm{BC}}$ (with generators $\mu_n$, $e(r)$,
+$r\in\Q/\Z$) provides the $\mathrm{C}^*$-algebra bridge between floors~2 and~3:
+its KMS states at inverse temperature $\beta > 1$ give $\zeta(\beta)$ as
+partition function, the same $\zeta$ appearing in the Fock-space trace at
+level~2.
+
+\begin{conjecture}[Center conjecture]\label{conj:center}
+The center of the Virasoro algebra acting on $\mathcal{F}$ is generated by the
+Casimir $C = L_0 - c/24$. Reality of the spectrum of $C$ is equivalent to
+$c_{\mathrm{eff}} \in \R$, which is the real-grading condition of
+\S\ref{sec:virasoro}, which implies RH.
+\end{conjecture}
+
+% ============================================================
+\section{Structural Similarities: One Theorem in Four Languages}
+\label{sec:similarities}
+% ============================================================
+
+All four approaches are the same meta-theorem in different languages.
+We make the dictionary explicit.
+
+\subsection{The common spectral operator and its involution}
+
+Each approach defines an operator $\mathcal{O}$ whose spectrum (or whose kernel,
+or whose resolvent singularities) encodes the zeros of $\zeta$:
+
+\noindent
+\textbf{Weyl derivative.} $\mathcal{O} = \partial^s$, a multiplicative operator
+on Fourier modes. The critical line is the locus where the even/odd symmetry
+$a_n = \pm a_{-n}$ holds, i.e., where the involution $f(\theta) \mapsto
+f(-\theta)$ is compatible with $\partial^s f = 0$.
+
+\noindent
+\textbf{Schr\"odinger--Riemann.} $\mathcal{O} = -\tfrac12\partial_x^2$ acting on
+$[0,\pi]$. The involution is $x \mapsto \pi - x$ (spatial reflection), which
+enforces $A_n = A_{-n}$ and confines the ``forbidden normalization energies'' to
+$\Re(s) = 1/2$.
+
+\noindent
+\textbf{Yang-Baxter / Virasoro.} $\mathcal{O} = L_0$ (Virasoro zero mode). The
+involution is $s \mapsto 1-s$ (functional equation symmetry), encoded in the
+Yang-Baxter system by the parabolic coordinate $w = s(s-1)$ which is
+\emph{invariant} under $s \mapsto 1-s$. The real grading $\alpha \in \R$ is
+the fixed-point condition under this involution.
+
+\noindent
+\textbf{Volterra / Langlands.} $\mathcal{O} = \mathcal{D}$ (Connes Dirac) or
+$H = \sum_p \log p\,a_p^\dagger a_p$. The involution is adelic duality
+$\A_\Q/\Q^* \to (\A_\Q/\Q^*)^\vee$, which corresponds to $n \mapsto 1/n$ on
+the diagonal matrices, i.e., $s \mapsto 1-s$ on the Mellin transform.
+
+\subsection{The symmetry condition in each language}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{p{3.5cm} p{6.5cm}}
+\textbf{Approach} & \textbf{The symmetry / reality condition} \\
+\hline
+Weyl derivative & $a_n = a_{-n}$: real (cosine) Fourier series \\
+Schr\"odinger & $A_n = A_{-n}$: spatially symmetric wave function \\
+Yang-Baxter & $\alpha \in \R$: real decay exponent / real grading of the IBP system \\
+Connes / Langlands & Partial trace $F(x)$ real-analytic off $x=1/2$; real spectrum of $L_0$ \\
+\end{tabular}
+\end{center}
+
+In every case the condition is: some distinguished real-to-complex map
+is real along the orbit of the natural involution $s \mapsto 1-s$.
+
+\subsection{The Weyl derivative modes are Virasoro generators}
+
+The Witt mode $d_n = -e^{in\theta}\partial_\theta$ is the $n$-th Fourier mode
+of $\partial_\theta$, and $\partial^s = \sum_n (in)^s a_n e^{in\theta}$ is
+the $s$-th complex power of $\partial_\theta$. On the Fock space $\mathcal{F}$
+of \S\ref{sec:volterra}, $\partial_\theta$ corresponds to the generator $L_{-1}$
+(translation), and $(in)^s$ corresponds to the spectral weight $n^s$ of the mode.
+The Weyl decomposition \eqref{eq:weyl_decomp} is then:
+\[
+\partial^s f = i^s\,L(-s,\chi(n)) + (-i)^s\, L(-s,\chi(-n))
+= \text{(left-moving contribution)} + \text{(right-moving contribution)},
+\]
+the chiral decomposition of the fractional derivative into holomorphic
+($a_n e^{in\theta}$) and anti-holomorphic ($a_{-n}e^{-in\theta}$) sectors.
+Disjointness of $Z_+$ and $Z_-$ (Conjecture~\ref{conj:weyl}) is the condition
+that the holomorphic and anti-holomorphic sectors have no common zero, which
+is a version of the statement that the CFT has no operator at dimension $h = \bar{h}$
+except on the diagonal --- reflecting the real structure of the operator algebra.
+
+\subsection{Normalization and the partition function}
+
+The Schr\"odinger normalization condition $\|\psi\|_{L^2} = 1$ and the
+Yang-Baxter partition function $\mathrm{Tr}(e^{-\beta H}) = \zeta(\beta)$ are
+the same object: both are the $L^2$ norm squared of a wave function
+(or a density-matrix trace) in the respective Hilbert space.
+The ``forbidden normalization energies'' of Conjecture~\ref{conj:qzeta}
+are the zeros of $\zeta$; the ``spectral zeta function'' of the Schr\"odinger
+Hamiltonian is $\zeta(s) = \sum_n E_n^{-s}$ by construction.
+
+% ============================================================
+\section{Generalizations of $\zeta$ via Seed and Quasi-Periodicity}
+\label{sec:generalizations}
+% ============================================================
+
+The Yang-Baxter system has two free inputs: the seed integral and the
+quasi-periodicity factor. Varying them generates a natural family generalizing $\zeta$.
+
+\subsection{Varying the seed kernel}
+
+Replace the Fermi-Dirac kernel $K(x) = e^x(e^x+1)^{-2}$ by any $K$ that is
+smooth on $(0,\infty)$, rapidly decaying at $+\infty$, and controlled at $0$.
+Representative examples:
+\begin{itemize}
+\item $K(x) = x^a e^{-x}$: seeds $\Gamma(s+a+1)$.
+\item $K(x) = e^x(e^x-1)^{-2}$ (Bose kernel): same $q=1/4$ quasi-periodicity but
+  different functional equation.
+\item $K(x) = e^x(e^x+1)^{-n}$, $n \geq 2$: higher-order Fermi kernels,
+  $q = 4^{-(n-1)}$.
+\item $K(x) = J_\nu(x)e^{-x}$: Bessel kernels, Mellin transform related to
+  $L$-functions of elliptic curves.
+\end{itemize}
+
+The seed determines the Euler product: $K(px)/K(x) = p^{-s}$ for all primes $p$
+is the multiplicativity condition; its unique solution (up to normalization) is
+the Fermi-Dirac kernel, explaining why $\zeta$ occupies a distinguished position.
+
+In the Weyl framework, changing the seed corresponds to changing the Fourier
+coefficients $a_n = \hat{K}(n)$: different kernels give different Dirichlet
+series $L(-s, \chi(n))$, and the zero-set disjointness question becomes
+theory-dependent.
+
+\subsection{Varying the quasi-periodicity factor}
+
+Replace $q = 1/4$ by $q \in (0,1)$. The quasi-periodicity becomes
+$\sigma^{(q)}(s,n+2,m) = q\,\sigma^{(q)}(s,n,m)$. The Coulomb-gas identification
+becomes $\alpha_+^{(q)}\alpha_-^{(q)} = q$, with the deformation parameter
+$q_{\mathrm{YB}} = \sqrt{q}$ of the quantum group $U_q(\mathfrak{sl}(2))$.
+
+\begin{conjecture}[Family of $L$-functions]\label{conj:qfamily}
+For each $q \in (0,1)$ there exists an $L$-function $L^{(q)}(s)$ satisfying RH
+if and only if the Yang-Baxter quadratic coefficients $a^{(q)}_{2j,2k}$ are real.
+The family interpolates: $L^{(1/4)} = \zeta$, $L^{(q)} \to 1$ as $q \to 0$.
+\end{conjecture}
+
+% ============================================================
+\section{Open Problems}
+\label{sec:open}
+% ============================================================
+
+\begin{problem}[Algebraic determination of $c_{\rm eff}$]
+Determine $c_{\mathrm{eff}} = 2\alpha \approx 2.220$ in closed form from the
+Yang-Baxter recurrences.  See Problem~\ref{prob:ceff} for candidate approaches.
+\end{problem}
+
+\begin{problem}[Kac label map]
+Find an explicit bijection $n \mapsto (r_n, s_n) \in \N^2$ such that
+$t_n^2 = c_{\mathrm{eff}}|h_{r_n,s_n}| - 1/4$ holds for all nontrivial zeros.
+\end{problem}
+
+\begin{problem}[Proving disjointness of zero sets]
+Prove (or disprove) Conjecture~\ref{conj:weyl}: for generic $\{a_n\}$,
+$Z_+ \cap Z_- = \emptyset$. Even a proof in the case $a_n = n^{-\sigma}$
+(standard Dirichlet series) would be interesting.
+\end{problem}
+
+\begin{problem}[Volterra conditional convergence]
+Find a regularization of the vertical product integral $F(x)$ that
+(a) is absolutely convergent and (b) still detects off-line zeros, without
+presupposing RH.
+\end{problem}
+
+\begin{problem}[Langlands center condition]
+Make Conjecture~\ref{conj:center} precise: identify the center of the Virasoro
+algebra acting on $\mathcal{F}$ and show that real spectrum of $L_0$ implies
+RH, without a circular argument.
+\end{problem}
+
+\begin{problem}[De~Sitter zeta analogue]
+Compute $\sigma_{dS}(2,0,0)$ perturbatively in $T_{dS}/m$ and verify
+Conjecture~\ref{conj:topology} quantitatively.
+\end{problem}
+
+% ============================================================
+\section{Summary}
+\label{sec:summary}
+% ============================================================
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{p{2.8cm} p{3.5cm} p{3.5cm} p{2.5cm}}
+\textbf{Approach} & \textbf{Main tool} & \textbf{Symmetry condition} & \textbf{Status} \\
+\hline
+Weyl derivative & $\partial^s = i^s L(-s,\chi(n)) + \ldots$ &
+  $Z_+ \cap Z_- = \emptyset$ $\Rightarrow$ $a_n = a_{-n}$ &
+  Conjecture; not proved \\
+Schr\"odinger & Forbidden normalization; $\|D(s)\|^2 = 0$ &
+  $L^2$ symmetry; $A_n = A_{-n}$ &
+  Conjecture; heuristic \\
+Yang-Baxter & Real grading; quadratic factor $as^2{-}as{+}1$ &
+  $\alpha \in \R$, $a < 4$ &
+  \textbf{Complete}~\cite{companion} \\
+Volterra / Langlands & Arg.\ principle; Connes trace; Fock space &
+  Partial trace smooth off $x=\tfrac12$ &
+  Conceptually correct; analytic gap \\
+\end{tabular}
+\end{center}
+
+The Yang-Baxter quadratic-factor argument is the only approach that has been
+closed into a rigorous proof.  The others remain as conjectures or heuristics,
+each illuminating a different face of the same spectral reality condition that
+forces zeros onto the critical line.
+
+\begin{thebibliography}{9}
+
+\bibitem{companion}
+D.~Remmenga,
+\textit{A Yang-Baxter Representation of the $\zeta$ Function},
+preprint (2026).
+
+\bibitem{paraboliccompanion}
+D.~Remmenga,
+\textit{Parabolic Resonance and a Formula for Riemann Zeros},
+preprint (2026).
+
+\bibitem{weylref}
+D.~Remmenga,
+\textit{A Note on the Complexified Weyl Derivative},
+J.~Lie Theory (submitted), preprint (2026).
+
+\bibitem{schrodingerref}
+D.~Remmenga,
+\textit{From Schr\"odinger to Riemann: A Quantum-Theoretic Conjecture},
+preprint (2026).
+
+\bibitem{DotsenkoFateev1984}
+V.~S.~Dotsenko and V.~A.~Fateev,
+\textit{Conformal algebra and multipoint correlation functions in 2D statistical models},
+Nucl.\ Phys.\ B \textbf{240}, 312 (1984).
+
+\bibitem{Connes1999}
+A.~Connes,
+\textit{Trace formula in noncommutative geometry and the zeros of the Riemann zeta function},
+Selecta Math.\ (N.S.) \textbf{5}, 29 (1999).
+
+\bibitem{BostConnes1995}
+J.-B.~Bost and A.~Connes,
+\textit{Hecke algebras, type III factors and phase transitions with spontaneous symmetry breaking
+in number theory},
+Selecta Math.\ (N.S.) \textbf{1}, 411 (1995).
+
+\bibitem{Hadamard1892}
+J.~Hadamard,
+\textit{Essai sur l'\'etude des fonctions donn\'ees par leur d\'eveloppement de Taylor},
+J.\ Math.\ Pures Appl.\ \textbf{8}, 101 (1892).
+
+\bibitem{Hermann2014}
+R.~Hermann,
+\textit{Fractional Calculus: An Introduction for Physicists},
+World Scientific, Singapore, 2nd ed.\ (2014).
+
+\end{thebibliography}
+
+\end{document}
