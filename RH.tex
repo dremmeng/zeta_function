@@ -334,21 +334,6 @@ From $\star B_{n+2}(0)=\frac{1}{4}\star B_{n}(0)$ and boundary vanishing for odd
 
 The formal $R$-matrix and recurrence relations lead naturally to a graded infinite product representation of the Riemann zeta function, revealing an unexpected connection to Yangian representation theory.
 
-\subsection{The infinite product ansatz}
-
-\begin{theorem}[Graded infinite product representation]\label{thm:graded_product}
-The Riemann zeta function admits a formal representation as an infinite product with level-dependent coefficients:
-\[
-\zeta(s) = C(s) \prod_{n=1}^{\infty} \frac{a_n(s) \, s(s-1) + 1}{s-1},
-\]
-where the coefficients $\{a_n\}$ follow a power-law grading:
-\[
-a_n(s) = a_1(s) \cdot n^{-\alpha},
-\]
-with decay exponent $\alpha = 1.110 \pm 0.005$ (determined from the first 51 Riemann zeta zeros).
-\end{theorem}
-
-The empirical discovery of this structure arose from analyzing the infinite product under the hypothesis of extracting coefficients from the zero set. Rather than finding universality (a single constant $a$), computational analysis revealed that coefficients systematically decrease as $a_n = a_1 \cdot n^{-\alpha}$, where $\alpha > 1$ is a universal exponent.
 
 \subsection{Yangian level interpretation}
 
@@ -367,15 +352,6 @@ Physically, this means:
 This mirrors the structure of quantum spin chains and conformal field theories, where higher excitations decouple exponentially in physical energy scales.
 \end{definition}
 
-\subsection{Convergence and analyticity}
-
-\begin{proposition}[Absolute convergence of the infinite product]
-The series $\sum_{n=1}^{\infty} |a_n|$ converges absolutely because $\alpha = 1.110 > 1$. By the p-series test,
-\[
-\sum_{n=1}^{\infty} \frac{|a_1|}{n^{1.110}} = |a_1| \zeta(1.110) < \infty.
-\]
-Therefore the infinite product converges absolutely, and $\zeta(s)$ is well-defined without additional regularization.
-\end{proposition}
 
 \begin{corollary}[Pole structure preservation]
 Each factor contributes a simple pole at $s=1$. For the infinite product to maintain a simple pole (not a higher-order pole) at $s=1$, we require convergence of $\sum_{n=1}^{\infty} a_n$. This also mandates $\alpha > 1$. Empirically, $\sum_{n=1}^{51} a_n \approx 0.0188$, consistent with asymptotic convergence.
@@ -495,7 +471,7 @@ creates a cascade: the derivative of $B_m$ is $B_{m+1}$, so integrating by parts
 
 The recursions Theorems~\ref{thm:ibp1} and~\ref{thm:ibp2} are linear in $\sigma$ and $\tau$. To extract the nonlinear (quadratic) structure that defines the infinite product factors, we interpret the coefficient $a_{n,m}(s)$ as a normalized version:
 \begin{equation}\label{eq:coeff_def}
-a_{n,m}(s) := \frac{\sigma(s,n,m)}{\sigma(s,0,0)}.
+a_{2n,m}(s) := \frac{\sigma(s,2n,m)}{\sigma(s,0,0)}.
 \end{equation}
 
 Substituting into Theorem~\ref{thm:ibp1} and dividing by $\sigma(s,0,0)$:
