@@ -385,7 +385,9 @@ where the coefficients $\{a_{2j,2k}(s)\}$ are determined recursively from the Ya
     \item Regularization: Proper regularization (Hadamard or zeta-function regularization) is required for analytic convergence.
 \end{enumerate}
 \end{theorem}
+Sanity checks: we have an irremovable pole at $s=1$, and up to our choice of the function $a(s)$ and trivial multiplication of zeros by their complex conjugate and Hadamard factorization we arrive at the ansatz trivially. 
 
+What we gain through this construction are parabolic resonance between zeros and even values of the $\zeta$ function which we explore in \ref{prop:parabolic_resonance} and the quadratic factorization structure which we explore in \ref{sec:critical_factorization}.
 \subsection{Coefficient Recursion}
 
 \begin{theorem}[Coefficient Recursion from Yang-Baxter]\label{thm:coefficient_recursion}
@@ -469,10 +471,9 @@ creates a cascade: the derivative of $B_m$ is $B_{m+1}$, so integrating by parts
 
 \subsection{Extraction of the Quadratic Recursion}
 
-The recursions Theorems~\ref{thm:ibp1} and~\ref{thm:ibp2} are linear in $\sigma$ and $\tau$. To extract the nonlinear (quadratic) structure that defines the infinite product factors, we interpret the coefficient $a_{n,m}(s)$ as a normalized version:
-\begin{equation}\label{eq:coeff_def}
-a_{n,m}(s) := \frac{\sigma(s,n+2,m)}{\sigma(s,n,m)}.
-\end{equation}
+The recursions Theorems~\ref{thm:ibp1} and~\ref{thm:ibp2} are linear in $\sigma$ and $\tau$. To extract the nonlinear (quadratic) structure that defines the infinite product factors, we interpret the coefficient $a_{n,m}(s)$ as a normalized version of the spacing between zeros.
+
+
 
 Substituting into Theorem~\ref{thm:ibp1} and dividing by $\sigma(s,0,0)$:
 \begin{equation}\label{eq:coeff_recurrence}
