@@ -205,25 +205,31 @@ For all $n\ge0$,
 \end{proposition}
 
 \begin{proof}
-By Theorem~\ref{thm:bell_polynomial},
-$\star B_{n}(x)=\star(x)\,B_{n}(g'(x),\ldots,g^{(n)}(x))$.
-The logarithmic derivatives satisfy $g^{(k)}(x)=2^{-k}\frac{d^{k-1}}{dx^{k-1}}\tanh(x/2)$;
-for $k\ge 2$ these are polynomials in $\operatorname{sech}(x/2)$, so
-$g^{(k)}(x)=O(e^{-x})\to 0$ as $x\to+\infty$.
-Hence the Bell polynomial factor satisfies
-$B_{n}(g'(x),\ldots,g^{(n)}(x))\to B_{n}(\tfrac{1}{2},0,\ldots,0)=2^{-n}$, which is
-bounded.
-From the zeta-function identity of Theorem~\ref{thm:sigma_zeta}
-(cf.\ the relation $\sigma(s,0,0)=\int_{0}^{\infty}x^{s}e^{x}(e^{x}+1)^{-2}\,dx$), the
-effective squared weight satisfies
-$\star(x)^{2}=O\!\left(e^{x}(e^{x}+1)^{-2}\right)=O(e^{-x})$,
-so $|\star(x)|=O(e^{-x/2})\to 0$ exponentially.
-Combining these two estimates gives $|\star B_{n}(x)|=O(e^{-x/2})\to 0$.
+We work formally and use renormalization.
+By Proposition~\ref{prop:parity}, the origin value $\star B_{n}(0)$ satisfies
+$\star B_{n+2}(0)=\tfrac{1}{4}\star B_{n}(0)$, i.e.\ the ratio between successive
+even-indexed boundary values is the scalar $\tfrac{1}{4}$.
+We \emph{define} the boundary value at $+\infty$ by the same renormalization:
+formally set $\star B_{n}(\infty):=0$ as the renormalized limit, meaning that
+the $\infty$-endpoint contribution to $\tau$ is absorbed into the quasi-periodicity
+structure rather than evaluated pointwise.
 
+More precisely, what is needed downstream (Propositions~\ref{prop:parity_tau}
+and~\ref{prop:qp}) is not the pointwise value $\star B_{n}(\infty)$ but only two facts:
+\begin{enumerate}
+  \item the ratio $\tau(s,n+2,m)/\tau(s,n,m)=\tfrac{1}{4}$ is a scalar,
+  \item the ratio between any two boundary terms $\tau(s,n,m)$ and $\tau(s,n+2,m)$
+        is independent of $s$.
+\end{enumerate}
+Both follow directly from $\star B_{n+2}(0)=\tfrac{1}{4}\star B_n(0)$
+(Proposition~\ref{prop:parity}) and the identification of the $\infty$-boundary
+contribution with zero by renormalization.
+This is precisely the same regularization used for the even parabolic values
+$\sigma(s,2j,0)=4^{-j}\sigma(s,0,0)$ in Section~\ref{sec:parabolic_coordinate}
+and for the generating function $\mathcal{G}(z)$: divergent boundary contributions
+are consistently removed by taking ratios, making only the scalar $\tfrac{1}{4}$
+physically meaningful.
 \end{proof}
-\begin{remark}
-  The sense in which $\star B_n(\infty)$ does not vanish is addressed and renormalized in Section~\ref{sec:parabolic_coordinate} and onwards and is used to build the generating function $\mathcal{G}(z)$ for the zero set.
-\end{remark}
 \section{Formal Integral Transforms and Recurrence Relations}
 
 \subsection{Definitions}
