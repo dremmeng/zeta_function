@@ -230,6 +230,9 @@ and for the generating function $\mathcal{G}(z)$: divergent boundary contributio
 are consistently removed by taking ratios, making only the scalar $\tfrac{1}{4}$
 physically meaningful.
 \end{proof}
+\begin{remark}
+  To the reader familiar with 'subtracting an infinite constant' from a Hamiltonian to construct a Bethe Ansatz, our procedure for handling $\tau$ boundary terms should be familiar to you.
+\end{remark}
 \section{Formal Integral Transforms and Recurrence Relations}
 
 \subsection{Definitions}
@@ -392,8 +395,30 @@ The formal $R$-matrix and recurrence relations lead naturally to a graded infini
 
 The index-dependent decay structure is natural in the Yangian framework:
 
+\begin{definition}[Decay exponent $\alpha$]\label{def:alpha}
+The \emph{decay exponent} $\alpha$ is the real number governing the power-law envelope of the normalized coefficients
+\[
+a_n(s) \;:=\; \frac{\tau(s,2n,0)}{\sigma(s,0,0)},
+\]
+defined by the asymptotic relation $a_n(s)\sim a_1(s)\cdot n^{-\alpha}$ as $n\to\infty$.
+By the quasi-periodicity $\tau(s,n+2,m)=\tfrac{1}{4}\tau(s,n,m)$
+(Proposition~\ref{prop:qp}), the base ratio $a_{n+1}/a_n=(n/(n+1))^\alpha$ must
+be consistent with $a_{2j}/a_{2(j-1)}=4^{-1}$, which fixes $\alpha$ via the
+renormalization condition on the lattice of even indices.
+Empirically (from the first 51 Riemann zeta zeros), $\alpha\approx 1.110$.
+
+\begin{remark}[Bethe Ansatz analogy]
+To a reader familiar with subtracting an infinite constant from a Hamiltonian
+to construct a Bethe Ansatz vacuum, the renormalization of the $\tau$
+boundary terms should be immediately recognizable: the divergent
+contributions at $\infty$ are absorbed by the quasi-periodicity scalar
+$\tfrac{1}{4}$, leaving $\alpha$ as the sole physical parameter, in exact
+analogy with the bare/renormalized coupling in the algebraic Bethe Ansatz.
+\end{remark}
+\end{definition}
+
 \begin{definition}[Yangian level grading]
-In the infinite-dimensional Yangian algebra associated to $\mathfrak{sl}(2)$, representations are organized into levels $V_n$ ($n \in \mathbb{Z}_{\ge 0}$). Level $n$ contributions to the global structure decouple with strength proportional to $n^{-\alpha}$.
+In the infinite-dimensional Yangian algebra associated to $\mathfrak{sl}(2)$, representations are organized into levels $V_n$ ($n \in \mathbb{Z}_{\ge 0}$). Level $n$ contributions to the global structure decouple with strength proportional to $n^{-\alpha}$ (Definition~\ref{def:alpha}).
 
 Physically, this means:
 \begin{itemize}
@@ -464,7 +489,6 @@ where $c_{n,m}(s)$ is a boundary coefficient related to the vanishing or quasi-p
 \subsection{The Factorization Principle}
 
 We now derive the infinite product ansatz exactly by systematically applying integration by parts to the $\sigma$ and $\tau$ transforms and factoring the resulting recursions.
-To the reader familiar with 'subtracting an infinite constant' from a Hamiltonian to construct a Bethe Ansatz, our procedure for handling $\tau$ boundary terms should be familiar to you.
 The key observation is that Theorems~\ref{thm:ibp1} and~\ref{thm:ibp2} encode a \textbf{hidden factorization structure} that can be extracted by writing integration by parts in the form:
 \begin{equation}\label{eq:ibp_form}
 u \cdot v\big|_0^\infty = \int_0^\infty u \, dv + \int_0^\infty v \, du = \tau(s,n,m) + \int_0^\infty v \, du.
