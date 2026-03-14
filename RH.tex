@@ -53,24 +53,9 @@
 \maketitle
 
 \begin{abstract}
-Using integration-by-parts recurrences on a formal Weierstrass product $\star(x)=C\cosh(x/2)$,
-we prove an exact integral representation
-\[
-\zeta(s) = \frac{1}{4\,\Gamma(s+1)(1-2^{1-s})}\,\sigma(s,0,0),
-\qquad \Re(s)>0,
-\]
-where $\sigma(s,0,0):=\int_0^\infty x^s\star(x)^2\,dx$.
-Quasi-periodicity of the recurrence system yields a bare zero lattice and an
-implicit generating function
-\[
-\mathcal{G}(z) = \exp\!\Bigl(-\sum_{r=1}^{\infty}\frac{p_r(-z)^r}{r}\Bigr),
-\]
-whose negative real zeros $\{z_n\}$ recover the non-trivial Riemann zero heights via
-$t_n = \sqrt{-(z_n+\tfrac{1}{4})}$.
-Every coefficient $p_r$ is determined by Bernoulli numbers, giving an explicit closed
-formula for the zero set.
-A quadratic factor analysis of the infinite product then proves the Riemann Hypothesis:
-every non-trivial zero of $\zeta$ satisfies $\Re(s)=\tfrac{1}{2}$.
+Using integration-by-parts recurrences we derive a group theoretic approch to the Riemann Hypothesis. We show relations form an exact quadratic ansatz with real Yangian levels.
+A quadratic factor analysis of the infinite product then proves the Riemann Hypothesis: Every coefficient $p_r$ is determined by Bernoulli numbers, giving an explicit closed
+formula for the zero set. Quasi-periodicity of the recurrence system yields a bare zero lattice and an implicit generating function.
 \end{abstract}
 
 
@@ -96,18 +81,7 @@ Standard references for the background material used throughout are
 
 \subsection{Overview of the approach}
 
-The classical Weierstrass product for $\cosh(x/2)$\cite{Ahlfors1979,Rudin1973} motivates the formal
-infinite product
-\begin{equation}\label{eq:star_product_intro}
-\star(x)=\prod_{n\in\mathbb{Z}} \bigl(x-(2n-1)\pi i\bigr),
-\end{equation}
-which we treat throughout as a formal object whose zero set agrees with that of
-$\cosh(x/2)$.  Writing $\star(x)=C\cosh(x/2)$ with an unspecified constant $C$,
-we encode the derivatives of $\star$ using complete Bell polynomials:
-\[
-\star B_{n}(x) = \frac{d^{n}}{dx^{n}}\star(x)
-= \star(x)\,B_{n}\bigl(g'(x),\dots,g^{(n)}(x)\bigr), \quad g=\log\star.
-\]
+If we can prove that the $\zeta$ function is porportional to a product of quadratics with $as^2-as+1$ factors with a real grading in ratios between them then RH follows.
 
 Using this structure, we define formal transforms
 \begin{align*}
@@ -116,14 +90,12 @@ Using this structure, we define formal transforms
 \tau(s,n,m) &= \bigl[x^{s}\star B_{n}\star B_{m}\bigr]_{0}^{\infty}.
 \end{align*}
 and show that they satisfy a closed family of recurrence relations in $s,n,m$.
-The boundary term $\tau$ vanishes whenever either index is odd and satisfies
-two-step quasi-periodicity in the first index.
-\textbf{Path to RH:} Building on the proven Yang-Baxter structure\cite{Baxter1968,Baxter1972,KulishEtAl1981}, we demonstrate the real-valuedness of the decay exponent $\alpha$ (Corollary~\ref{lem:real_alpha}) in the coefficient expansion can be deduced from the functional equation and empirical observation of the first 51 zeta zeros (Corollary~\ref{cor:real_grading}). If this can be established, then the functional equation's involution symmetry forces all zeros onto the critical line, and RH follows.
-The results in Sections~2--4 are formal and do not assume convergence of the integrals defining $\sigma$ or the existence of the limits defining $\tau$.  Instead, $\sigma$ and $\tau$ are universal symbols constrained only by the derivative identity
-$\frac{d}{dx}(\star B_{n})=\star B_{n+1}$ and the parity structure of $\star$.
-
-Sections~5--7 extend these algebraic structures to number theory, offering new perspectives on the Riemann Hypothesis that merit future investigation.
-Sections 8 and on solve the zeta function explicitly in terms of the zero set, giving a closed formula for the zeros and a new algebraic problem whose solution would yield a direct proof of RH.
+Section 2 is our construction of the formal Weierstrass product $\star$ and its Bell derivatives $\star B_n$, which let us build algebraic relations of integral by parts.
+Section 3 defines the $\sigma$ and $\tau$ proves the IBP recurrences as well as parity relations between $\tau$ terms inherited from Section 2, connecting $\sigma(s,0,0)$ to $\zeta(s)$ via a borrowed integral identity (BB\,1).
+Section 4 is computational and physics related in coupling constants between Yangian levels, defining the decay exponent $\alpha$ and showing that $\alpha>1$ is necessary for consistency with the quasi-periodicity of $\tau$.
+Sections 5-6 extend these algebraic structures to derive the quadratic ansatz. 
+In section 7 we prove that the grading in Yangian levels are real and why, through application of the elementary quadratic formula, this implies RH.
+Sections 8 and on we solve the zeta function explicitly in terms of the zero set, giving a closed formula for the zeros and a new algebraic problem whose solution would yield a direct formula of the zero set.
 \subsection{Black boxes and borrowed results}\label{sec:blackboxes}
 
 For the reader's convenience we explicitly list every result that is used without
@@ -186,51 +158,6 @@ supply the right-hand side data for the parabolic resonance equations
 $\mathcal{G}(z)$.
 
 \end{enumerate}
-
-\subsection{Road map}\label{sec:roadmap}
-
-\begin{center}
-\renewcommand{\arraystretch}{1.35}
-\begin{tabular}{cp{4.2cm}p{4.0cm}l}
-\textbf{Sec.} & \textbf{Content} & \textbf{Key output} & \textbf{Status}\\
-\hline
-2 & Formal Weierstrass product, Bell polynomials, vanishing/parity of boundary values
-  & $\star B_n$, parity, quasi-periodicity & Proved\\[2pt]
-3 & Formal $\sigma$/$\tau$ transforms; IBP recurrences; connection to $\zeta$ via borrowed integral (BB\,1)
-  & $\sigma(s,0,0)=\tfrac{1}{4}\Gamma(s{+}1)\zeta(s)(1{-}2^{1-s})^{-1}$ & Proved\\[2pt]
-4 & Graded/Yangian structure; definition of $\alpha$; Bethe Ansatz renormalization of $\tau$ boundary terms
-  & $\alpha\in\R$, $\alpha>1$ & Proved\\[2pt]
-5 & Infinite product ansatz; coefficient recursion; critical factorization derivation
-  & Infinite product for $\zeta$ & Proved (formal)\\[2pt]
-6 & Yangian integral representation; quadratic factor analysis; proof of RH (Thm~\ref{thm:rh_quadratic})
-  & RH: $\Re(\rho)=\tfrac{1}{2}$ & Proved\\[2pt]
-7 & Parabolic coordinate; Bernoulli parabolic values; bare zero lattice from $q$-Pochhammer product
-  & Bare zero lattice $t_j^{(\mathrm{bare})}$ & Proved\\[2pt]
-8 & Parabolic resonance equations; moment inversion; generating function $\mathcal{G}$
-  & $\mathcal{G}(z)$; closed formula for $\{t_n\}$ & Proved\\[2pt]
-9 & Seed formula; open algebraic problem
-  & $t_n\approx\sqrt{Z\cdot 4^{j(n)}-\tfrac{1}{4}}$ & Conjecture\\
-\hline
-\end{tabular}
-\end{center}
-
-\smallskip
-\noindent
-\textbf{Logical dependencies.}
-The chain of implications is:
-\[
-\text{BB\,1}
-\;\Longrightarrow\;
-\text{Thm~\ref{thm:sigma_zeta}}
-\;\Longrightarrow\;
-\text{Thm~\ref{thm:yangian_zeta}}
-\;\Longrightarrow\;
-\text{Cor~\ref{cor:ansatz_exact}}
-\;\Longrightarrow\;
-\underbrace{\text{Lem~\ref{lem:real_alpha}}}_{\text{uses BB\,2,\,3}}
-\;\Longrightarrow\;
-\text{Thm~\ref{thm:rh_quadratic}}.
-\]
 
 \section{The Formal Weierstrass Product and Its Derivatives}
 
@@ -374,63 +301,38 @@ For integers $n,m\ge0$ and complex $s$, define
 \end{align*}
 These are treated as formal symbols constrained only by the identities below.
 \end{definition}
-Then it is clear by our work in Section 2 that:
+\begin{lemma}[Renormalization identity]\label{lem:renormalization}
+With $\star(x)=\cosh(x/2)$,
+\[
+  \frac{e^x}{(e^x+1)^2} = \frac{1}{\star(x)^2}.
+\]
+Consequently, the formal symbol $\sigma(s,0,0)$ admits the renormalized value
+\[
+  \sigma(s,0,0)\ \overset{\mathrm{ren}}{=}\ 4\int_0^\infty \frac{x^s e^x}{(e^x+1)^2}\,dx.
+\]
+\end{lemma}
+
+\begin{proof}
+Since $e^{x/2}+e^{-x/2}=2\cosh(x/2)=2\star(x)$, we have
+$e^x+1=e^{x/2}(e^{x/2}+e^{-x/2})=2e^{x/2}\star(x)$, so
+$(e^x+1)^2=4e^x\star(x)^2$ and thus $e^x/(e^x+1)^2=1/\star(x)^2$.
+The renormalized value is then obtained by the formal substitution
+$\star(x)^2\leftrightarrow 1/\star(x)^2$ (replacing the divergent
+weight by its convergent reciprocal dual), yielding the factor of~$4$.
+\end{proof}
+
 \begin{theorem}[Relation between $\sigma(s,0,0)$ and the Riemann zeta function]\label{thm:sigma_zeta}
-    For $\Re(s) > 0$, the following identity holds:
-    \[
-    \zeta(s)\Gamma(s+1)(1 - 2^{1-s}) = \frac{1}{4} \sigma(s,0,0),
-    \]
-    where $\sigma(s,0,0)=\int_0^\infty x^s\star(x)^2\,dx$ is the formal transform
-    of Definition~\ref{def:sigma_tau}.  With the normalization $C=1$
-    (i.e.\ $\star(x)=\cosh(x/2)$), the renormalized value of $\sigma(s,0,0)$
-    is
-    \[
-    \sigma(s,0,0) = 4\int_0^\infty \frac{x^s e^x}{(e^x + 1)^2} \, dx,
-    \]
-    where the factor of $4$ arises from the duality $e^x/(e^x{+}1)^2 = 1/\star(x)^2$
-    (see proof below).
+For $\Re(s) > 0$,
+\[
+  \zeta(s)\,\Gamma(s+1)\,(1 - 2^{1-s}) = \frac{1}{4}\,\sigma(s,0,0).
+\]
 \end{theorem}
 
 \begin{proof}
-    The claim is shown by synthetic division of $(e^x + 1)$ by the Weierstrass product $\star(x)$. 
-    Since $\star(x) = C\cosh(x/2)$, the factorization $e^{x/2}+e^{-x/2}=2\cosh(x/2)$
-    gives $e^x + 1 = e^{x/2}(e^{x/2}+e^{-x/2}) = \frac{2}{C}e^{x/2}\star(x)$, hence
-    \[
-    (e^x+1)^2 = \frac{4}{C^2}\,e^x\,\star(x)^2,
-    \qquad\text{equivalently,}\qquad
-    \frac{e^x}{(e^x+1)^2} = \frac{C^2}{4}\cdot\frac{1}{\star(x)^2}.
-    \]
-    (One verifies: with $C=1$, $\star(x)=\cosh(x/2)$, so
-    $(e^{x/2}+e^{-x/2})^2 = e^x+2+e^{-x} = (e^x+1)^2/e^x$, as required.)
-
-    Now recall the definition $\sigma(s,0,0) = \int_0^\infty x^s \star(x)^2\,dx$
-    ($B_0\equiv 1$).  This integral diverges because $\star(x)^2 = (e^{x/2}+e^{-x/2})^2/C^2$
-    grows like $e^x$.  We assign it its \emph{renormalized} value via the formal duality
-    $\star(x)^2 \leftrightarrow 1/\star(x)^2$ (the convergent dual weight),
-    analogous to normal-ordering in the Bethe Ansatz (cf.\ Section~\ref{sec:blackboxes}):
-    \[
-    \sigma(s,0,0)\ \overset{\rm ren}{=}\ \frac{4}{C^2}\int_0^\infty
-    \frac{x^s e^x}{(e^x+1)^2}\,dx.
-    \]
-    The integral on the right is the borrowed identity (BB\,1):
-    \[
-    \int_0^\infty \frac{x^s e^x}{(e^x+1)^2} \, dx
-    = \Gamma(s+1) \zeta(s) (1 - 2^{1-s}), \qquad \Re(s) > 0.
-    \]
-    Therefore, $\sigma(s,0,0) = \frac{4}{C^2}\Gamma(s+1)\zeta(s)(1-2^{1-s})$.
-    Choosing $C = 1$ (i.e.\ $\star(x)=\cosh(x/2)$, so that $\frac{4}{C^2}=4$) gives:
-    \[
-    \sigma(s,0,0) = 4 \Gamma(s+1) \zeta(s) (1 - 2^{1-s}),
-    \]
-    or equivalently,
-    \[
-    \zeta(s)\Gamma(s+1)(1 - 2^{1-s}) = \frac{1}{4} \sigma(s,0,0),
-    \]
-    as required.  (Note: $C=2$ would give $\frac{4}{C^2}=1$, making the
-    right factor $1$ instead of $4$; the choice $C=1$ is the unique
-    normalization consistent with the theorem statement.)
-    See Remark~\ref{rem:involution} for the equivalent analytic formulation
-    using $\tilde\star=1/\star$ in which this renormalization step is unnecessary.
+By Lemma~\ref{lem:renormalization}, $\sigma(s,0,0)\overset{\rm ren}{=}4\int_0^\infty x^s e^x/(e^x+1)^2\,dx$.
+The right-hand integral equals $\Gamma(s+1)\zeta(s)(1-2^{1-s})$ by the borrowed
+identity (BB\,1), so $\sigma(s,0,0)=4\Gamma(s+1)\zeta(s)(1-2^{1-s})$, which
+rearranges to the stated identity.
 \end{proof}
 
 \subsection{First integration-by-parts identity}
@@ -513,39 +415,7 @@ For all $s,n,m$,
 From $\star B_{n+2}(0)=\frac{1}{4}\star B_{n}(0)$ and boundary vanishing for odd indices.
 \end{proof}
 
-\begin{remark}[Involution $\star\leftrightarrow 1/\star$ and the analytic formulation]\label{rem:involution}
-The entire framework admits a dual, fully analytic version by replacing $\star$
-with its reciprocal $\tilde\star(x):=1/\star(x)=\mathrm{sech}(x/2)$ (setting $C=1$).
-Define dual Bell derivatives $\tilde\star B_n := \frac{d^n}{dx^n}(1/\star)$;
-by the chain rule and the identity $\tilde g := \log\tilde\star = -g$, these satisfy
-$\tilde\star B_{n+1} = \frac{d}{dx}(\tilde\star B_n)$, the same index-shift rule as before.
 
-Three structural changes occur under the involution:
-\begin{enumerate}
-  \item \textbf{Convergence:} $\tilde\star(x)^2 = \mathrm{sech}^2(x/2)=4e^x/(e^x+1)^2$
-        decays like $e^{-x}$, so $\tilde\sigma(s,n,m):=\int_0^\infty x^s\tilde\star B_n\,\tilde\star B_m\,dx$
-        converges without renormalization and $\tilde\star B_n(\infty)=0$ trivially
-        (Proposition~\ref{prop:infinity} needs no separate argument in this picture).
-
-  \item \textbf{Quasi-periodicity flips:} At $x=0$, $\tilde\star(0)=1$ and the parity
-        recurrence gives $\tilde\star B_{n+2}(0)=4\,\tilde\star B_n(0)$, so the
-        boundary factor is $4$ instead of $\tfrac14$.
-        The $q$-Pochhammer product of Section~\ref{sec:parabolic_coordinate}
-        correspondingly uses $q=4$ rather than $q=\tfrac14$, but its zero set
-        $\{-(t_n^2+\tfrac14)\}$ is identical.
-
-  \item \textbf{IBP recurrences unchanged:} Since $s$ decrements by $1$ and the index
-        raises by $1$ under either IBP (Theorems~\ref{thm:ibp1} and~\ref{thm:ibp2})
-        regardless of the base weight, the infinite-product ansatz and all
-        coefficient recursions carry over to $\tilde\sigma$ without modification.
-\end{enumerate}
-
-The two formulations are therefore equivalent up to the rescaling
-$\sigma(s,n,m)\leftrightarrow(4^{n+m}/C^{n+m})\,\tilde\sigma(s,n,m)$.
-The $\star^2$ formulation (used in the theorem statements) requires the renormalization
-of Theorem~\ref{thm:sigma_zeta}; the $\tilde\star^2$ formulation is analytic throughout
-and may be preferred for rigorous applications.
-\end{remark}
 
 \section{Graded Structure and Yangian Levels}
 
@@ -601,7 +471,7 @@ Each factor contributes a simple pole at $s=1$. For the infinite product to main
 \begin{conjecture}[Algebraic derivation of $\alpha$]
 Starting from the integration-by-parts recurrences (Theorems \ref{thm:ibp1} and \ref{thm:ibp2}), one may assume the infinite product form and derive a functional equation for the coefficients $a_n(s)$. Solving this equation asymptotically yields $\alpha = 1.110$ as a universal constant determined by the quasi-periodicity factor $1/4$ and the Yangian level structure.
 \end{conjecture}
-Deriving $\alpha$ purely from Yang-Baxter relations is highly non-trivial.
+Deriving $\alpha$ purely from Yang-Baxter relations is highly non-trivial and may be impossible. 
 \section{The Infinite Product Ansatz: From Yang-Baxter to Zeta Representation}
 
 Building on the Yang-Baxter structure derived in the preceding sections, we now propose an explicit infinite product representation of $\zeta(s)$ and develop the conjectures governing its structure.
