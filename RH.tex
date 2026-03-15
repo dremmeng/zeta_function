@@ -81,7 +81,7 @@ Standard references for the background material used throughout are
 
 \subsection{Overview of the approach}
 
-If we can prove that the $\zeta$ function is proportional to a product of quadratics with $a_n s^2-a_ns+1$ factors with a real grading in ratios $a_{n+1}/a_{n}=\alpha$ then RH follows.
+If we can prove that the $\zeta$ function is proportional to a product of quadratics with $a_n s^2-a_ns+1$ factors with a real grading in ratios $a_{n+1}/a_{n}$ then RH follows.
 
 Using this structure, we define formal transforms
 \begin{align*}
@@ -92,9 +92,9 @@ Using this structure, we define formal transforms
 and show that they satisfy a closed family of recurrence relations in $s,n,m$.
 Section \ref{sec:weierstrass} is our construction of the formal Weierstrass product $\cosh(x/2)$ and its Bell derivatives $\cosh(x/2) B_n$, which let us build algebraic relations of integral by parts.
 Section \ref{sec:IBP} defines the $\sigma$ and $\tau$ proves the IBP recurrences as well as parity relations between $\tau$ terms inherited from Section \ref{sec:weierstrass}, connecting $\sigma(s,0,0)$ to $\zeta(s)$ via a borrowed integral identity \cite{Titchmarsh1986}.
-Section \ref{sec:grading} is computational and physics related in coupling constants between Yangian levels defining the decay exponent $\alpha$ and showing that $\alpha>1$ is necessary for consistency with the quasi-periodicity of $\tau$.
 Section \ref{sec:ansatz} we present the infinite product ansatz for $\zeta$.
 In section \ref{sec:critical_factorization} we prove the ansatz from IBP prelations and prove that Yangian levels are real and why, through application of the elementary quadratic formula, this implies RH.
+Section \ref{sec:grading} is computational and physics related in coupling constants between Yangian levels defining the decay exponent $\alpha$ and showing that $\alpha>1$ is necessary for consistency with the quasi-periodicity of $\tau$.
 Section \ref{sec:parabolic_coordinate} we solve for a generating function of zeros explicitly, giving a closed formula for the zeros.
 In Section \ref{sec:seed} we present a recursive formula for zeros up to an unknown algebraic constant. 
 Finally in Section \ref{sec:summary} we present a table of results of this manuscript. 
@@ -413,60 +413,7 @@ For all $s,n,m$,
 From $\cosh(x/2) B_{n+2}(0)=\frac{1}{4}\cosh(x/2) B_{n}(0)$ and boundary vanishing for odd indices.
 \end{proof}
 
-\section{Graded Structure and Yangian Levels}\label{sec:grading}
 
-The formal $R$-matrix and recurrence relations lead naturally to a graded infinite product representation of the Riemann zeta function, revealing an unexpected connection to Yangian representation theory.
-
-\subsection{Yangian level interpretation}
-
-The index-dependent decay structure is natural in the Yangian framework:
-
-\begin{definition}[Decay exponent $\alpha$]\label{def:alpha}
-The \emph{decay exponent} $\alpha$ is the real number governing the power-law envelope of the normalized coefficients
-\[
-a_n(s) \;:=\; \frac{\tau(s,2n,0)}{\sigma(s,0,0)},
-\]
-defined by the asymptotic relation $a_n(s)\sim a_1(s)\cdot n^{-\alpha}$ as $n\to\infty$.
-By the quasi-periodicity $\tau(s,n+2,m)=\tfrac{1}{4}\tau(s,n,m)$
-(Proposition~\ref{prop:qp}), the base ratio $a_{n+1}/a_n=(n/(n+1))^\alpha$ must
-be consistent with $a_{2j}/a_{2(j-1)}=4^{-1}$, which fixes $\alpha$ via the
-renormalization condition on the lattice of even indices.
-Empirically (from the first 51 Riemann zeta zeros), $\alpha\approx 1.110$.
-
-\begin{remark}[Bethe Ansatz analogy]
-To a reader familiar with subtracting an infinite constant from a Hamiltonian
-to construct a Bethe Ansatz vacuum, the renormalization of the $\tau$
-boundary terms should be immediately recognizable: the divergent
-contributions at $\infty$ are absorbed by the quasi-periodicity scalar
-$\tfrac{1}{4}$, leaving $\alpha$ as the sole physical parameter, in exact
-analogy with the bare/renormalized coupling in the algebraic Bethe Ansatz.
-\end{remark}
-\end{definition}
-
-\begin{definition}[Yangian level grading]
-In the infinite-dimensional Yangian algebra associated to $\mathfrak{sl}(2)$, representations are organized into levels $V_n$ ($n \in \mathbb{Z}_{\ge 0}$). Level $n$ contributions to the global structure decouple with strength proportional to $n^{-\alpha}$ (Definition~\ref{def:alpha}).
-
-Physically, this means:
-\begin{itemize}
-\item Level $n=1$ (fundamental): Strongest coupling, $a_1 \approx 0.005$
-\item Level $n=10$: Approximately $10^{1.11} \approx 12.5$ times weaker than level 1
-\item Level $n=51$: Approximately $51^{1.11} \approx 107$ times weaker than level 1
-\end{itemize}
-
-This mirrors the structure of quantum spin chains and conformal field theories, where higher excitations decouple exponentially in physical energy scales.
-\end{definition}
-
-
-\begin{corollary}[Pole structure preservation]
-Each factor contributes a simple pole at $s=1$. For the infinite product to maintain a simple pole (not a higher-order pole) at $s=1$, we require convergence of $\sum_{n=1}^{\infty} a_n$. This also mandates $\alpha > 1$. Empirically, $\sum_{n=1}^{51} a_n \approx 0.0188$, consistent with asymptotic convergence.
-\end{corollary}
-
-
-
-\begin{conjecture}[Algebraic derivation of $\alpha$]
-Starting from the integration-by-parts recurrences (Theorems \ref{thm:ibp1} and \ref{thm:ibp2}), one may assume the infinite product form and derive a functional equation for the coefficients $a_n(s)$. Solving this equation asymptotically yields $\alpha = 1.110$ as a universal constant determined by the quasi-periodicity factor $1/4$ and the Yangian level structure.
-\end{conjecture}
-Deriving $\alpha$ purely from Yang-Baxter relations is highly non-trivial and may be impossible. 
 \section{The Infinite Product Ansatz: From Yang-Baxter to Zeta Representation}\label{sec:ansatz}
 
 Building on the Yang-Baxter structure derived in the preceding sections, we now propose an explicit infinite product representation of $\zeta(s)$ and develop the conjectures governing its structure.
@@ -578,7 +525,17 @@ a_{n,m}(s) = c_{n,m}(s) + s \cdot a_{n-1,m}(s) + a_{n,m-1}(s),
 \end{equation}
 
 where $c_{n,m}(s) := \frac{\tau(s,n,m)}{\sigma(s,0,0)}$ captures boundary information. This is the \textbf{quadratic recursion} of Theorem~\ref{thm:coefficient_recursion}.
-
+\begin{definition}[Decay exponent $\alpha$]\label{def:alpha}
+The \emph{decay exponent} $\alpha$ is the real number governing the power-law envelope of the normalized coefficients
+\[
+a_n(s) \;:=\; \frac{\tau(s,2n,0)}{\sigma(s,0,0)},
+\]
+defined by the asymptotic relation $a_n(s)\sim a_1(s)\cdot n^{-\alpha}$ as $n\to\infty$.
+By the quasi-periodicity $\tau(s,n+2,m)=\tfrac{1}{4}\tau(s,n,m)$
+(Proposition~\ref{prop:qp}), the base ratio $a_{n+1}/a_n=(n/(n+1))^\alpha$ must
+be consistent with $a_{2j}/a_{2(j-1)}=4^{-1}$, which fixes $\alpha$ via the
+renormalization condition on the lattice of even indices.
+Empirically (from the first 51 Riemann zeta zeros), $\alpha\approx 1.110$.
 \subsection{The Quadratic Form and Factored Ansatz}
 
 The quadratic recursion $a_{n,m}(s) = c_{n,m}(s) + s \cdot a_{n-1,m}(s) + a_{n,m-1}(s)$ looks similar to a continued fraction or multinomial expansion. The key is to \textbf{factor} the solution by writing each index pair $(n,m)$ as contributing a factor to an infinite product:
@@ -767,7 +724,50 @@ Real grading & Proven \\
 \end{center}
 
 \textbf{If Theorem III.2.2 is correct, the framework is solid. The only remaining question is whether the explicit recursion for $\{a_{n,m}(s)\}$ can be solved.}
+\section{Graded Structure and Yangian Levels}\label{sec:grading}
 
+The formal $R$-matrix and recurrence relations lead naturally to a graded infinite product representation of the Riemann zeta function, revealing an unexpected connection to Yangian representation theory.
+
+\subsection{Yangian level interpretation}
+
+The index-dependent decay structure is natural in the Yangian framework:
+
+
+
+\begin{remark}[Bethe Ansatz analogy]
+To a reader familiar with subtracting an infinite constant from a Hamiltonian
+to construct a Bethe Ansatz vacuum, the renormalization of the $\tau$
+boundary terms should be immediately recognizable: the divergent
+contributions at $\infty$ are absorbed by the quasi-periodicity scalar
+$\tfrac{1}{4}$ and terms in $a_{n,m}(s)$ leaving $\alpha$ as the sole physical parameter, in exact
+analogy with the bare/renormalized coupling in the algebraic Bethe Ansatz.
+\end{remark}
+\end{definition}
+
+\begin{definition}[Yangian level grading]
+In the infinite-dimensional Yangian algebra associated to $\mathfrak{sl}(2)$, representations are organized into levels $V_n$ ($n \in \mathbb{Z}_{\ge 0}$). Level $n$ contributions to the global structure decouple with strength proportional to $n^{-\alpha}$ (Definition~\ref{def:alpha}).
+
+Physically, this means:
+\begin{itemize}
+\item Level $n=1$ (fundamental): Strongest coupling, $a_1 \approx 0.005$
+\item Level $n=10$: Approximately $10^{1.11} \approx 12.5$ times weaker than level 1
+\item Level $n=51$: Approximately $51^{1.11} \approx 107$ times weaker than level 1
+\end{itemize}
+
+This mirrors the structure of quantum spin chains and conformal field theories, where higher excitations decouple exponentially in physical energy scales.
+\end{definition}
+
+
+\begin{corollary}[Pole structure preservation]
+Each factor contributes a simple pole at $s=1$. For the infinite product to maintain a simple pole (not a higher-order pole) at $s=1$, we require convergence of $\sum_{n=1}^{\infty} a_n$. This also mandates $\alpha > 1$. Empirically, $\sum_{n=1}^{51} a_n \approx 0.0188$, consistent with asymptotic convergence.
+\end{corollary}
+
+
+
+\begin{conjecture}[Algebraic derivation of $\alpha$]
+Starting from the integration-by-parts recurrences (Theorems \ref{thm:ibp1} and \ref{thm:ibp2}), one may assume the infinite product form and derive a functional equation for the coefficients $a_n(s)$. Solving this equation asymptotically yields $\alpha = 1.110$ as a universal constant determined by the quasi-periodicity factor $1/4$ and the Yangian level structure.
+\end{conjecture}
+Deriving $\alpha$ purely from Yang-Baxter relations is highly non-trivial and may be impossible. 
 
 \section{The Parabolic Coordinate}\label{sec:parabolic_coordinate}
 
