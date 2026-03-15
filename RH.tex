@@ -83,7 +83,7 @@ Standard references for the background material used throughout are
 
 If we can prove that the $\zeta$ function is proportional to a product of quadratics with $a_n s^2-a_ns+1$ factors with a real grading in ratios $a_{n+1}/a_{n}$ then RH follows.
 
-Using this structure, we define formal transforms
+Using this structure, we define formal symbols:
 \begin{align*}
 \sigma(s,n,m) &= \int_{0}^{\infty} x^{s}\,\cosh(x/2) B_{n}\cosh(x/2) B_{m}\,dx,
 \\
@@ -276,7 +276,7 @@ physically meaningful.
 \begin{remark}
   To the reader familiar with 'subtracting an infinite constant' from a Hamiltonian to construct a Bethe Ansatz, our procedure for handling $\tau$ boundary terms should be familiar to you.
 \end{remark}
-\section{Formal Integral Transforms and Recurrence Relations}\label{sec:IBP}
+\section{Formal Integral Symbols and Recurrence Relations}\label{sec:IBP}
 
 \subsection{Definitions}
 
@@ -331,6 +331,41 @@ By Lemma~\ref{lem:renormalization}, $\sigma(s,0,0)\overset{\rm ren}{=}4\int_0^\i
 The right-hand integral equals $\Gamma(s+1)\zeta(s)(1-2^{1-s})$ by the borrowed
 identity from the introduction, so $\sigma(s,0,0)=4\Gamma(s+1)\zeta(s)(1-2^{1-s})$, which
 rearranges to the stated identity.
+\end{proof}
+
+\subsection{All $\sigma$ values are renormalized}\label{sec:sigma_renorm}
+
+\begin{lemma}[Renormalized closure]\label{lem:sigma_closure}
+Every $\sigma(s,n,m)$ is well-defined in the renormalized sense.  More precisely,
+for even indices $n=2j$, $m=2k$,
+\[
+  \sigma(s,2j,2k) = \frac{1}{4^{j+k}}\,\sigma(s,0,0),
+\]
+and every odd-index $\sigma(s,n,m)$ is expressed by the IBP recurrences as a
+finite $\mathbb{Q}$-linear combination of even-index $\sigma$-values and
+$s$-shifted terms of the same form.
+\end{lemma}
+
+\begin{proof}
+Since we have $\cosh(x/2)$, each Bell derivative $\cosh(x/2) B_n(x)$ is either
+$(1/4)^{n/2}\cosh(x/2)$ (even $n$) or $(1/4)^{(n-1)/2}\sinh(x/2)$ (odd $n$),
+with the same exponential growth as $\cosh(x/2)$ in both cases.  Hence every
+$\sigma(s,n,m)$ diverges in exactly the same way as $\sigma(s,0,0)$ and admits
+the same formal renormalization $\cosh(x/2)^2\leftrightarrow 1/\cosh(x/2)^2$.
+
+For the even case: $\cosh(x/2) B_{2j}(x)=(1/4)^j\cosh(x/2)$ (from
+Proposition~\ref{prop:qp} applied at $x=0$ and extended to all $x$ by the Bell
+recurrence), so
+\[
+  \sigma(s,2j,2k)=\int_0^\infty x^s\,\tfrac{1}{4^j}\cosh(x/2)\cdot\tfrac{1}{4^k}\cosh(x/2)\,dx
+  =\frac{1}{4^{j+k}}\,\sigma(s,0,0).
+\]
+For odd $n$ or $m$: applying Theorem~\ref{thm:ibp1} (or~\ref{thm:ibp2}) reduces
+$\sigma(s,n,m)$ to $\tau(s,n,m)-s\,\sigma(s-1,n,m)-\sigma(s,n+1,m)$.
+The $\tau$ term vanishes by Proposition~\ref{prop:parity_tau}, and
+the remaining $\sigma$-terms are either even-index (handled above) or reduce
+further by induction, terminating because the parity of the indices decreases
+by one at each step.
 \end{proof}
 
 \subsection{First integration-by-parts identity}
@@ -461,7 +496,7 @@ where $c_{n,m}(s)$ is a boundary coefficient related to the vanishing or quasi-p
 
 \subsection{The Factorization Principle}
 
-We now derive the infinite product ansatz exactly by systematically applying integration by parts to the $\sigma$ and $\tau$ transforms and factoring the resulting recursions.
+We now derive the infinite product ansatz exactly by systematically applying integration by parts to the $\sigma$ and $\tau$ symbols and factoring the resulting recursions.
 The key observation is that Theorems~\ref{thm:ibp1} and~\ref{thm:ibp2} encode a \textbf{hidden factorization structure} that can be extracted by writing integration by parts in the form:
 \begin{equation}\label{eq:ibp_form}
 u \cdot v\big|_0^\infty = \int_0^\infty u \, dv + \int_0^\infty v \, du = \tau(s,n,m) + \int_0^\infty v \, du.
