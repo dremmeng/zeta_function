@@ -283,8 +283,8 @@ physically meaningful.
 \begin{definition}\label{def:sigma_tau}
 For integers $n,m\ge0$ and complex $s$, define
 \begin{align*}
-\sigma(s,n,m) &= \int_{0}^{\infty} x^{s}\,\cosh(x/2) B_{n}(x)\,\cosh(x/2) B_{m}(x)\,dx,\\
-\tau(s,n,m) &= \bigl[x^{s}\cosh(x/2) B_{n}(x)\cosh(x/2) B_{m}(x)\bigr]_{0}^{\infty}.
+\sigma(s,n,m) &:= \int_{0}^{\infty} x^{s}\,\cosh(x/2) B_{n}(x)\,\cosh(x/2) B_{m}(x)\,dx,\\
+\tau(s,n,m) &:= \bigl[x^{s}\cosh(x/2) B_{n}(x)\cosh(x/2) B_{m}(x)\bigr]_{0}^{\infty}.
 \end{align*}
 These are treated as formal symbols constrained only by the identities below.
 \end{definition}
@@ -309,13 +309,13 @@ weight by its convergent reciprocal dual), yielding the factor of~$4$.
 \end{proof}
 
 \begin{remark}[Dual algebra via $1/\cosh$]\label{rem:involution}
-Replacing $\star(x)=\cosh(x/2)$ by its reciprocal $\tilde{\star}(x)=\mathrm{sech}(x/2)=1/\star(x)$
-defines an entirely dual formal algebra.  Because $\tilde{\star}(x)^2 = e^x/(e^x+1)^2$ by
-Lemma~\ref{lem:renormalization}, the dual $\tilde{\sigma}(s,0,0)=\int_0^\infty x^s\tilde{\star}(x)^2\,dx$
+Replacing $\cosh(x/2)=\cosh(x/2)$ by its reciprocal $\mathrm{sech}(x/2)=1/\cosh(x/2)$
+defines an entirely dual formal algebra.  Because $\mathrm{sech}(x/2)^2 = e^x/(e^x+1)^2$ by
+Lemma~\ref{lem:renormalization}, the dual $\tilde{\sigma}(s,0,0)=\int_0^\infty x^s\mathrm{sech}(x/2)^2\,dx$
 converges without renormalization and equals $\Gamma(s+1)\zeta(s)(1-2^{1-s})$ directly.
-The two algebras are related by the formal involution $\star\leftrightarrow 1/\star$, which
+The two algebras are related by the formal involution $\cosh(x/2)\leftrightarrow 1/\cosh(x/2)$, which
 exchanges $\sigma$ and $\frac{1}{4}\tilde{\sigma}$ and sends the quasi-periodicity ratio
-$\frac{1}{4}\to 4$ (since $\tilde{\star}B_{n+2}(0)/\tilde{\star}B_n(0)$ involves ratios of
+$\frac{1}{4}\to 4$ (since $\mathrm{sech}(x/2)B_{n+2}(0)/\mathrm{sech}(x/2)B_n(0)$ involves ratios of
 Euler numbers, which are not geometrically constant; see Proposition~\ref{prop:infinity}).
 \end{remark}
 
@@ -1031,7 +1031,9 @@ This ratio is $\mathcal{H}(12)/\mathcal{H}(2) = 2\pi^2/1 = 2\pi^2$, exact.
 Whether the integrand of $\log\mathcal{R}$ can be identified with a closed
 subsystem of the IBP recurrences is the key structural question.
 \end{remark}
-
+\begin{remark}
+Forming the dual algebra of Remark~\ref{rem:involution} may be the key to solving the missing algebraic constant $Z$.
+\end{remark}
 \section{Summary}\label{sec:summary}
 
 The chain of results is:
