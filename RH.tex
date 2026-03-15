@@ -85,12 +85,12 @@ If we can prove that the $\zeta$ function is porportional to a product of quadra
 
 Using this structure, we define formal transforms
 \begin{align*}
-\sigma(s,n,m) &= \int_{0}^{\infty} x^{s}\,\star B_{n}\star B_{m}\,dx,
+\sigma(s,n,m) &= \int_{0}^{\infty} x^{s}\,\cosh(x/2) B_{n}\cosh(x/2) B_{m}\,dx,
 \\
-\tau(s,n,m) &= \bigl[x^{s}\star B_{n}\star B_{m}\bigr]_{0}^{\infty}.
+\tau(s,n,m) &= \bigl[x^{s}\cosh(x/2) B_{n}\cosh(x/2) B_{m}\bigr]_{0}^{\infty}.
 \end{align*}
 and show that they satisfy a closed family of recurrence relations in $s,n,m$.
-Section 2 is our construction of the formal Weierstrass product $\star$ and its Bell derivatives $\star B_n$, which let us build algebraic relations of integral by parts.
+Section 2 is our construction of the formal Weierstrass product $\cosh(x/2)$ and its Bell derivatives $\cosh(x/2) B_n$, which let us build algebraic relations of integral by parts.
 Section 3 defines the $\sigma$ and $\tau$ proves the IBP recurrences as well as parity relations between $\tau$ terms inherited from Section 2, connecting $\sigma(s,0,0)$ to $\zeta(s)$ via a borrowed integral identity (BB\,1).
 Section 4 is computational and physics related in coupling constants between Yangian levels, defining the decay exponent $\alpha$ and showing that $\alpha>1$ is necessary for consistency with the quasi-periodicity of $\tau$.
 Sections 5-6 extend these algebraic structures to derive the quadratic ansatz. 
@@ -164,14 +164,11 @@ $\mathcal{G}(z)$.
 \subsection{Definition and normalization}
 
 \begin{definition}
-Define the truncated product
-\[
-\star_{N}(x)=\prod_{n=-N}^{N}\bigl(x-(2n-1)\pi i\bigr).
-\]
-A \emph{regularized Weierstrass product} $\star(x)$ is any object
+
+A \emph{regularized Weierstrass product} $\cosh(x/2)(x)$ is any object
 satisfying
 \[
-\star(x)=C\cosh(x/2)
+\cosh(x/2)(x)=C\prod_{n=1}^{\infty}\left(1-\frac{x}{(2n-1)\pi i}\right)\left(1+\frac{x}{(2n-1)\pi i}\right)
 \]
 for a nonzero constant $C$, and whose zero set is the set of odd integer
 multiples of $\pi i$.
@@ -185,10 +182,10 @@ no role in the recurrence relations.
 
 Write
 \[
-g(x)=\log\star(x)=\log C + \log\cosh(x/2).
+g(x)=\log\cosh(x/2)(x)=\log C + \log\cosh(x/2).
 \]
 
-\begin{proposition}
+\begin{proposition}\label{prop:log_derivatives}
 For $m\ge1$,
 \[
 g^{(m)}(x)=2^{-m}\frac{d^{\,m-1}}{dx^{m-1}}\tanh(x/2).
@@ -207,8 +204,8 @@ Let $B_{n}$ denote the $n$th complete Bell polynomial \cite{Bell1934,BellPolynom
 \begin{theorem}\label{thm:bell_polynomial}
 For each $n\ge0$,
 \[
-\star B_{n}(x)=\frac{d^{n}}{dx^{n}}\star(x)
-=\star(x)\,B_{n}\bigl(g'(x),\dots,g^{(n)}(x)\bigr).
+\cosh(x/2) B_{n}(x)=\frac{d^{n}}{dx^{n}}\cosh(x/2)(x)
+=\cosh(x/2)(x)\,B_{n}\bigl(g'(x),\dots,g^{(n)}(x)\bigr).
 \]
 \end{theorem}
 
@@ -216,15 +213,15 @@ For each $n\ge0$,
 We proceed by induction on $n$.
 
 \textbf{Base case} ($n=0$): $B_{0}\equiv 1$ by convention and
-$\frac{d^{0}}{dx^{0}}\star(x)=\star(x)=\star(x)\cdot 1$.
+$\frac{d^{0}}{dx^{0}}\cosh(x/2)(x)=\cosh(x/2)(x)=\cosh(x/2)(x)\cdot 1$. 
 
-\textbf{Inductive step}: Assume $\frac{d^{n}}{dx^{n}}\star(x)=\star(x)\,B_{n}(g',\ldots,g^{(n)})$.
-Since $\frac{d}{dx}\star=\star g'$, the product rule gives
+\textbf{Inductive step}: Assume $\frac{d^{n}}{dx^{n}}\cosh(x/2)(x)=\cosh(x/2)(x)\,B_{n}(g',\ldots,g^{(n)})$.
+Since $\frac{d}{dx}\cosh(x/2)=\cosh(x/2) g'$, the product rule gives
 \begin{align*}
-\frac{d^{n+1}}{dx^{n+1}}\star(x)
-&=\frac{d}{dx}\bigl[\star(x)\,B_{n}(g',\ldots,g^{(n)})\bigr]\\
-&=\star(x)\,g'(x)\,B_{n}(g',\ldots,g^{(n)})
- +\star(x)\sum_{k=1}^{n}\frac{\partial B_{n}}{\partial x_{k}}(g',\ldots,g^{(n)})\,g^{(k+1)}(x).
+\frac{d^{n+1}}{dx^{n+1}}\cosh(x/2)(x)
+&=\frac{d}{dx}\bigl[\cosh(x/2)(x)\,B_{n}(g',\ldots,g^{(n)})\bigr]\\
+&=\cosh(x/2)(x)\,g'(x)\,B_{n}(g',\ldots,g^{(n)})
+ +\cosh(x/2)(x)\sum_{k=1}^{n}\frac{\partial B_{n}}{\partial x_{k}}(g',\ldots,g^{(n)})\,g^{(k+1)}(x).
 \end{align*}
 The defining recurrence of complete Bell polynomials \cite{BellPolynomialsCombo}
 \[
@@ -232,8 +229,8 @@ B_{n+1}(x_{1},\ldots,x_{n+1})
 =x_{1}\,B_{n}(x_{1},\ldots,x_{n})
 +\sum_{k=1}^{n}\frac{\partial B_{n}}{\partial x_{k}}(x_{1},\ldots,x_{n})\,x_{k+1}
 \]
-with $x_{k}:=g^{(k)}(x)$ yields
-$\frac{d^{n+1}}{dx^{n+1}}\star(x)=\star(x)\,B_{n+1}(g'(x),\ldots,g^{(n+1)}(x))$,
+with $x_{k}:=g^{(k)}(x)$ by Proposition~\ref{prop:log_derivatives} yields:
+$\frac{d^{n+1}}{dx^{n+1}}\cosh(x/2)(x)=\cosh(x/2)(x)\,B_{n+1}(g'(x),\ldots,g^{(n+1)}(x))$,
 completing the induction.
 \end{proof}
 \subsection{Parity at the origin}
@@ -241,8 +238,8 @@ completing the induction.
 \begin{proposition}\label{prop:parity}
 For all $n\ge0$,
 \[
-\star B_{n}(0)=\begin{cases}
-2^{-n}\star(0),&n\ \text{even},\\[4pt]
+\cosh(x/2) B_{n}(0)=\begin{cases}
+2^{-n}\cosh(x/2)(0),&n\ \text{even},\\[4pt]
 0,&n\ \text{odd}.
 \end{cases}
 \]
@@ -256,28 +253,28 @@ $\cosh(x/2)$ is even and its odd derivatives vanish at the origin.
 \begin{proposition}\label{prop:infinity}
 For all $n\ge0$,
 \[
-\star B_{n}(\infty)=0.
+\cosh(x/2) B_{n}(\infty)=0.
 \]
 \end{proposition}
 
 \begin{proof}
 We work formally and use renormalization.
-By Proposition~\ref{prop:parity}, the origin value $\star B_{n}(0)$ satisfies
-$\star B_{n+2}(0)=\tfrac{1}{4}\star B_{n}(0)$, i.e.\ the ratio between successive
+By Proposition~\ref{prop:parity}, the origin value $\cosh(x/2) B_{n}(0)$ satisfies
+$\cosh(x/2) B_{n+2}(0)=\tfrac{1}{4}\cosh(x/2) B_{n}(0)$, i.e.\ the ratio between successive
 even-indexed boundary values is the scalar $\tfrac{1}{4}$.
 We \emph{define} the boundary value at $+\infty$ by the same renormalization:
-formally set $\star B_{n}(\infty):=0$ as the renormalized limit, meaning that
+formally set $\cosh(x/2) B_{n}(\infty):=0$ as the renormalized limit, meaning that
 the $\infty$-endpoint contribution to $\tau$ is absorbed into the quasi-periodicity
 structure rather than evaluated pointwise.
 
 More precisely, what is needed downstream (Propositions~\ref{prop:parity_tau}
-and~\ref{prop:qp}) is not the pointwise value $\star B_{n}(\infty)$ but only two facts:
+and~\ref{prop:qp}) is not the pointwise value $\cosh(x/2) B_{n}(\infty)$ but only two facts:
 \begin{enumerate}
   \item the ratio $\tau(s,n+2,m)/\tau(s,n,m)=\tfrac{1}{4}$ is a scalar,
   \item the ratio between any two boundary terms $\tau(s,n,m)$ and $\tau(s,n+2,m)$
         is independent of $s$.
 \end{enumerate}
-Both follow directly from $\star B_{n+2}(0)=\tfrac{1}{4}\star B_n(0)$
+Both follow directly from $\cosh(x/2) B_{n+2}(0)=\tfrac{1}{4}\cosh(x/2) B_n(0)$
 (Proposition~\ref{prop:parity}) and the identification of the $\infty$-boundary
 contribution with zero by renormalization.
 This is precisely the same regularization used for the even parabolic values
@@ -296,15 +293,15 @@ physically meaningful.
 \begin{definition}\label{def:sigma_tau}
 For integers $n,m\ge0$ and complex $s$, define
 \begin{align*}
-\sigma(s,n,m) &= \int_{0}^{\infty} x^{s}\,\star B_{n}(x)\,\star B_{m}(x)\,dx,\\
-\tau(s,n,m) &= \bigl[x^{s}\star B_{n}(x)\star B_{m}(x)\bigr]_{0}^{\infty}.
+\sigma(s,n,m) &= \int_{0}^{\infty} x^{s}\,\cosh(x/2) B_{n}(x)\,\cosh(x/2) B_{m}(x)\,dx,\\
+\tau(s,n,m) &= \bigl[x^{s}\cosh(x/2) B_{n}(x)\cosh(x/2) B_{m}(x)\bigr]_{0}^{\infty}.
 \end{align*}
 These are treated as formal symbols constrained only by the identities below.
 \end{definition}
 \begin{lemma}[Renormalization identity]\label{lem:renormalization}
-With $\star(x)=\cosh(x/2)$,
+With $\cosh(x/2)(x)=\cosh(x/2)$,
 \[
-  \frac{e^x}{(e^x+1)^2} = \frac{1}{\star(x)^2}.
+  \frac{e^x}{(e^x+1)^2} = \frac{1}{\cosh(x/2)(x)^2}.
 \]
 Consequently, the formal symbol $\sigma(s,0,0)$ admits the renormalized value
 \[
@@ -313,11 +310,11 @@ Consequently, the formal symbol $\sigma(s,0,0)$ admits the renormalized value
 \end{lemma}
 
 \begin{proof}
-Since $e^{x/2}+e^{-x/2}=2\cosh(x/2)=2\star(x)$, we have
-$e^x+1=e^{x/2}(e^{x/2}+e^{-x/2})=2e^{x/2}\star(x)$, so
-$(e^x+1)^2=4e^x\star(x)^2$ and thus $e^x/(e^x+1)^2=1/\star(x)^2$.
+Since $e^{x/2}+e^{-x/2}=2\cosh(x/2)=2\cosh(x/2)(x)$, we have
+$e^x+1=e^{x/2}(e^{x/2}+e^{-x/2})=2e^{x/2}\cosh(x/2)(x)$, so
+$(e^x+1)^2=4e^x\cosh(x/2)(x)^2$ and thus $e^x/(e^x+1)^2=1/\cosh(x/2)(x)^2$.
 The renormalized value is then obtained by the formal substitution
-$\star(x)^2\leftrightarrow 1/\star(x)^2$ (replacing the divergent
+$\cosh(x/2)(x)^2\leftrightarrow 1/\cosh(x/2)(x)^2$ (replacing the divergent
 weight by its convergent reciprocal dual), yielding the factor of~$4$.
 \end{proof}
 
@@ -347,7 +344,7 @@ For all $s,n,m$,
 
 \begin{proof}
 Apply integration by parts formally with
-$u=x^{s}\star B_{n}$ and $dv=\star B_{m}\,dx$.
+$u=x^{s}\cosh(x/2) B_{n}$ and $dv=\cosh(x/2) B_{m}\,dx$.
 \end{proof}
 
 
@@ -362,7 +359,7 @@ For all $s,n,m$,
 \end{theorem}
 
 \begin{proof}
-Apply integration by parts with $u=x^{s}\star B_{m}$ instead.
+Apply integration by parts with $u=x^{s}\cosh(x/2) B_{m}$ instead.
 \end{proof}
 
 
@@ -401,7 +398,7 @@ If $n$ or $m$ is odd, then $\tau(s,n,m)=0$.
 \end{proposition}
 
 \begin{proof}
-By Proposition~\ref{prop:parity}, $\star B_{n}(0)=0$ for odd $n$ and similarly at $\infty$ by Proposition~\ref{prop:infinity}.
+By Proposition~\ref{prop:parity}, $\cosh(x/2) B_{n}(0)=0$ for odd $n$ and similarly at $\infty$ by Proposition~\ref{prop:infinity}.
 \end{proof}
 
 \begin{proposition}[Two-step quasi-periodicity]\label{prop:qp}
@@ -412,7 +409,7 @@ For all $s,n,m$,
 \end{proposition}
 
 \begin{proof}
-From $\star B_{n+2}(0)=\frac{1}{4}\star B_{n}(0)$ and boundary vanishing for odd indices.
+From $\cosh(x/2) B_{n+2}(0)=\frac{1}{4}\cosh(x/2) B_{n}(0)$ and boundary vanishing for odd indices.
 \end{proof}
 
 
@@ -539,24 +536,24 @@ This is the \textbf{critical relation}. It tells us that $\sigma(s,n,m)$ itself 
 
 \subsection{Systematic Descent Through Bell Polynomials}
 
-Consider the integrand structure step-by-step. The product $\star B_n \star B_m$ in $\sigma(s,n,m) = \int_0^\infty x^s \star B_n \star B_m \, dx$ can be written as:
+Consider the integrand structure step-by-step. The product $\cosh(x/2) B_n \cosh(x/2) B_m$ in $\sigma(s,n,m) = \int_0^\infty x^s \cosh(x/2) B_n \cosh(x/2) B_m \, dx$ can be written as:
 \[
-\star B_n \star B_m = \star(x) \cdot B_n(g', \ldots, g^{(n)}) \cdot B_m(g', \ldots, g^{(m)})
+\cosh(x/2) B_n \cosh(x/2) B_m = \cosh(x/2)(x) \cdot B_n(g', \ldots, g^{(n)}) \cdot B_m(g', \ldots, g^{(m)})
 \]
 
-where $g = \log \star$. The Bell polynomial captures all derivatives of $\star$ up to order $n$ (or $m$). 
+where $g = \log \cosh(x/2)$. The Bell polynomial captures all derivatives of $\cosh(x/2)$ up to order $n$ (or $m$). 
 
-Now apply integration by parts with $u = x^s \star B_n$ and $dv = \star B_m \, dx$:
+Now apply integration by parts with $u = x^s \cosh(x/2) B_n$ and $dv = \cosh(x/2) B_m \, dx$:
 \begin{align*}
-\sigma(s,n,m) &= \left[x^s \star B_n \star B_m\right]_0^\infty - \int_0^\infty \frac{d}{dx}(x^s \star B_n) \cdot \star B_m \, dx \\
-&= \tau(s,n,m) - \int_0^\infty \left[ s x^{s-1} \star B_n + x^s \star B_{n+1} \right] \star B_m \, dx \\
-&= \tau(s,n,m) - s \int_0^\infty x^{s-1} \star B_n \star B_m \, dx - \int_0^\infty x^s \star B_{n+1} \star B_m \, dx \\
+\sigma(s,n,m) &= \left[x^s \cosh(x/2) B_n \cosh(x/2) B_m\right]_0^\infty - \int_0^\infty \frac{d}{dx}(x^s \cosh(x/2) B_n) \cdot \cosh(x/2) B_m \, dx \\
+&= \tau(s,n,m) - \int_0^\infty \left[ s x^{s-1} \cosh(x/2) B_n + x^s \cosh(x/2) B_{n+1} \right] \cosh(x/2) B_m \, dx \\
+&= \tau(s,n,m) - s \int_0^\infty x^{s-1} \cosh(x/2) B_n \cosh(x/2) B_m \, dx - \int_0^\infty x^s \cosh(x/2) B_{n+1} \cosh(x/2) B_m \, dx \\
 &= \tau(s,n,m) - s \sigma(s-1,n,m) - \sigma(s,n+1,m).
 \end{align*}
 
 This is Theorem~\ref{thm:ibp1}. The key insight is the \textbf{product structure}:
 \[
-u \, dv = (x^s \star B_n) d(\star B_m) = (x^s \star B_n) (\star B_{m+1} \, dx)
+u \, dv = (x^s \cosh(x/2) B_n) d(\cosh(x/2) B_m) = (x^s \cosh(x/2) B_n) (\cosh(x/2) B_{m+1} \, dx)
 \]
 
 creates a cascade: the derivative of $B_m$ is $B_{m+1}$, so integrating by parts \textbf{shifts the Bell polynomial index up by one} on the integrated term, while producing a boundary contribution and lower-order terms.
@@ -646,9 +643,9 @@ For $\Re(s) > 0$, the Riemann zeta function is generated by the Yang-Baxter sigm
 
 where $\sigma(s,0,0)$ is the formal integral transform
 \[
-\sigma(s,0,0) = \int_0^\infty x^s \star(x)^2 \, dx = \int_0^\infty x^s e^x \frac{1}{(e^x+1)^2} \, dx
+\sigma(s,0,0) = \int_0^\infty x^s \cosh(x/2)(x)^2 \, dx = \int_0^\infty x^s e^x \frac{1}{(e^x+1)^2} \, dx
 \]
-and $\star(x) = C\cosh(x/2)$ is the regularized Weierstrass product with zero set matching that of $\cosh(x/2)$.
+and $\cosh(x/2)(x) = C\cosh(x/2)$ is the regularized Weierstrass product with zero set matching that of $\cosh(x/2)$.
 
 \end{theorem}
 
