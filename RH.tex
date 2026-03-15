@@ -81,7 +81,7 @@ Standard references for the background material used throughout are
 
 \subsection{Overview of the approach}
 
-If we can prove that the $\zeta$ function is porportional to a product of quadratics with $as^2-as+1$ factors with a real grading in ratios between them then RH follows.
+If we can prove that the $\zeta$ function is proportional to a product of quadratics with $a_n s^2-a_ns+1$ factors with a real grading in ratios $a_{n+1}/a_{n}=\alpha$ then RH follows.
 
 Using this structure, we define formal transforms
 \begin{align*}
@@ -90,14 +90,14 @@ Using this structure, we define formal transforms
 \tau(s,n,m) &= \bigl[x^{s}\cosh(x/2) B_{n}\cosh(x/2) B_{m}\bigr]_{0}^{\infty}.
 \end{align*}
 and show that they satisfy a closed family of recurrence relations in $s,n,m$.
-Section 2 is our construction of the formal Weierstrass product $\cosh(x/2)$ and its Bell derivatives $\cosh(x/2) B_n$, which let us build algebraic relations of integral by parts.
-Section 3 defines the $\sigma$ and $\tau$ proves the IBP recurrences as well as parity relations between $\tau$ terms inherited from Section 2, connecting $\sigma(s,0,0)$ to $\zeta(s)$ via a borrowed integral identity \cite{Titchmarsh1986}.
-Section 4 is computational and physics related in coupling constants between Yangian levels defining the decay exponent $\alpha$ and showing that $\alpha>1$ is necessary for consistency with the quasi-periodicity of $\tau$.
-Sections 5-6 extend these algebraic structures to derive the quadratic ansatz. 
-In section 7 we prove that the grading in Yangian levels are real and why, through application of the elementary quadratic formula, this implies RH.
-Section 8 we solve for a generating function of zeros explicitly, giving a closed formula for the zeros.
-In Section 9 we present a formula for zeros up to an unknown algebraic constant. 
-Finally in Section 10 we present a table of results of this manuscript. 
+Section \ref{sec:weierstrass} is our construction of the formal Weierstrass product $\cosh(x/2)$ and its Bell derivatives $\cosh(x/2) B_n$, which let us build algebraic relations of integral by parts.
+Section \ref{sec:IBP} defines the $\sigma$ and $\tau$ proves the IBP recurrences as well as parity relations between $\tau$ terms inherited from Section \ref{sec:weierstrass}, connecting $\sigma(s,0,0)$ to $\zeta(s)$ via a borrowed integral identity \cite{Titchmarsh1986}.
+Section \ref{sec:grading} is computational and physics related in coupling constants between Yangian levels defining the decay exponent $\alpha$ and showing that $\alpha>1$ is necessary for consistency with the quasi-periodicity of $\tau$.
+Section \ref{sec:ansatz} we present the infinite product ansatz for $\zeta$.
+In section \ref{sec:critical_factorization} we prove the ansatz from IBP prelations and prove that Yangian levels are real and why, through application of the elementary quadratic formula, this implies RH.
+Section \ref{sec:parabolic_coordinate} we solve for a generating function of zeros explicitly, giving a closed formula for the zeros.
+In Section \ref{sec:seed} we present a recursive formula for zeros up to an unknown algebraic constant. 
+Finally in Section \ref{sec:summary} we present a table of results of this manuscript. 
 \subsection{Black boxes and borrowed results}\label{sec:blackboxes}
 
 For the reader's convenience we explicitly list every result that is used without
@@ -149,16 +149,16 @@ This classical formula (see \cite{Titchmarsh1986}, \S2.4, or \cite{Davenport1980
 
 \end{enumerate}
 
-\section{The Formal Weierstrass Product and Its Derivatives}
+\section{The Formal Weierstrass Product and Its Derivatives}\label{sec:weierstrass}
 
 \subsection{Definition and normalization}
 
 \begin{definition}
 
-A \emph{regularized Weierstrass product} $\cosh(x/2)(x)$ is any object
+A \emph{regularized Weierstrass product} $\cosh(x/2)$ is any object
 satisfying
 \[
-\cosh(x/2)(x)=C\prod_{n=1}^{\infty}\left(1-\frac{x}{(2n-1)\pi i}\right)\left(1+\frac{x}{(2n-1)\pi i}\right)
+\cosh(x/2)=C\prod_{n=1}^{\infty}\left(1-\frac{x}{(2n-1)\pi i}\right)\left(1+\frac{x}{(2n-1)\pi i}\right)
 \]
 for a nonzero constant $C$, and whose zero set is the set of odd integer
 multiples of $\pi i$.
@@ -172,7 +172,7 @@ no role in the recurrence relations.
 
 Write
 \[
-g(x)=\log\cosh(x/2)(x)=\log C + \log\cosh(x/2).
+g(x)=\log (C \cosh(x/2))=\log C + \log\cosh(x/2).
 \]
 
 \begin{proposition}\label{prop:log_derivatives}
@@ -194,8 +194,8 @@ Let $B_{n}$ denote the $n$th complete Bell polynomial \cite{Bell1934,BellPolynom
 \begin{theorem}\label{thm:bell_polynomial}
 For each $n\ge0$,
 \[
-\cosh(x/2) B_{n}(x)=\frac{d^{n}}{dx^{n}}\cosh(x/2)(x)
-=\cosh(x/2)(x)\,B_{n}\bigl(g'(x),\dots,g^{(n)}(x)\bigr).
+\cosh(x/2) B_{n}(x)=\frac{d^{n}}{dx^{n}}\cosh(x/2)
+=\cosh(x/2)\,B_{n}\bigl(g'(x),\dots,g^{(n)}(x)\bigr).
 \]
 \end{theorem}
 
@@ -203,15 +203,15 @@ For each $n\ge0$,
 We proceed by induction on $n$.
 
 \textbf{Base case} ($n=0$): $B_{0}\equiv 1$ by convention and
-$\frac{d^{0}}{dx^{0}}\cosh(x/2)(x)=\cosh(x/2)(x)=\cosh(x/2)(x)\cdot 1$. 
+$\frac{d^{0}}{dx^{0}}\cosh(x/2)\cosh(x/2)\cdot 1$. 
 
-\textbf{Inductive step}: Assume $\frac{d^{n}}{dx^{n}}\cosh(x/2)(x)=\cosh(x/2)(x)\,B_{n}(g',\ldots,g^{(n)})$.
+\textbf{Inductive step}: Assume $\frac{d^{n}}{dx^{n}}\cosh(x/2)=\cosh(x/2)\,B_{n}(g',\ldots,g^{(n)})$.
 Since $\frac{d}{dx}\cosh(x/2)=\cosh(x/2) g'$, the product rule gives
 \begin{align*}
-\frac{d^{n+1}}{dx^{n+1}}\cosh(x/2)(x)
-&=\frac{d}{dx}\bigl[\cosh(x/2)(x)\,B_{n}(g',\ldots,g^{(n)})\bigr]\\
-&=\cosh(x/2)(x)\,g'(x)\,B_{n}(g',\ldots,g^{(n)})
- +\cosh(x/2)(x)\sum_{k=1}^{n}\frac{\partial B_{n}}{\partial x_{k}}(g',\ldots,g^{(n)})\,g^{(k+1)}(x).
+\frac{d^{n+1}}{dx^{n+1}}\cosh(x/2)
+&=\frac{d}{dx}\bigl[\cosh(x/2)\,B_{n}(g',\ldots,g^{(n)})\bigr]\\
+&=\cosh(x/2)\,g'(x)\,B_{n}(g',\ldots,g^{(n)})
+ +\cosh(x/2)\sum_{k=1}^{n}\frac{\partial B_{n}}{\partial x_{k}}(g',\ldots,g^{(n)})\,g^{(k+1)}(x).
 \end{align*}
 The defining recurrence of complete Bell polynomials \cite{BellPolynomialsCombo}
 \[
@@ -220,7 +220,7 @@ B_{n+1}(x_{1},\ldots,x_{n+1})
 +\sum_{k=1}^{n}\frac{\partial B_{n}}{\partial x_{k}}(x_{1},\ldots,x_{n})\,x_{k+1}
 \]
 with $x_{k}:=g^{(k)}(x)$ by Proposition~\ref{prop:log_derivatives} yields:
-$\frac{d^{n+1}}{dx^{n+1}}\cosh(x/2)(x)=\cosh(x/2)(x)\,B_{n+1}(g'(x),\ldots,g^{(n+1)}(x))$,
+$\frac{d^{n+1}}{dx^{n+1}}\cosh(x/2)=\cosh(x/2)\,B_{n+1}(g'(x),\ldots,g^{(n+1)}(x))$,
 completing the induction.
 \end{proof}
 \subsection{Parity at the origin}
@@ -276,7 +276,7 @@ physically meaningful.
 \begin{remark}
   To the reader familiar with 'subtracting an infinite constant' from a Hamiltonian to construct a Bethe Ansatz, our procedure for handling $\tau$ boundary terms should be familiar to you.
 \end{remark}
-\section{Formal Integral Transforms and Recurrence Relations}
+\section{Formal Integral Transforms and Recurrence Relations}\label{sec:IBP}
 
 \subsection{Definitions}
 
@@ -289,9 +289,9 @@ For integers $n,m\ge0$ and complex $s$, define
 These are treated as formal symbols constrained only by the identities below.
 \end{definition}
 \begin{lemma}[Renormalization identity]\label{lem:renormalization}
-With $\cosh(x/2)(x)=\cosh(x/2)$,
+With $\cosh(x/2)$,
 \[
-  \frac{e^x}{(e^x+1)^2} = \frac{1}{\cosh(x/2)(x)^2}.
+  \frac{e^x}{(e^x+1)^2} = \frac{1}{\cosh(x/2)^2}.
 \]
 Consequently, the formal symbol $\sigma(s,0,0)$ admits the renormalized value
 \[
@@ -300,13 +300,24 @@ Consequently, the formal symbol $\sigma(s,0,0)$ admits the renormalized value
 \end{lemma}
 
 \begin{proof}
-Since $e^{x/2}+e^{-x/2}=2\cosh(x/2)=2\cosh(x/2)(x)$, we have
-$e^x+1=e^{x/2}(e^{x/2}+e^{-x/2})=2e^{x/2}\cosh(x/2)(x)$, so
-$(e^x+1)^2=4e^x\cosh(x/2)(x)^2$ and thus $e^x/(e^x+1)^2=1/\cosh(x/2)(x)^2$.
+Since $e^{x/2}+e^{-x/2}=2\cosh(x/2)$, we have
+$e^x+1=e^{x/2}(e^{x/2}+e^{-x/2})=2e^{x/2}\cosh(x/2)$, so
+$(e^x+1)^2=4e^x\cosh(x/2)^2$ and thus $e^x/(e^x+1)^2=1/\cosh(x/2)^2$.
 The renormalized value is then obtained by the formal substitution
-$\cosh(x/2)(x)^2\leftrightarrow 1/\cosh(x/2)(x)^2$ (replacing the divergent
+$\cosh(x/2)^2\leftrightarrow 1/\cosh(x/2)^2$ (replacing the divergent
 weight by its convergent reciprocal dual), yielding the factor of~$4$.
 \end{proof}
+
+\begin{remark}[Dual algebra via $1/\cosh$]\label{rem:involution}
+Replacing $\star(x)=\cosh(x/2)$ by its reciprocal $\tilde{\star}(x)=\mathrm{sech}(x/2)=1/\star(x)$
+defines an entirely dual formal algebra.  Because $\tilde{\star}(x)^2 = e^x/(e^x+1)^2$ by
+Lemma~\ref{lem:renormalization}, the dual $\tilde{\sigma}(s,0,0)=\int_0^\infty x^s\tilde{\star}(x)^2\,dx$
+converges without renormalization and equals $\Gamma(s+1)\zeta(s)(1-2^{1-s})$ directly.
+The two algebras are related by the formal involution $\star\leftrightarrow 1/\star$, which
+exchanges $\sigma$ and $\frac{1}{4}\tilde{\sigma}$ and sends the quasi-periodicity ratio
+$\frac{1}{4}\to 4$ (since $\tilde{\star}B_{n+2}(0)/\tilde{\star}B_n(0)$ involves ratios of
+Euler numbers, which are not geometrically constant; see Proposition~\ref{prop:infinity}).
+\end{remark}
 
 \begin{theorem}[Relation between $\sigma(s,0,0)$ and the Riemann zeta function]\label{thm:sigma_zeta}
 For $\Re(s) > 0$,
@@ -402,12 +413,9 @@ For all $s,n,m$,
 From $\cosh(x/2) B_{n+2}(0)=\frac{1}{4}\cosh(x/2) B_{n}(0)$ and boundary vanishing for odd indices.
 \end{proof}
 
-
-
-\section{Graded Structure and Yangian Levels}
+\section{Graded Structure and Yangian Levels}\label{sec:grading}
 
 The formal $R$-matrix and recurrence relations lead naturally to a graded infinite product representation of the Riemann zeta function, revealing an unexpected connection to Yangian representation theory.
-
 
 \subsection{Yangian level interpretation}
 
@@ -459,7 +467,7 @@ Each factor contributes a simple pole at $s=1$. For the infinite product to main
 Starting from the integration-by-parts recurrences (Theorems \ref{thm:ibp1} and \ref{thm:ibp2}), one may assume the infinite product form and derive a functional equation for the coefficients $a_n(s)$. Solving this equation asymptotically yields $\alpha = 1.110$ as a universal constant determined by the quasi-periodicity factor $1/4$ and the Yangian level structure.
 \end{conjecture}
 Deriving $\alpha$ purely from Yang-Baxter relations is highly non-trivial and may be impossible. 
-\section{The Infinite Product Ansatz: From Yang-Baxter to Zeta Representation}
+\section{The Infinite Product Ansatz: From Yang-Baxter to Zeta Representation}\label{sec:ansatz}
 
 Building on the Yang-Baxter structure derived in the preceding sections, we now propose an explicit infinite product representation of $\zeta(s)$ and develop the conjectures governing its structure.
 
@@ -528,7 +536,7 @@ This is the \textbf{critical relation}. It tells us that $\sigma(s,n,m)$ itself 
 
 Consider the integrand structure step-by-step. The product $\cosh(x/2) B_n \cosh(x/2) B_m$ in $\sigma(s,n,m) = \int_0^\infty x^s \cosh(x/2) B_n \cosh(x/2) B_m \, dx$ can be written as:
 \[
-\cosh(x/2) B_n \cosh(x/2) B_m = \cosh(x/2)(x) \cdot B_n(g', \ldots, g^{(n)}) \cdot B_m(g', \ldots, g^{(m)})
+\cosh(x/2) B_n \cosh(x/2) B_m = \cosh(x/2) \cdot B_n(g', \ldots, g^{(n)}) \cdot B_m(g', \ldots, g^{(m)})
 \]
 
 where $g = \log \cosh(x/2)$. The Bell polynomial captures all derivatives of $\cosh(x/2)$ up to order $n$ (or $m$). 
@@ -630,9 +638,9 @@ For $\Re(s) > 0$, the Riemann zeta function is generated by the Yang-Baxter sigm
 
 where $\sigma(s,0,0)$ is the formal integral transform
 \[
-\sigma(s,0,0) = \int_0^\infty x^s \cosh(x/2)(x)^2 \, dx = \int_0^\infty x^s e^x \frac{1}{(e^x+1)^2} \, dx
+\sigma(s,0,0) = \int_0^\infty x^s \cosh(x/2)^2 \, dx = \int_0^\infty x^s e^x \frac{1}{(e^x+1)^2} \, dx
 \]
-and $\cosh(x/2)(x) = C\cosh(x/2)$ is the regularized Weierstrass product with zero set matching that of $\cosh(x/2)$.
+and $C\cosh(x/2)$ is the regularized Weierstrass product with zero set matching that of $\cosh(x/2)$.
 
 \end{theorem}
 
@@ -691,7 +699,7 @@ With complex $\alpha$ ($\alpha_I \neq 0$), the oscillatory phases do not align u
 
 \textbf{Empirical constraint:} The first 51 known Riemann zeta zeros are observed to lie exactly on the critical line $\Re(s) = 1/2$, consistent with the functional equation's involution symmetry. If complex $\alpha$ introduced phase disorder that breaks this symmetry, zeros would scatter off the critical line, contradicting the empirical observation.
 
-\textbf{Conclusion:} If we have $\alpha \in \R$ we have RH.
+\textbf{Conclusion:} If we have all $\alpha \in \R$ we have RH.
 
 \end{proof}
 Proving $\alpha$ always real then proves RH, as the ansatz would force all zeros onto the critical line.
@@ -795,7 +803,7 @@ By Theorem~\ref{thm:yangian_zeta} and the functional equation of $\zeta$,
 $\mathcal{H}$ is real on the real $w$-axis.
 \end{definition}
 
-\section{Parabolic Values as Bernoulli Data}
+\subsection{Parabolic Values as Bernoulli Data}
 
 \begin{proposition}[Parabolic values in closed form]\label{prop:parabolic_values}
 For $k\in\N$, $k\ge 1$:
@@ -952,7 +960,7 @@ Every quantity on the right is determined by Bernoulli numbers and the
 $q$-Pochhammer symbol with $q=\tfrac{1}{4}$.
 \end{corollary}
 
-\section{The Seed Formula and the Open Algebraic Problem}
+\section{The Seed Formula and the Open Algebraic Problem}\label{sec:seed}
 
 \subsection{A Renormalized Seed Approximation}
 
@@ -1024,7 +1032,7 @@ Whether the integrand of $\log\mathcal{R}$ can be identified with a closed
 subsystem of the IBP recurrences is the key structural question.
 \end{remark}
 
-\section{Summary}
+\section{Summary}\label{sec:summary}
 
 The chain of results is:
 
