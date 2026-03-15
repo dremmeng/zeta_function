@@ -91,11 +91,13 @@ Using this structure, we define formal transforms
 \end{align*}
 and show that they satisfy a closed family of recurrence relations in $s,n,m$.
 Section 2 is our construction of the formal Weierstrass product $\cosh(x/2)$ and its Bell derivatives $\cosh(x/2) B_n$, which let us build algebraic relations of integral by parts.
-Section 3 defines the $\sigma$ and $\tau$ proves the IBP recurrences as well as parity relations between $\tau$ terms inherited from Section 2, connecting $\sigma(s,0,0)$ to $\zeta(s)$ via a borrowed integral identity (BB\,1).
-Section 4 is computational and physics related in coupling constants between Yangian levels, defining the decay exponent $\alpha$ and showing that $\alpha>1$ is necessary for consistency with the quasi-periodicity of $\tau$.
+Section 3 defines the $\sigma$ and $\tau$ proves the IBP recurrences as well as parity relations between $\tau$ terms inherited from Section 2, connecting $\sigma(s,0,0)$ to $\zeta(s)$ via a borrowed integral identity \cite{Titchmarsh1986}.
+Section 4 is computational and physics related in coupling constants between Yangian levels defining the decay exponent $\alpha$ and showing that $\alpha>1$ is necessary for consistency with the quasi-periodicity of $\tau$.
 Sections 5-6 extend these algebraic structures to derive the quadratic ansatz. 
 In section 7 we prove that the grading in Yangian levels are real and why, through application of the elementary quadratic formula, this implies RH.
-Sections 8 and on we solve the zeta function explicitly in terms of the zero set, giving a closed formula for the zeros and a new algebraic problem whose solution would yield a direct formula of the zero set.
+Section 8 we solve for a generating function of zeros explicitly, giving a closed formula for the zeros.
+In Section 9 we present a formula for zeros up to an unknown algebraic constant. 
+Finally in Section 10 we present a table of results of this manuscript. 
 \subsection{Black boxes and borrowed results}\label{sec:blackboxes}
 
 For the reader's convenience we explicitly list every result that is used without
@@ -120,28 +122,22 @@ Equivalently, the zero heights $\{t_n\}$ are symmetric about $0$.
 This follows from the functional equation $\zeta(s)=\chi(s)\zeta(1-s)$ and the
 reflection principle $\overline{\zeta(s)}=\zeta(\bar s)$; see
 \cite{Davenport1980,Titchmarsh1986}.
-We use this in Lemma~\ref{lem:real_alpha} (pairs of zeros contribute real
-corrections to $\sigma$) and in Definition~\ref{def:gen_fn} (the generating
-function $\mathcal{G}$ has real coefficients).
+
 
 \item \textbf{Functional equation.}
 The completed zeta function $\xi(s)=\tfrac{1}{2}s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s)$
 satisfies $\xi(s)=\xi(1-s)$.
-We invoke this symmetry in Corollary~\ref{cor:real_grading} to constrain the
-decay exponent $\alpha$.
+
 
 \item \textbf{Complete Bell polynomials.}
 The combinatorial identity
-$B_{n+1}(x_1,\ldots,x_{n+1})=x_1 B_n+\sum_{k=1}^n\frac{\partial B_n}{\partial x_k}x_{k+1}$
-is used in the proof of Theorem~\ref{thm:bell_polynomial}; see
+$B_{n+1}(x_1,\ldots,x_{n+1})=x_1 B_n+\sum_{k=1}^n\frac{\partial B_n}{\partial x_k}x_{k+1}$ see
 \cite{Bell1934,BellPolynomialsCombo}.
 
 \item \textbf{Empirical zero data.}
 The value $\alpha\approx 1.110$ and the partial sum $\sum_{n=1}^{51}a_n\approx 0.0188$
 are obtained by fitting to the first 51 non-trivial Riemann zeros
 \cite{Odlyzko}.
-These are used only in the Yangian level discussion (Section~4) and do not
-enter the proofs of Theorems~\ref{thm:rh_quadratic} or~\ref{thm:yangian_zeta}.
 
 \item \textbf{Even values of $\zeta$ via Bernoulli numbers.}
 For every integer $k\ge 1$,
@@ -149,13 +145,7 @@ For every integer $k\ge 1$,
 \zeta(2k)=\frac{(2\pi)^{2k}\,|B_{2k}|}{2\,(2k)!},
 \]
 where $B_{2k}$ are the Bernoulli numbers.
-This classical formula (see \cite{Titchmarsh1986}, \S2.4, or \cite{Davenport1980})
-is used in Proposition~\ref{prop:parabolic_values} to give closed-form expressions
-for the parabolic values $\mathcal{H}(w_k)=\sigma(2k,0,0)$, which in turn
-supply the right-hand side data for the parabolic resonance equations
-(Theorem~\ref{thm:resonance}) and the moment power sums $p_r$
-(Proposition~\ref{prop:moments}) that determine the generating function
-$\mathcal{G}(z)$.
+This classical formula (see \cite{Titchmarsh1986}, \S2.4, or \cite{Davenport1980}).
 
 \end{enumerate}
 
@@ -474,13 +464,13 @@ Deriving $\alpha$ purely from Yang-Baxter relations is highly non-trivial and ma
 Building on the Yang-Baxter structure derived in the preceding sections, we now propose an explicit infinite product representation of $\zeta(s)$ and develop the conjectures governing its structure.
 
 \subsection{Main Ansatz}
-
+We present the main theorem here.
 \begin{theorem}[Infinite Product Representation of $\zeta(s)$]\label{thm:main_ansatz}
 From Theorem~\ref{thm:yangian_zeta}, the Riemann zeta function admits an exact infinite product representation:
 \begin{equation}\label{eq:infinite_product_main}
 \zeta(s) \propto \prod_{j,k \ge 0}^{\infty} \frac{a_{2j,2k}(s)\,s^2 - a_{2j,2k}(s)\,s + 1}{s-1},
 \end{equation}
-where the coefficients $\{a_{2j,2k}(s)\}$ are determined recursively from the Yang-Baxter recurrences (Theorems~\ref{thm:ibp1} and~\ref{thm:ibp2}) and satisfy:
+where the coefficients $\{a_{2j,2k}(s)\}$ are determined by parabolic resonance Sections~\ref{sec:parabolic_coordinate} and the renormalization Proposition~\ref{prop:infinity} and onwards.
 \begin{enumerate}
     \item Index parity structure: coefficients vanish or are zero when either index is odd, reflecting the parity structure $\tau(s,n,m) = 0$ for odd $n$ or $m$.
     
@@ -625,9 +615,6 @@ This absorbs the simple pole at $s=1$ into the factor and ensures that roots mov
 
 For the full infinite product, the product structure ensures that the factor of $s-1$ in the denominator is exactly compensated, leaving a finite result with the correct pole at $s=1$.
 \end{remark}
-
-
-\section{The Foundational Theorem: Yangian Generation of Riemann Zeta}
 
 \subsection{Theorem III.2: The Central Result}
 
@@ -835,7 +822,7 @@ formula $\zeta(2k)=\tfrac{(2\pi)^{2k}|B_{2k}|}{2(2k)!}$.
   $\mathcal{H}(30)=\tfrac{8\pi^6}{63}$. \qed
 \end{example}
 
-\section{The Bare Zero Lattice from Quasi-Periodicity}
+\subsection{The Bare Zero Lattice from Quasi-Periodicity}
 
 \begin{theorem}[Bare $q$-Pochhammer product]\label{thm:bare_product}
 The normalized coefficients at $m=0$ are $s$-independent:
@@ -879,7 +866,7 @@ $j$ & $4^j$ & $t_j^{(\mathrm{bare})}$ \\
 \end{center}
 \end{corollary}
 
-\section{The Parabolic Resonance System}
+\subsection{The Parabolic Resonance System}
 
 The full product $\mathcal{H}(w) = P_0(w)\cdot\mathcal{R}(w)$ where
 $\mathcal{R}$ encodes corrections from all $m>0$ levels.  Taking log-ratios
@@ -919,7 +906,7 @@ uniquely (the Stieltjes moment problem for the measure $\mu = \sum_n
 they are here by Bernoulli data).
 \end{remark}
 
-\section{Moment Inversion and the Generating Function}
+\subsection{Moment Inversion and the Generating Function}
 
 \begin{definition}[Parabolic power sums]
 For $r\ge 1$, define
