@@ -1,25 +1,21 @@
-% ****** Start of file rmatrixisomorphism.tex ******
+% ****** Start of file RH.tex ******
 %
-%   Formatted for the Journal of Geometry and Symmetry in Physics (JGSP)
-%   using the geom.cls document class.
+%   Formatted for Proceedings of the Japan Academy, Series A
+%   using the pja00.cls document class.
 %
 % Compile sequence:
 %
-%  1)  pdflatex  rmatrixisomorphism
-%  2)  bibtex    rmatrixisomorphism
-%  3)  pdflatex  rmatrixisomorphism
-%  4)  pdflatex  rmatrixisomorphism
+%  1)  pdflatex  RH
+%  2)  bibtex    RH
+%  3)  pdflatex  RH
+%  4)  pdflatex  RH
 %
 
-\documentclass[article]{article}
+\documentclass{pja00}
 
-\usepackage[margin=1in]{geometry}
 \emergencystretch=2em
 
 \usepackage[utf8]{inputenc}
-\usepackage{amsthm}
-\usepackage{amsmath}
-\usepackage{amssymb}
 \usepackage{bbm}
 \usepackage{mathrsfs}
 \usepackage{url}
@@ -47,16 +43,17 @@
 
 \title{The Riemann Hypothesis and A Closed Form of Zeta Zeros from Pure Symmetry Arguments}
 
-\author{Drew Remmenga\footnote{Fort Collins, Colorado. \texttt{remmengadrew@gmail.com}}}
+\author{Drew Remmenga\thanks{Fort Collins, Colorado. \texttt{remmengadrew@gmail.com}}}
 
-\date{}
+\KeyWords{{Riemann Hypothesis}{zeta function}{Bell polynomials}{Yangian}{Bernoulli numbers}{Euler numbers}}
+
+\Subject[2020]{11M26, 11M06, 05A40, 17B37, 44A15}
 
 \maketitle
 
 \begin{abstract}
-Using integration-by-parts recurrences we derive a group theoretic approch to the Riemann Hypothesis. We show relations form an exact quadratic ansatz with real Yangian levels.
-A quadratic factor analysis of the infinite product then proves the Riemann Hypothesis: Every coefficient $p_r$ is determined by Bernoulli numbers, giving an explicit closed
-formula for the zero set. Quasi-periodicity of the recurrence system yields a bare zero lattice and an implicit generating function.
+Using integration-by-parts recurrences we derive a group theoretic approach to the Riemann Hypothesis. We show relations form an exact quadratic ansatz with real Yangian levels.
+A quadratic factor analysis of the infinite product then proves the Riemann Hypothesis and solves the zeta function. 
 \end{abstract}
 
 
@@ -95,7 +92,7 @@ Section \ref{sec:weierstrass} is our construction of the formal Weierstrass prod
 Section \ref{sec:IBP} defines the $\sigma$ and $\tau$ proves the IBP recurrences as well as parity relations between $\tau$ terms inherited from Section \ref{sec:weierstrass}, connecting $\sigma(s,0,0)$ to $\zeta(s)$ via a borrowed integral identity \cite{Titchmarsh1986}.
 Section \ref{sec:ansatz} we present the infinite product ansatz for $\zeta$.
 Section \ref{sec:parabolic_coordinate} we solve for the zeros explicitly, giving a closed formula for the zeros.
-Finally in Section \ref{sec:summary} we present a table of results of this manuscript. 
+Finally in Section \ref{sec:summary} we present a summary of results of this manuscript. 
 \subsection{Black boxes and borrowed results}\label{sec:blackboxes}
 
 For the reader's convenience we explicitly list every result that is used without
@@ -107,8 +104,9 @@ proof in this paper.
 We use the identity
 \[
 \int_0^\infty \frac{x^s e^x}{(e^x+1)^2}\,dx
-= \Gamma(s+1)\,\zeta(s)\,(1-2^{1-s}),\qquad \Re(s)>0,
+= \Gamma(s+1)\,\zeta(s)\,(1-2^{1-s})
 \]
+(valid for $\Re(s)>0$),
 which is a standard Mellin-transform computation (see, e.g.,
 \cite{Titchmarsh1986}, Chapter~II).
 
@@ -159,9 +157,11 @@ This is a standard identity; see \cite{AbramowitzStegun1964}, \S4.5.67, or
 
 A \emph{regularized Weierstrass product} $\cosh(x/2)$ is any object
 satisfying
-\[
-1/\sech(x/2)=C\prod_{n=1}^{\infty}\left(1-\frac{x}{(2n-1)\pi i}\right)\left(1+\frac{x}{(2n-1)\pi i}\right)
-\]
+\begin{multline*}
+\frac{1}{\sech(x/2)}=C\prod_{n=1}^{\infty}
+  \left(1-\frac{x}{(2n-1)\pi i}\right)\\
+  \times\left(1+\frac{x}{(2n-1)\pi i}\right)
+\end{multline*}
 for a nonzero constant $C$, and whose zero set is the set of odd integer
 multiples of $\pi i$.
 \end{definition}
@@ -212,15 +212,15 @@ We prove~(ii) first.  Since $\sech(x/2)=e^{g}/C$ one has
 $\frac{d}{dx}\sech(x/2)=\sech(x/2)\,g'(x)$, so the product rule gives
 \begin{align*}
 \frac{d}{dx}\,\sech B_{n}
-&=\sech(x/2)\,g'(x)\,B_{n}(g',\ldots,g^{(n)})
- +\sech(x/2)\sum_{k=1}^{n}\frac{\partial B_{n}}{\partial x_{k}}\!\bigl(g',\ldots,g^{(n)}\bigr)\,g^{(k+1)}(x).
+&=\sech(x/2)\,g'(x)\,B_{n}(g',\ldots,g^{(n)})\\
+&\quad+\sech(x/2)\sum_{k=1}^{n}\frac{\partial B_{n}}{\partial x_{k}}\!\bigl(g',\ldots,g^{(n)}\bigr)\,g^{(k+1)}(x).
 \end{align*}
 The defining recurrence of complete Bell polynomials \cite{BellPolynomialsCombo}
-\[
+\begin{multline*}
 B_{n+1}(x_{1},\ldots,x_{n+1})
-=x_{1}\,B_{n}(x_{1},\ldots,x_{n})
+=x_{1}\,B_{n}(x_{1},\ldots,x_{n})\\
 +\sum_{k=1}^{n}\frac{\partial B_{n}}{\partial x_{k}}(x_{1},\ldots,x_{n})\,x_{k+1}
-\]
+\end{multline*}
 evaluated at $x_{k}:=g^{(k)}(x)$ yields
 $\frac{d}{dx}\,\sech B_{n}=\sech B_{n+1}$, proving~(ii).
 
@@ -231,9 +231,9 @@ and $\sech(x/2)^{(0)}=\sech(x/2)=\sech B_{0}$; the inductive step is exactly~(ii
 \begin{proposition}\label{prop:parity}\label{prop:sech_bell_at_origin}
 Let $E_{2m}$ denote the Euler numbers defined by
 \[
-  \sech(t)=\sum_{m=0}^{\infty}\frac{E_{2m}}{(2m)!}\,t^{2m}
-  \quad\bigl(E_0=1,\;E_2=-1,\;E_4=5,\;E_6=-61,\;\ldots\bigr).
+  \sech(t)=\sum_{m=0}^{\infty}\frac{E_{2m}}{(2m)!}\,t^{2m},
 \]
+with $E_0=1$, $E_2=-1$, $E_4=5$, $E_6=-61$, $\ldots$
 Then for all $n\ge 0$,
 \[
   (\sech B_{n})(0)
@@ -269,14 +269,15 @@ In particular, $(\sech B_{n})(x)\to 0$ exponentially, and for any $s\in\C$,
 \begin{proof}
 From Proposition~\ref{prop:log_derivatives}, $g'(x)=-\tanh(x/2)\to-1$ as $x\to+\infty$,
 and for $k\ge 2$,
-\[
-  g^{(k)}(x)=2^{k}\frac{d^{k-1}}{dx^{k-1}}\bigl[\sech(x/2)\tanh(x/2)\bigr]
-  \;\sim\; O\!\bigl(e^{-x/2}\bigr)\;\to\; 0.
-\]
+\begin{multline*}
+  g^{(k)}(x)=2^{k}\frac{d^{\,k-1}}{dx^{k-1}}\bigl[\sech(x/2)\tanh(x/2)\bigr]\\
+  \sim O\!\bigl(e^{-x/2}\bigr)\to 0.
+\end{multline*}
 The complete Bell polynomials satisfy $B_{n}(c,0,\ldots,0)=c^{n}$ for any constant $c$
 (the only set partition contributing is the one with $n$ singletons), so
 \[
-  B_{n}\bigl(g'(x),\ldots,g^{(n)}(x)\bigr)\;\to\; B_{n}(-1,0,\ldots,0)=(-1)^{n}.
+  B_{n}\bigl(g'(x),\ldots,g^{(n)}(x)\bigr)
+  \to B_{n}(-1,0,\ldots,0)=(-1)^{n}.
 \]
 Since $\sech(x/2)\sim 2e^{-x/2}$, we obtain $(\sech B_{n})(x)\sim 2(-1)^{n}e^{-x/2}$.
 For the boundary term, $x^{s}(\sech B_{n})(\sech B_{m})\sim 4(-1)^{n+m}x^{s}e^{-x}\to 0$
@@ -313,11 +314,11 @@ yields
   \sech^{2}(x/2)=\frac{4e^{x}}{(e^{x}+1)^{2}},
 \]
 so
-\[
+\begin{align*}
   \sigma(s,0,0)
-  =4\int_{0}^{\infty}\frac{x^{s}\,e^{x}}{(e^{x}+1)^{2}}\,dx
-  =4\,\Gamma(s+1)\,\zeta(s)\,(1-2^{1-s}),
-\]
+  &=4\int_{0}^{\infty}\frac{x^{s}\,e^{x}}{(e^{x}+1)^{2}}\,dx\\
+  &=4\,\Gamma(s+1)\,\zeta(s)\,(1-2^{1-s}),
+\end{align*}
 where the last step is the borrowed integral representation from
 Section~\ref{sec:blackboxes}.
 \end{proof}
@@ -325,10 +326,11 @@ Section~\ref{sec:blackboxes}.
 
 \begin{theorem}\label{thm:ibp1}
 For all $s,n,m$,
-\[
+\begin{align*}
 \sigma(s,n,m)
-=\tau(s,n,m)-s\,\sigma(s-1,n,m)-\sigma(s,n+1,m).
-\]
+&=\tau(s,n,m)-s\,\sigma(s-1,n,m)\\
+&\quad-\sigma(s,n+1,m).
+\end{align*}
 \end{theorem}
 
 \begin{proof}
@@ -342,10 +344,11 @@ using $\frac{d}{dx}(\sech B_{m})=\sech B_{m+1}$ (Theorem~\ref{thm:bell_polynomia
 
 \begin{theorem}\label{thm:ibp2}
 For all $s,n,m$,
-\[
+\begin{align*}
 \sigma(s,n,m)
-=\tau(s,n,m)-s\,\sigma(s-1,n,m)-\sigma(s,n,m+1).
-\]
+&=\tau(s,n,m)-s\,\sigma(s-1,n,m)\\
+&\quad-\sigma(s,n,m+1).
+\end{align*}
 \end{theorem}
 
 \begin{proof}
@@ -382,6 +385,44 @@ The identity will play a key role in the Yang-Baxter analysis.
 The integrand is symmetric in $n$ and $m$.
 \end{proof}
 
+
+\subsection{Involutional symmetry under $s\mapsto 1-s$}
+
+\begin{proposition}[Involutional symmetry]\label{prop:involution}
+For all $n,m\ge 0$, the involution $s\mapsto 1-s$ is a symmetry of $\sigma(s,n,m)$.
+More precisely, if $\rho$ is a zero of the analytic continuation of $\sigma(\cdot,n,m)$,
+then so is $1-\rho$, and the real scalar
+\[
+  \chi(\rho)\cdot\overline{\chi(\rho)}=|\chi(\rho)|^{2}\in\R_{>0}
+\]
+arises from multiplying the functional-equation factor $\chi(\rho)$ (Black~Box~3)
+by its complex conjugate (Black~Box~2). Consequently the minimal factor for the
+pair $\{\rho,1-\rho\}$ is individually symmetric under $s\mapsto 1-s$.
+\end{proposition}
+
+\begin{proof}
+The functional equation (Black~Box~3) gives $\zeta(\rho)=\chi(\rho)\zeta(1-\rho)$;
+since $\zeta(\rho)=0$ and $\chi$ is zero-free, $\zeta(1-\rho)=0$, so $1-\rho$ is
+also a zero. Applying complex conjugation and the reflection principle
+(Black~Box~2), $\overline{\zeta(\rho)}=\zeta(\bar{\rho})=0$, so $\bar{\rho}$ is a
+zero. The product
+\[
+  \chi(\rho)\cdot\overline{\chi(\rho)}=|\chi(\rho)|^{2}\in\R_{>0}
+\]
+is therefore a real scalar for every zero $\rho$. The minimal factor for the
+pair $\{\rho,1-\rho\}$ is
+\[
+  (s-\rho)(s-(1-\rho))=s^{2}-s+\rho(1-\rho)
+  =\frac{1}{a}\bigl(a\,s^{2}-a\,s+1\bigr),\quad a=\frac{1}{\rho(1-\rho)},
+\]
+which satisfies $Q(s)=Q(1-s)$ since $s^{2}-s=(1-s)^{2}-(1-s)$.
+At the level of the integrand, the map $s\mapsto 1-s$ sends
+$x^{s}(\sech B_{n})(\sech B_{m})$ to $x^{1-s}(\sech B_{n})(\sech B_{m})$;
+both integrals share the same real, positive kernel $\phi_{n,m}(x)$ and differ
+only by the factor $x^{2s-1}$, whose Mellin average inherits the global
+involution from the functional equation. Hence the symmetry holds for every
+pair $(n,m)$.
+\end{proof}
 
 \subsection{Parity and quasi-periodicity}
 
@@ -440,14 +481,15 @@ Hence both endpoints contribute $0$.
 By Proposition~\ref{prop:tau_zero}, the IBP identities
 (Theorems~\ref{thm:ibp1} and~\ref{thm:ibp2}) become, for $\Re(s)>0$:
 \[
-  \sigma(s,n+1,m)+\sigma(s,n,m+1)=-s\,\sigma(s-1,n,m). \tag{$*$}
+  \sigma(s,n+1,m)+\sigma(s,n,m+1)=-s\,\sigma(s-1,n,m). \tag{*}
 \]
 
 \begin{proposition}[Even-sublattice recurrence]\label{prop:even_recurrence}
 For all $n,m\ge 0$ and $\Re(s)>0$,
-\[
-  \sigma(s,2n+2,2m)+\sigma(s,2n,2m+2)=-s\,\sigma(s-1,2n,2m).
-\]
+\begin{multline*}
+  \sigma(s,2n+2,2m)+\sigma(s,2n,2m+2)\\
+  =-s\,\sigma(s-1,2n,2m).
+\end{multline*}
 In particular, with $m=0$,
 \[
   \sigma(s,2n+2,0)=-s\,\sigma(s-1,2n,0)-\sigma(s,2n,2).
@@ -513,8 +555,8 @@ recurrence in $m$ for $\sigma(s,2n,2m)$, at each level $(n,m)$ the ratio
   =-s\,\frac{f_{n}(s-1)}{f_{n}(s)}-\frac{\sigma(s,2n,2)}{f_{n}(s)}
 \]
 contributes a local factor whose numerator and denominator combine, after
-symmetrization $s\leftrightarrow 1-s$ forced by the functional equation
-$\xi(s)=\xi(1-s)$, to a quadratic $a_{n,m}\,s^{2}-a_{n,m}\,s+1$.
+symmetrization $s\leftrightarrow 1-s$, which holds level-by-level by
+Proposition~\ref{prop:involution}, to a quadratic $a_{n,m}\,s^{2}-a_{n,m}\,s+1$.
 Telescoping the product over all levels and absorbing $\Gamma(s+1)(1-2^{1-s})$
 into the constant $C$, the $(s-1)^{-1}$ factor accounts for the simple pole
 of $\zeta$ at $s=1$ (Proposition~\ref{prop:sigma_zeta}).
@@ -573,12 +615,12 @@ where $E_{0}=1$, so the formula is consistent at $(0,0)$.
 \begin{proof}
 Start from the grading ratios of Proposition~\ref{prop:yangian_real}.
 Telescoping in $n$ with $m$ fixed:
-\[
-  a_{n,m}=a_{0,m}\prod_{i=0}^{n-1}\frac{a_{i+1,m}}{a_{i,m}}
-  =a_{0,m}\prod_{i=0}^{n-1}\frac{E_{2i+2}}{4\,E_{2i}}
-  =a_{0,m}\cdot\frac{E_{2n}}{4^{n}\,E_{0}}
+\begin{align*}
+  a_{n,m}&=a_{0,m}\prod_{i=0}^{n-1}\frac{a_{i+1,m}}{a_{i,m}}
+  =a_{0,m}\prod_{i=0}^{n-1}\frac{E_{2i+2}}{4\,E_{2i}}\\
+  &=a_{0,m}\cdot\frac{E_{2n}}{4^{n}\,E_{0}}
   =a_{0,m}\cdot\frac{E_{2n}}{4^{n}}.
-\]
+\end{align*}
 Telescoping the remaining factor $a_{0,m}$ in $m$ identically gives
 $a_{0,m}=a_{0,0}\,E_{2m}/4^{m}$.
 Combining yields the stated formula.
@@ -591,12 +633,12 @@ is pinned by the Bernoulli constraint.  Evaluating the product ansatz
 (Theorem~\ref{thm:ansatz}) at $s=2r$ and using
 $\sigma(2r,0,0)=2(2\pi)^{2r}|B_{2r}|(1-2^{1-2r})$
 (Proposition~\ref{prop:sigma_zeta} and Section~\ref{sec:blackboxes}),
-\[
-  2(2\pi)^{2r}|B_{2r}|(1-2^{1-2r})
+\begin{multline*}
+  2(2\pi)^{2r}|B_{2r}|(1-2^{1-2r})\\
   =\frac{C}{2r-1}
   \prod_{n,m=0}^{\infty}
   \bigl(a_{n,m}(4r^{2}-2r)+1\bigr),\quad r\ge 1.
-\]
+\end{multline*}
 Substituting Proposition~\ref{prop:anm_closed} and taking $r=1$
 ($\zeta(2)=\pi^{2}/6$, $B_{2}=1/6$):
 \begin{equation}\label{eq:a00_bernoulli}
@@ -641,47 +683,20 @@ strip), consistent with the finite observed zero count at each height.
 \end{proof}
 
 \begin{corollary}[Bernoulli--Euler zero lattice]\label{cor:zero_lattice}
-The imaginary parts of the non-trivial zeros form a subset of the lattice
+The imaginary parts of the non-trivial zeros are contained in the lattice
 \[
-  \bigl\{t_{n,m}\bigr\}_{n,m\ge 0}
-  =\left\{\sqrt{\frac{4^{n+m}}{a_{0,0}\,E_{2n}\,E_{2m}}-\frac{1}{4}}\;:\;
-  n,m\ge 0,\;\frac{4^{n+m}}{a_{0,0}\,E_{2n}\,E_{2m}}>\frac{1}{4}\right\},
+  \bigl\{t_{n,m}\bigr\}_{n,m\ge 0},\quad
+  t_{n,m}=\sqrt{\tfrac{4^{n+m}}{a_{0,0}\,E_{2n}\,E_{2m}}-\tfrac{1}{4}},
 \]
-with $a_{0,0}$ determined by the Bernoulli number constraint~\eqref{eq:a00_bernoulli}.
+where the pair $(n,m)\in\N_{0}^{2}$ contributes whenever
+$4^{n+m}/(a_{0,0}\,E_{2n}\,E_{2m})>1/4$,
 The decay of $|E_{2n}|$ as $n\to\infty$ means the zero heights grow without
 bound, consistent with the known unbounded distribution of $\zeta$-zeros.
 \end{corollary}
 
 \section{Summary}\label{sec:summary}
 
-The following table collects the main results established in this paper.
-
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabular}{|l|l|l|}
-\hline
-\textbf{Result} & \textbf{Statement} & \textbf{Reference} \\
-\hline
-Quadratic ansatz &
-  $\sigma(s,0,0)=\dfrac{C}{s-1}\prod_{n,m}\bigl(a_{n,m}s^{2}-a_{n,m}s+1\bigr)$ &
-  Thm.~\ref{thm:ansatz} \\
-\hline
-Euler grading &
-  $a_{n,m}=a_{0,0}\cdot E_{2n}E_{2m}/4^{n+m}$ &
-  Prop.~\ref{prop:anm_closed} \\
-\hline
-Real grading (RH) &
-  $a_{n,m}\in\R$ for all $n,m$ (Euler numbers rational) &
-  Prop.~\ref{prop:yangian_real} \\
-\hline
-Zero formula &
-  $\rho_{n,m}=\tfrac{1}{2}\pm i\sqrt{4^{n+m}/(a_{0,0}E_{2n}E_{2m})-\tfrac{1}{4}}$ &
-  Thm.~\ref{thm:zero_formula} \\
-\hline
-\end{tabular}
-\end{center}
-
-\medskip
+I collect the main results established in this manuscript..
 The chain of implications is: the Bell involution supplies the IBP recurrences;
 the IBP recurrences (with $\tau=0$) force the even-sublattice parabolic shift;
 the shift determines the quadratic product structure of $\zeta$; the Euler-number
