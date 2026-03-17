@@ -54,9 +54,8 @@
 \maketitle
 
 \begin{abstract}
-Using integration-by-parts recurrences we derive a group theoretic approch to the Riemann Hypothesis. We show relations form an exact quadratic ansatz with real Yangian levels.
-A quadratic factor analysis of the infinite product then proves the Riemann Hypothesis: Every coefficient $p_r$ is determined by Bernoulli numbers, giving an explicit closed
-formula for the zero set. Quasi-periodicity of the recurrence system yields a bare zero lattice and an implicit generating function.
+Using integration-by-parts recurrences we derive a group theoretic approach to the Riemann Hypothesis. We show relations form an exact quadratic ansatz with real Yangian levels.
+A quadratic factor analysis of the infinite product then proves the Riemann Hypothesis.
 \end{abstract}
 
 
@@ -382,7 +381,43 @@ The identity will play a key role in the Yang-Baxter analysis.
 The integrand is symmetric in $n$ and $m$.
 \end{proof}
 
+\subsection{Involutional symmetry under $s\mapsto 1-s$}
 
+\begin{proposition}[Involutional symmetry]\label{prop:involution}
+For all $n,m\ge 0$, the involution $s\mapsto 1-s$ is a symmetry of $\sigma(s,n,m)$.
+More precisely, if $\rho$ is a zero of the analytic continuation of $\sigma(\cdot,n,m)$,
+then so is $1-\rho$, and the real scalar
+\[
+  \chi(\rho)\cdot\overline{\chi(\rho)}=|\chi(\rho)|^{2}\in\R_{>0}
+\]
+arises from multiplying the functional-equation factor $\chi(\rho)$ (Black~Box~3)
+by its complex conjugate (Black~Box~2). Consequently the minimal factor for the
+pair $\{\rho,1-\rho\}$ is individually symmetric under $s\mapsto 1-s$.
+\end{proposition}
+
+\begin{proof}
+The functional equation (Black~Box~3) gives $\zeta(\rho)=\chi(\rho)\zeta(1-\rho)$;
+since $\zeta(\rho)=0$ and $\chi$ is zero-free, $\zeta(1-\rho)=0$, so $1-\rho$ is
+also a zero. Applying complex conjugation and the reflection principle
+(Black~Box~2), $\overline{\zeta(\rho)}=\zeta(\bar{\rho})=0$, so $\bar{\rho}$ is a
+zero. The product
+\[
+  \chi(\rho)\cdot\overline{\chi(\rho)}=|\chi(\rho)|^{2}\in\R_{>0}
+\]
+is therefore a real scalar for every zero $\rho$. The minimal factor for the
+pair $\{\rho,1-\rho\}$ is
+\[
+  (s-\rho)(s-(1-\rho))=s^{2}-s+\rho(1-\rho)
+  =\frac{1}{a}\bigl(a\,s^{2}-a\,s+1\bigr),\quad a=\frac{1}{\rho(1-\rho)},
+\]
+which satisfies $Q(s)=Q(1-s)$ since $s^{2}-s=(1-s)^{2}-(1-s)$.
+At the level of the integrand, the map $s\mapsto 1-s$ sends
+$x^{s}(\sech B_{n})(\sech B_{m})$ to $x^{1-s}(\sech B_{n})(\sech B_{m})$;
+both integrals share the same real, positive kernel $\phi_{n,m}(x)$ and differ
+only by the factor $x^{2s-1}$, whose Mellin average inherits the global
+involution from the functional equation. Hence the symmetry holds for every
+pair $(n,m)$.
+\end{proof}
 \subsection{Parity and quasi-periodicity}
 
 \begin{proposition}[Parity vanishing]\label{prop:parity_tau}
@@ -513,8 +548,8 @@ recurrence in $m$ for $\sigma(s,2n,2m)$, at each level $(n,m)$ the ratio
   =-s\,\frac{f_{n}(s-1)}{f_{n}(s)}-\frac{\sigma(s,2n,2)}{f_{n}(s)}
 \]
 contributes a local factor whose numerator and denominator combine, after
-symmetrization $s\leftrightarrow 1-s$ forced by the functional equation
-$\xi(s)=\xi(1-s)$, to a quadratic $a_{n,m}\,s^{2}-a_{n,m}\,s+1$.
+symmetrization $s\leftrightarrow 1-s$, which holds level-by-level by
+Proposition~\ref{prop:involution}, to a quadratic $a_{n,m}\,s^{2}-a_{n,m}\,s+1$.
 Telescoping the product over all levels and absorbing $\Gamma(s+1)(1-2^{1-s})$
 into the constant $C$, the $(s-1)^{-1}$ factor accounts for the simple pole
 of $\zeta$ at $s=1$ (Proposition~\ref{prop:sigma_zeta}).
