@@ -1,21 +1,25 @@
-% ****** Start of file RH.tex ******
+% ****** Start of file rmatrixisomorphism.tex ******
 %
-%   Formatted for Proceedings of the Japan Academy, Series A
-%   using the pja00.cls document class.
+%   Formatted for the Journal of Geometry and Symmetry in Physics (JGSP)
+%   using the geom.cls document class.
 %
 % Compile sequence:
 %
-%  1)  pdflatex  RH
-%  2)  bibtex    RH
-%  3)  pdflatex  RH
-%  4)  pdflatex  RH
+%  1)  pdflatex  rmatrixisomorphism
+%  2)  bibtex    rmatrixisomorphism
+%  3)  pdflatex  rmatrixisomorphism
+%  4)  pdflatex  rmatrixisomorphism
 %
 
-\documentclass{pja00}
+\documentclass[article]{article}
 
+\usepackage[margin=1in]{geometry}
 \emergencystretch=2em
 
 \usepackage[utf8]{inputenc}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{bbm}
 \usepackage{mathrsfs}
 \usepackage{url}
@@ -41,19 +45,17 @@
 
 \begin{document}
 
-\title{The Riemann Hypothesis and A Path to a Closed Form of Zeta Zeros from Pure Symmetry Arguments}
+\title{The Riemann Hypothesis and A Closed Form of Zeta Zeros from Pure Symmetry Arguments}
 
-\author{Drew Remmenga\thanks{Fort Collins, Colorado. \texttt{remmengadrew@gmail.com}}}
+\author{Drew Remmenga\footnote{Fort Collins, Colorado. \texttt{remmengadrew@gmail.com}}}
 
-\KeyWords{{Riemann Hypothesis}{zeta function}{Bell polynomials}{Yangian}{Bernoulli numbers}{Euler numbers}}
-
-\Subject[2020]{11M26, 11M06, 05A40, 17B37, 44A15}
+\date{}
 
 \maketitle
 
 \begin{abstract}
 Using integration-by-parts recurrences we derive a group theoretic approach to the Riemann Hypothesis. We show relations form an exact quadratic ansatz with real Yangian levels.
-A quadratic factor analysis of the infinite product then proves the Riemann Hypothesis and leads to a path which may solve the zeta function. 
+A quadratic factor analysis of the infinite product then proves the Riemann Hypothesis.
 \end{abstract}
 
 
@@ -102,11 +104,10 @@ proof in this paper.
 
 \item \textbf{Integral representation of $\zeta$.}
 We use the identity
-\begin{align*}
-  \int_0^\infty \frac{x^s e^x}{(e^x+1)^2}\,dx \\
-&= \Gamma(s+1)\,\zeta(s)\,(1-2^{1-s}),\qquad \Re(s)>0,
-\end{align*}
-
+\[
+\int_0^\infty \frac{x^s e^x}{(e^x+1)^2}\,dx
+= \Gamma(s+1)\,\zeta(s)\,(1-2^{1-s}),\qquad \Re(s)>0,
+\]
 which is a standard Mellin-transform computation (see, e.g.,
 \cite{Titchmarsh1986}, Chapter~II).
 
@@ -149,11 +150,9 @@ This is a standard identity; see \cite{AbramowitzStegun1964}, \S4.5.67, or
 
 A \emph{regularized Weierstrass product} $\cosh(x/2)$ is any object
 satisfying
-\begin{align*}
-  1/\sech(x/2)=C\prod_{n=1}^{\infty}\left(1-\frac{x}{(2n-1)\pi i}\right)\times \\
-&\left(1+\frac{x}{(2n-1)\pi i}\right)
-\end{align*}
-
+\[
+1/\sech(x/2)=C\prod_{n=1}^{\infty}\left(1-\frac{x}{(2n-1)\pi i}\right)\left(1+\frac{x}{(2n-1)\pi i}\right)
+\]
 for a nonzero constant $C$, and whose zero set is the set of odd integer
 multiples of $\pi i$.
 \end{definition}
@@ -204,16 +203,15 @@ We prove~(ii) first.  Since $\sech(x/2)=e^{g}/C$ one has
 $\frac{d}{dx}\sech(x/2)=\sech(x/2)\,g'(x)$, so the product rule gives
 \begin{align*}
 \frac{d}{dx}\,\sech B_{n}
-&=\sech(x/2)\,g'(x)\,B_{n}(g',\ldots,g^{(n)}) +\\
- &\sech(x/2)\sum_{k=1}^{n}\frac{\partial B_{n}}{\partial x_{k}}\\
- &\!\bigl(g',\ldots,g^{(n)}\bigr)\,g^{(k+1)}(x).
+&=\sech(x/2)\,g'(x)\,B_{n}(g',\ldots,g^{(n)})
+ +\sech(x/2)\sum_{k=1}^{n}\frac{\partial B_{n}}{\partial x_{k}}\!\bigl(g',\ldots,g^{(n)}\bigr)\,g^{(k+1)}(x).
 \end{align*}
 The defining recurrence of complete Bell polynomials \cite{BellPolynomialsCombo}
-\begin{align*}
-B_{n+1}(x_{1},\ldots,x_{n+1}) \\
-&=x_{1}\,B_{n}(x_{1},\ldots,x_{n}) \\
-&+\sum_{k=1}^{n}\frac{\partial B_{n}}{\partial x_{k}}(x_{1},\ldots,x_{n})\,x_{k+1}
-\end{align*}
+\[
+B_{n+1}(x_{1},\ldots,x_{n+1})
+=x_{1}\,B_{n}(x_{1},\ldots,x_{n})
++\sum_{k=1}^{n}\frac{\partial B_{n}}{\partial x_{k}}(x_{1},\ldots,x_{n})\,x_{k+1}
+\]
 evaluated at $x_{k}:=g^{(k)}(x)$ yields
 $\frac{d}{dx}\,\sech B_{n}=\sech B_{n+1}$, proving~(ii).
 
@@ -306,11 +304,11 @@ yields
   \sech^{2}(x/2)=\frac{4e^{x}}{(e^{x}+1)^{2}},
 \]
 so
-\begin{align*}
-  \sigma(s,0,0) \\
-  &=4\int_{0}^{\infty}\frac{x^{s}\,e^{x}}{(e^{x}+1)^{2}}\,dx \\
-  &=4\,\Gamma(s+1)\,\zeta(s)\,(1-2^{1-s}),
-\end{align*}
+\[
+  \sigma(s,0,0)
+  =4\int_{0}^{\infty}\frac{x^{s}\,e^{x}}{(e^{x}+1)^{2}}\,dx
+  =4\,\Gamma(s+1)\,\zeta(s)\,(1-2^{1-s}),
+\]
 where the last step is the borrowed integral representation from
 Section~\ref{sec:blackboxes}.
 \end{proof}
@@ -400,12 +398,10 @@ zero. The product
 \]
 is therefore a real scalar for every zero $\rho$. The minimal factor for the
 pair $\{\rho,1-\rho\}$ is
-\begin{align*}
-  (s-\rho)(s-(1-\rho))=s^{2}-s+\rho(1-\rho) \\
-  &=\frac{1}{a}\bigl(a\,s^{2}-a\,s+1\bigr),\quad \\
-  & a=\frac{1}{\rho(1-\rho)},
-\end{align*}
-  
+\[
+  (s-\rho)(s-(1-\rho))=s^{2}-s+\rho(1-\rho)
+  =\frac{1}{a}\bigl(a\,s^{2}-a\,s+1\bigr),\quad a=\frac{1}{\rho(1-\rho)},
+\]
 which satisfies $Q(s)=Q(1-s)$ since $s^{2}-s=(1-s)^{2}-(1-s)$.
 At the level of the integrand, the map $s\mapsto 1-s$ sends
 $x^{s}(\sech B_{n})(\sech B_{m})$ to $x^{1-s}(\sech B_{n})(\sech B_{m})$;
@@ -464,9 +460,9 @@ Hence both endpoints contribute $0$.
 
 By Proposition~\ref{prop:tau_zero}, the IBP identities
 (Theorems~\ref{thm:ibp1} and~\ref{thm:ibp2}) become, for $\Re(s)>0$:
-\begin{equation*}
-  \sigma(s,n+1,m)+\sigma(s,n,m+1)=-s\,\sigma(s-1,n,m). \tag*{(*)}
-\end{equation*}
+\[
+  \sigma(s,n+1,m)+\sigma(s,n,m+1)=-s\,\sigma(s-1,n,m). \tag{$*$}
+\]
 
 \begin{proposition}[Even-sublattice recurrence]\label{prop:even_recurrence}
 For all $n,m\ge 0$ and $\Re(s)>0$,
@@ -614,6 +610,33 @@ the sign of $\zeta$ on the real line provides the missing analytic input.
 \end{remark}
 \section{Summary}\label{sec:summary}
 
+The following table collects the main results established in this paper.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Result} & \textbf{Statement} & \textbf{Reference} \\
+\hline
+Quadratic ansatz &
+  $\sigma(s,0,0)=\dfrac{C}{s-1}\prod_{n,m}\bigl(a_{n,m}s^{2}-a_{n,m}s+1\bigr)$ &
+  Thm.~\ref{thm:ansatz} \\
+\hline
+Hopf grading &
+  $a_{n,m}=a_{0,0}$ &
+  Prop.~\ref{prop:anm_closed} \\
+\hline
+Real grading (RH) &
+  $a_{n,m}\in\R$ for all $n,m$ (parabolic values real) &
+  Prop.~\ref{prop:yangian_real} \\
+\hline
+Sign constraint (RH) &
+  $a_{n,m}\in(0,4)$ for all $n,m$ (roots on critical line) &
+  Thm.~\ref{thm:sign_forces_rh} \\
+\hline
+\end{center}
+
+\medskip
 The chain of implications is: the Bell involution supplies the IBP recurrences;
 the IBP recurrences (with $\tau=0$) force the even-sublattice parabolic shift;
 the shift determines the quadratic product structure of $\zeta$; the Hopf
