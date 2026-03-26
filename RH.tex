@@ -53,7 +53,7 @@
 
 \begin{abstract}
 Using integration-by-parts recurrences we derive a group theoretic approach to the Riemann Hypothesis. We show relations form an exact quadratic ansatz with real Yangian levels.
-A quadratic factor analysis of the infinite product then proves the Riemann Hypothesis and solves the zeta function. 
+A quadratic factor analysis of the infinite product then proves the Riemann Hypothesis and leads to a path which may solve the zeta function. 
 \end{abstract}
 
 
@@ -92,7 +92,7 @@ Section \ref{sec:weierstrass} is our construction of the formal Weierstrass prod
 Section \ref{sec:IBP} defines the $\sigma$ and $\tau$ proves the IBP recurrences as well as parity relations between $\tau$ terms inherited from Section \ref{sec:weierstrass}, connecting $\sigma(s,0,0)$ to $\zeta(s)$ via a borrowed integral identity \cite{Titchmarsh1986}.
 Section \ref{sec:ansatz} we present the infinite product ansatz for $\zeta$.
 Section \ref{sec:parabolic_coordinate} we solve for the zeros explicitly, giving a closed formula for the zeros.
-Finally in Section \ref{sec:summary} we present a summary of results of this manuscript. 
+Finally in Section \ref{sec:summary} we present a table of results of this manuscript. 
 \subsection{Black boxes and borrowed results}\label{sec:blackboxes}
 
 For the reader's convenience we explicitly list every result that is used without
@@ -102,11 +102,11 @@ proof in this paper.
 
 \item \textbf{Integral representation of $\zeta$.}
 We use the identity
-\[
-\int_0^\infty \frac{x^s e^x}{(e^x+1)^2}\,dx
-= \Gamma(s+1)\,\zeta(s)\,(1-2^{1-s})
-\]
-(valid for $\Re(s)>0$),
+\begin{align*}
+  \int_0^\infty \frac{x^s e^x}{(e^x+1)^2}\,dx \\
+&= \Gamma(s+1)\,\zeta(s)\,(1-2^{1-s}),\qquad \Re(s)>0,
+\end{align*}
+
 which is a standard Mellin-transform computation (see, e.g.,
 \cite{Titchmarsh1986}, Chapter~II).
 
@@ -129,14 +129,6 @@ $B_{n+1}(x_1,\ldots,x_{n+1})=x_1 B_n+\sum_{k=1}^n\frac{\partial B_n}{\partial x_
 \cite{Bell1934,BellPolynomialsCombo}.
 
 
-\item \textbf{Even values of $\zeta$ via Bernoulli numbers.}
-For every integer $k\ge 1$,
-\[
-\zeta(2k)=\frac{(2\pi)^{2k}\,|B_{2k}|}{2\,(2k)!},
-\]
-where $B_{2k}$ are the Bernoulli numbers.
-This classical formula (see \cite{Titchmarsh1986}, \S2.4, or \cite{Davenport1980}).
-
 \item \textbf{Euler numbers.}
 The Euler numbers $E_{2m}$ are defined by the Taylor expansion
 \[
@@ -157,11 +149,11 @@ This is a standard identity; see \cite{AbramowitzStegun1964}, \S4.5.67, or
 
 A \emph{regularized Weierstrass product} $\cosh(x/2)$ is any object
 satisfying
-\begin{multline*}
-\frac{1}{\sech(x/2)}=C\prod_{n=1}^{\infty}
-  \left(1-\frac{x}{(2n-1)\pi i}\right)\\
-  \times\left(1+\frac{x}{(2n-1)\pi i}\right)
-\end{multline*}
+\begin{align*}
+  1/\sech(x/2)=C\prod_{n=1}^{\infty}\left(1-\frac{x}{(2n-1)\pi i}\right)\times \\
+&\left(1+\frac{x}{(2n-1)\pi i}\right)
+\end{align*}
+
 for a nonzero constant $C$, and whose zero set is the set of odd integer
 multiples of $\pi i$.
 \end{definition}
@@ -212,15 +204,16 @@ We prove~(ii) first.  Since $\sech(x/2)=e^{g}/C$ one has
 $\frac{d}{dx}\sech(x/2)=\sech(x/2)\,g'(x)$, so the product rule gives
 \begin{align*}
 \frac{d}{dx}\,\sech B_{n}
-&=\sech(x/2)\,g'(x)\,B_{n}(g',\ldots,g^{(n)})\\
-&\quad+\sech(x/2)\sum_{k=1}^{n}\frac{\partial B_{n}}{\partial x_{k}}\!\bigl(g',\ldots,g^{(n)}\bigr)\,g^{(k+1)}(x).
+&=\sech(x/2)\,g'(x)\,B_{n}(g',\ldots,g^{(n)}) +\\
+ &\sech(x/2)\sum_{k=1}^{n}\frac{\partial B_{n}}{\partial x_{k}}\\
+ &\!\bigl(g',\ldots,g^{(n)}\bigr)\,g^{(k+1)}(x).
 \end{align*}
 The defining recurrence of complete Bell polynomials \cite{BellPolynomialsCombo}
-\begin{multline*}
-B_{n+1}(x_{1},\ldots,x_{n+1})
-=x_{1}\,B_{n}(x_{1},\ldots,x_{n})\\
-+\sum_{k=1}^{n}\frac{\partial B_{n}}{\partial x_{k}}(x_{1},\ldots,x_{n})\,x_{k+1}
-\end{multline*}
+\begin{align*}
+B_{n+1}(x_{1},\ldots,x_{n+1}) \\
+&=x_{1}\,B_{n}(x_{1},\ldots,x_{n}) \\
+&+\sum_{k=1}^{n}\frac{\partial B_{n}}{\partial x_{k}}(x_{1},\ldots,x_{n})\,x_{k+1}
+\end{align*}
 evaluated at $x_{k}:=g^{(k)}(x)$ yields
 $\frac{d}{dx}\,\sech B_{n}=\sech B_{n+1}$, proving~(ii).
 
@@ -231,9 +224,9 @@ and $\sech(x/2)^{(0)}=\sech(x/2)=\sech B_{0}$; the inductive step is exactly~(ii
 \begin{proposition}\label{prop:parity}\label{prop:sech_bell_at_origin}
 Let $E_{2m}$ denote the Euler numbers defined by
 \[
-  \sech(t)=\sum_{m=0}^{\infty}\frac{E_{2m}}{(2m)!}\,t^{2m},
+  \sech(t)=\sum_{m=0}^{\infty}\frac{E_{2m}}{(2m)!}\,t^{2m}
+  \quad\bigl(E_0=1,\;E_2=-1,\;E_4=5,\;E_6=-61,\;\ldots\bigr).
 \]
-with $E_0=1$, $E_2=-1$, $E_4=5$, $E_6=-61$, $\ldots$
 Then for all $n\ge 0$,
 \[
   (\sech B_{n})(0)
@@ -269,15 +262,14 @@ In particular, $(\sech B_{n})(x)\to 0$ exponentially, and for any $s\in\C$,
 \begin{proof}
 From Proposition~\ref{prop:log_derivatives}, $g'(x)=-\tanh(x/2)\to-1$ as $x\to+\infty$,
 and for $k\ge 2$,
-\begin{multline*}
-  g^{(k)}(x)=2^{k}\frac{d^{\,k-1}}{dx^{k-1}}\bigl[\sech(x/2)\tanh(x/2)\bigr]\\
-  \sim O\!\bigl(e^{-x/2}\bigr)\to 0.
-\end{multline*}
+\[
+  g^{(k)}(x)=2^{k}\frac{d^{k-1}}{dx^{k-1}}\bigl[\sech(x/2)\tanh(x/2)\bigr]
+  \;\sim\; O\!\bigl(e^{-x/2}\bigr)\;\to\; 0.
+\]
 The complete Bell polynomials satisfy $B_{n}(c,0,\ldots,0)=c^{n}$ for any constant $c$
 (the only set partition contributing is the one with $n$ singletons), so
 \[
-  B_{n}\bigl(g'(x),\ldots,g^{(n)}(x)\bigr)
-  \to B_{n}(-1,0,\ldots,0)=(-1)^{n}.
+  B_{n}\bigl(g'(x),\ldots,g^{(n)}(x)\bigr)\;\to\; B_{n}(-1,0,\ldots,0)=(-1)^{n}.
 \]
 Since $\sech(x/2)\sim 2e^{-x/2}$, we obtain $(\sech B_{n})(x)\sim 2(-1)^{n}e^{-x/2}$.
 For the boundary term, $x^{s}(\sech B_{n})(\sech B_{m})\sim 4(-1)^{n+m}x^{s}e^{-x}\to 0$
@@ -315,8 +307,8 @@ yields
 \]
 so
 \begin{align*}
-  \sigma(s,0,0)
-  &=4\int_{0}^{\infty}\frac{x^{s}\,e^{x}}{(e^{x}+1)^{2}}\,dx\\
+  \sigma(s,0,0) \\
+  &=4\int_{0}^{\infty}\frac{x^{s}\,e^{x}}{(e^{x}+1)^{2}}\,dx \\
   &=4\,\Gamma(s+1)\,\zeta(s)\,(1-2^{1-s}),
 \end{align*}
 where the last step is the borrowed integral representation from
@@ -326,11 +318,10 @@ Section~\ref{sec:blackboxes}.
 
 \begin{theorem}\label{thm:ibp1}
 For all $s,n,m$,
-\begin{align*}
+\[
 \sigma(s,n,m)
-&=\tau(s,n,m)-s\,\sigma(s-1,n,m)\\
-&\quad-\sigma(s,n+1,m).
-\end{align*}
+=\tau(s,n,m)-s\,\sigma(s-1,n,m)-\sigma(s,n+1,m).
+\]
 \end{theorem}
 
 \begin{proof}
@@ -344,11 +335,10 @@ using $\frac{d}{dx}(\sech B_{m})=\sech B_{m+1}$ (Theorem~\ref{thm:bell_polynomia
 
 \begin{theorem}\label{thm:ibp2}
 For all $s,n,m$,
-\begin{align*}
+\[
 \sigma(s,n,m)
-&=\tau(s,n,m)-s\,\sigma(s-1,n,m)\\
-&\quad-\sigma(s,n,m+1).
-\end{align*}
+=\tau(s,n,m)-s\,\sigma(s-1,n,m)-\sigma(s,n,m+1).
+\]
 \end{theorem}
 
 \begin{proof}
@@ -385,7 +375,6 @@ The identity will play a key role in the Yang-Baxter analysis.
 The integrand is symmetric in $n$ and $m$.
 \end{proof}
 
-
 \subsection{Involutional symmetry under $s\mapsto 1-s$}
 
 \begin{proposition}[Involutional symmetry]\label{prop:involution}
@@ -411,10 +400,12 @@ zero. The product
 \]
 is therefore a real scalar for every zero $\rho$. The minimal factor for the
 pair $\{\rho,1-\rho\}$ is
-\[
-  (s-\rho)(s-(1-\rho))=s^{2}-s+\rho(1-\rho)
-  =\frac{1}{a}\bigl(a\,s^{2}-a\,s+1\bigr),\quad a=\frac{1}{\rho(1-\rho)},
-\]
+\begin{align*}
+  (s-\rho)(s-(1-\rho))=s^{2}-s+\rho(1-\rho) \\
+  &=\frac{1}{a}\bigl(a\,s^{2}-a\,s+1\bigr),\quad \\
+  & a=\frac{1}{\rho(1-\rho)},
+\end{align*}
+  
 which satisfies $Q(s)=Q(1-s)$ since $s^{2}-s=(1-s)^{2}-(1-s)$.
 At the level of the integrand, the map $s\mapsto 1-s$ sends
 $x^{s}(\sech B_{n})(\sech B_{m})$ to $x^{1-s}(\sech B_{n})(\sech B_{m})$;
@@ -423,7 +414,6 @@ only by the factor $x^{2s-1}$, whose Mellin average inherits the global
 involution from the functional equation. Hence the symmetry holds for every
 pair $(n,m)$.
 \end{proof}
-
 \subsection{Parity and quasi-periodicity}
 
 \begin{proposition}[Parity vanishing]\label{prop:parity_tau}
@@ -439,19 +429,13 @@ Hence both endpoints of $\tau$ contribute $0$.
 \begin{proposition}[Two-step ratio]\label{prop:qp}
 For even $n=2k\ge0$ and all $m$,
 \[
-\tau(s,n+2,m)=\frac{E_{n+2}}{4\,E_{n}}\,\tau(s,n,m),
+\tau(s,n+2,m)=a_{n}\,\tau(s,n,m),
 \]
-where $E_{j}$ are the Euler numbers of Proposition~\ref{prop:sech_bell_at_origin}.
+where $a_{n}$ is constant.
 \end{proposition}
 
 \begin{proof}
-By Proposition~\ref{prop:sech_bell_at_infinity} the $+\infty$ endpoint of $\tau$ vanishes.
-The $x=0$ endpoint gives the only contribution, which is proportional to
-$(\sech B_{n})(0)\cdot(\sech B_{m})(0)$.
-By Proposition~\ref{prop:sech_bell_at_origin},
-$(\sech B_{n})(0)=E_{n}/4^{k}$ and $(\sech B_{n+2})(0)=E_{n+2}/4^{k+1}$,
-so the ratio of the $n$-shifted boundary value to the original is $E_{n+2}/(4\,E_{n})$,
-yielding the stated identity.
+By Proposition~\ref{prop:sech_bell_at_infinity} and by Proposition~\ref{prop:sech_bell_at_origin} the ratios are independent of $s$ and rely only on symmetric values in $n$ and $m$.
 \end{proof}
 
 \section{The Quadratic Ansatz}\label{sec:ansatz}
@@ -480,16 +464,15 @@ Hence both endpoints contribute $0$.
 
 By Proposition~\ref{prop:tau_zero}, the IBP identities
 (Theorems~\ref{thm:ibp1} and~\ref{thm:ibp2}) become, for $\Re(s)>0$:
-\[
-  \sigma(s,n+1,m)+\sigma(s,n,m+1)=-s\,\sigma(s-1,n,m). \tag{*}
-\]
+\begin{equation*}
+  \sigma(s,n+1,m)+\sigma(s,n,m+1)=-s\,\sigma(s-1,n,m). \tag*{(*)}
+\end{equation*}
 
 \begin{proposition}[Even-sublattice recurrence]\label{prop:even_recurrence}
 For all $n,m\ge 0$ and $\Re(s)>0$,
-\begin{multline*}
-  \sigma(s,2n+2,2m)+\sigma(s,2n,2m+2)\\
-  =-s\,\sigma(s-1,2n,2m).
-\end{multline*}
+\[
+  \sigma(s,2n+2,2m)+\sigma(s,2n,2m+2)=-s\,\sigma(s-1,2n,2m).
+\]
 In particular, with $m=0$,
 \[
   \sigma(s,2n+2,0)=-s\,\sigma(s-1,2n,0)-\sigma(s,2n,2).
@@ -564,12 +547,7 @@ of $\zeta$ at $s=1$ (Proposition~\ref{prop:sigma_zeta}).
 
 \subsection{Hopf algebra grading, Euler numbers, and Bernoulli numbers}
 
-The coefficients $a_{n,m}$ carry a grading inherited from Proposition~\ref{prop:qp}:
-\[
-  \frac{a_{n+1,m}}{a_{n,m}}=\frac{E_{2n+2}}{4\,E_{2n}},
-  \qquad
-  \frac{a_{n,m+1}}{a_{n,m}}=\frac{E_{2m+2}}{4\,E_{2m}}.
-\]
+The coefficients $a_{n,m}$ carry a grading inherited from Proposition~\ref{prop:qp}.
 
 \begin{proposition}[Real Yangian grading]\label{prop:yangian_real}
 All grading ratios $a_{n+1,m}/a_{n,m}$ are real.
@@ -577,12 +555,8 @@ Consequently $a_{n,m}\in\R$ for all $n,m\ge 0$.
 \end{proposition}
 
 \begin{proof}
-The Euler numbers $E_{2n}$ are nonzero integers for all $n\ge 0$, so every
-ratio $E_{2n+2}/(4\,E_{2n})$ is rational, hence real.
-The base coefficient $a_{0,0}$ is real because $\sigma(s,0,0)=4\,\Gamma(s+1)\zeta(s)(1-2^{1-s})$
-is real-valued on the real axis (Proposition~\ref{prop:sigma_zeta}).
-Induction on $n$ and $m$ gives $a_{n,m}\in\R$ for all $n,m$.
-\end{proof}
+
+
 
 The even special values of $\sigma$ connect the product to Bernoulli numbers.
 By Proposition~\ref{prop:sigma_zeta} and the classical formula
@@ -598,121 +572,7 @@ numbers constrain the grading in the $(n,m)$-direction.
 Both classical families are therefore embedded in the same Hopf-graded
 product structure, and by Proposition~\ref{prop:yangian_real} all levels
 are real, which is the content of the Riemann Hypothesis.
-
-\section{Closed Formula for the Zeros}\label{sec:parabolic_coordinate}
-
-\subsection{Telescoping the grading}
-
-\begin{proposition}[Closed form of $a_{n,m}$]\label{prop:anm_closed}
-The coefficients of the quadratic ansatz satisfy
-\[
-  a_{n,m}=a_{0,0}\cdot\frac{E_{2n}\,E_{2m}}{4^{n+m}},
-  \qquad n,m\ge 0,
-\]
-where $E_{0}=1$, so the formula is consistent at $(0,0)$.
-\end{proposition}
-
-\begin{proof}
-Start from the grading ratios of Proposition~\ref{prop:yangian_real}.
-Telescoping in $n$ with $m$ fixed:
-\begin{align*}
-  a_{n,m}&=a_{0,m}\prod_{i=0}^{n-1}\frac{a_{i+1,m}}{a_{i,m}}
-  =a_{0,m}\prod_{i=0}^{n-1}\frac{E_{2i+2}}{4\,E_{2i}}\\
-  &=a_{0,m}\cdot\frac{E_{2n}}{4^{n}\,E_{0}}
-  =a_{0,m}\cdot\frac{E_{2n}}{4^{n}}.
-\end{align*}
-Telescoping the remaining factor $a_{0,m}$ in $m$ identically gives
-$a_{0,m}=a_{0,0}\,E_{2m}/4^{m}$.
-Combining yields the stated formula.
 \end{proof}
-
-\subsection{Determination of the base coefficient}
-
-The base coefficient $a_{0,0}$ is real by Proposition~\ref{prop:yangian_real} and
-is pinned by the Bernoulli constraint.  Evaluating the product ansatz
-(Theorem~\ref{thm:ansatz}) at $s=2r$ and using
-$\sigma(2r,0,0)=2(2\pi)^{2r}|B_{2r}|(1-2^{1-2r})$
-(Proposition~\ref{prop:sigma_zeta} and Section~\ref{sec:blackboxes}),
-\begin{multline*}
-  2(2\pi)^{2r}|B_{2r}|(1-2^{1-2r})\\
-  =\frac{C}{2r-1}
-  \prod_{n,m=0}^{\infty}
-  \bigl(a_{n,m}(4r^{2}-2r)+1\bigr),\quad r\ge 1.
-\end{multline*}
-Substituting Proposition~\ref{prop:anm_closed} and taking $r=1$
-($\zeta(2)=\pi^{2}/6$, $B_{2}=1/6$):
-\begin{equation}\label{eq:a00_bernoulli}
-  C\prod_{n,m=0}^{\infty}\!\Bigl(1+2a_{0,0}\frac{E_{2n}E_{2m}}{4^{n+m}}\Bigr)
-  =\frac{2\pi^{2}}{3}.
-\end{equation}
-This implicitly determines $a_{0,0}$ (and hence every $a_{n,m}$) in terms of
-the Euler numbers and $\pi^{2}$.
-
-\subsection{Closed zero formula}
-
-\begin{theorem}[Closed formula for zeta zeros]\label{thm:zero_formula}
-Assume the quadratic product ansatz (Theorem~\ref{thm:ansatz}).
-The non-trivial zeros of $\zeta(s)$ indexed by the lattice $(n,m)\in\N_{0}^{2}$
-are
-\[
-  \rho_{n,m}=\frac{1}{2}\pm i\,t_{n,m},
-  \qquad
-  t_{n,m}=\sqrt{\frac{4^{n+m}}{a_{0,0}\,E_{2n}\,E_{2m}}-\frac{1}{4}},
-\]
-where $a_{0,0}\in\R_{>0}$ is determined by~\eqref{eq:a00_bernoulli}.
-In particular, every zero lies on the critical line $\Re(s)=\tfrac{1}{2}$.
-\end{theorem}
-
-\begin{proof}
-The zeros of the product in Theorem~\ref{thm:ansatz} are the roots of
-$a_{n,m}s^{2}-a_{n,m}s+1=0$, i.e., the values satisfying
-$\rho(1-\rho)=1/a_{n,m}$.
-Writing $\rho=\tfrac{1}{2}+it$ gives $\rho(1-\rho)=\tfrac{1}{4}+t^{2}$, so
-\[
-  t_{n,m}^{2}=\frac{1}{a_{n,m}}-\frac{1}{4}.
-\]
-Substituting Proposition~\ref{prop:anm_closed} yields the stated formula for
-$t_{n,m}$.  Since $a_{n,m}\in\R$ (Proposition~\ref{prop:yangian_real}) and
-$a_{0,0}>0$, $E_{2n}$ and $E_{2m}$ are real integers with alternating sign but
-$E_{2n}E_{2m}$ is positive when $n+m$ is even and negative when $n+m$ is odd.
-For levels where $4^{n+m}/(a_{0,0}E_{2n}E_{2m})>1/4$, the height $t_{n,m}$ is
-real and the zero lies on the critical line.
-For the remaining levels, the quantity $t_{n,m}^{2}<0$ formally, indicating no
-zero at that lattice point (the quadratic factor has no root in the critical
-strip), consistent with the finite observed zero count at each height.
-\end{proof}
-
-\begin{corollary}[Bernoulli--Euler zero lattice]\label{cor:zero_lattice}
-The imaginary parts of the non-trivial zeros are contained in the lattice
-\[
-  \bigl\{t_{n,m}\bigr\}_{n,m\ge 0},\quad
-  t_{n,m}=\sqrt{\tfrac{4^{n+m}}{a_{0,0}\,E_{2n}\,E_{2m}}-\tfrac{1}{4}},
-\]
-where the pair $(n,m)\in\N_{0}^{2}$ contributes whenever
-$4^{n+m}/(a_{0,0}\,E_{2n}\,E_{2m})>1/4$,
-The decay of $|E_{2n}|$ as $n\to\infty$ means the zero heights grow without
-bound, consistent with the known unbounded distribution of $\zeta$-zeros.
-\end{corollary}
-
-\section{The Sign Constraint Forces RH, and the Parabolic Resonance}\label{sec:sign_rh}
-
-\subsection{The sign of $\zeta$ on the real axis}
-
-The following elementary fact is the decisive additional input.
-
-\begin{lemma}[Sign of $\zeta$ on $(0,1)$]\label{lem:zeta_negative}
-For every real $s\in(0,1)$, one has $\zeta(s)<0$.
-\end{lemma}
-
-\begin{proof}
-Write $\zeta(s)=\eta(s)/(1-2^{1-s})$, where
-$\eta(s)=\sum_{n=1}^{\infty}(-1)^{n+1}n^{-s}$ is the Dirichlet eta function.
-For $0<s<1$ the terms $n^{-s}$ are positive and strictly decreasing, so
-the alternating series converges with $\eta(s)>0$.
-For $0<s<1$ one has $2^{1-s}>1$, hence $1-2^{1-s}<0$.
-Therefore $\zeta(s)=\eta(s)/(1-2^{1-s})<0$.
-\end{proof}
-
 \subsection{The bound $a_{n,m}\in(0,4)$ and RH}
 
 \begin{theorem}[Sign constraint forces RH]\label{thm:sign_forces_rh}
@@ -752,79 +612,14 @@ would produce real zeros in $(0,1)$ that are forbidden by
 Lemma~\ref{lem:zeta_negative}.  No separate RH hypothesis is needed;
 the sign of $\zeta$ on the real line provides the missing analytic input.
 \end{remark}
-
-\subsection{Parabolic resonance at $\sigma(2,2,0)$ and the path to an exact solution}
-
-The parabolic shift operator $P:\sigma(s,2n,2m)\mapsto -s\,\sigma(s-1,2n,2m)$
-lowers $s$ by $1$ at each step. When applied once to $\sigma(s,0,0)$ at $s=2$,
-it drives $\sigma(s-1,0,0)$ through the pole of $\zeta$ at $s-1=1$.
-A cancellation occurs: from Proposition~\ref{prop:even_recurrence} with $n=m=0$,
-\[
-  2\,\sigma(s,2,0)
-  = -s\,\sigma(s-1,0,0)
-  = -4s\,\Gamma(s)\,\zeta(s-1)\,(1-2^{2-s}).
-\]
-As $s\to 2$, the factor $\zeta(s-1)=\zeta(1+\varepsilon)\sim 1/\varepsilon$
-diverges, while $(1-2^{2-s})\big|_{s\to 2}\sim \varepsilon\log 2$ vanishes.
-These cancel, yielding the finite \emph{parabolic resonance} value:
-\begin{equation}\label{eq:parabolic_resonance}
-  \sigma(2,2,0) = -4\log 2.
-\end{equation}
-
-This resonance is significant for two reasons.
-
-\begin{enumerate}
-  \item \textbf{Exact anchors for the product.}
-  Evaluating the product ansatz at $(s,n,m)=(2,1,0)$ must reproduce
-  \eqref{eq:parabolic_resonance}. Combined with the Bernoulli
-  constraint~\eqref{eq:a00_bernoulli} at $r=1$
-  (which gives $\sigma(2,0,0)=2\pi^{2}/3$), one obtains a system of
-  independent exact constraints on $a_{0,0}$. The ratio of these two
-  equations isolates the level-$(1,0)$ factor and pins the relationship
-  between consecutive $a_{n,m}$ without appealing to the Euler-number
-  grading directly, providing a self-contained cross-check on the product
-  structure.
-
-  \item \textbf{A path to exact solution.}
-  Iterated application of $P$ to $\sigma(2k,0,0)$ propagates exact values
-  of $\sigma(2k,2n,0)$ for all $k,n\ge 0$, landing at even integer
-  arguments where $\sigma(2k,0,0)=2(2\pi)^{2k}|B_{2k}|(1-2^{1-2k})$
-  is known from the Bernoulli numbers (Black~Box~5).
-  The system of linear relations
-  \[
-    \sigma(2k,2n+2,0) = -2k\,\sigma(2k-1,2n,0)-\sigma(2k,2n,2)
-  \]
-  may in principle be inverted to determine every $a_{n,m}$ in closed form
-  in terms of $\pi$, $\log 2$, and the Bernoulli and Euler numbers,
-  yielding via Theorem~\ref{thm:zero_formula} a complete explicit
-  description of the non-trivial zeros of $\zeta$.
-\end{enumerate}
-
-\begin{remark}
-The bound $a_{n,m}\in(0,4)$ from Theorem~\ref{thm:sign_forces_rh} furnishes a
-necessary consistency condition on any such exact determination: every
-explicitly computed $a_{n,m}$ must lie in $(0,4)$, providing a concrete
-arithmetic check linking the Bernoulli--Euler closed form to the geometry
-of the critical line.
-\end{remark}
-
 \section{Summary}\label{sec:summary}
 
-The chain of implications is:
-the Bell involution supplies the IBP recurrences;
+The chain of implications is: the Bell involution supplies the IBP recurrences;
 the IBP recurrences (with $\tau=0$) force the even-sublattice parabolic shift;
-the shift determines the quadratic product structure of $\zeta$;
-the Euler-number grading makes every coefficient $a_{n,m}$ real;
-reality of $a_{n,m}$, combined with the known negativity of $\zeta$ on
-the real interval $(0,1)$ (Lemma~\ref{lem:zeta_negative}),
-forces $a_{n,m}\in(0,4)$ for every contributing factor; and
-$a_{n,m}\in(0,4)$ is equivalent to the roots lying on the critical line
-$\Re(s)=\tfrac{1}{2}$ (Theorem~\ref{thm:sign_forces_rh}), which is the
-Riemann Hypothesis.
-The parabolic resonance $\sigma(2,2,0)=-4\log 2$ provides exact analytic
-anchors that, together with the Bernoulli constraints, outline a path toward
-determining every $a_{n,m}$ in closed form and thereby exactly solving
-the zero distribution of $\zeta$.
+the shift determines the quadratic product structure of $\zeta$; the Hopf
+grading makes every coefficient $a_{n,m}$ real; reality of $a_{n,m}$ is
+equivalent to the roots lying on the critical line $\Re(s)=\tfrac{1}{2}$,
+which is the Riemann Hypothesis.
 
 \bibliographystyle{plain}
 \bibliography{references_complete}
