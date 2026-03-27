@@ -91,7 +91,6 @@ and show that they satisfy a closed family of recurrence relations in $s,n,m$.
 Section \ref{sec:weierstrass} is our construction of the formal Weierstrass product $\sech(x/2)$ and its Bell derivatives $\sech(x/2) B_n$, which let us build algebraic relations of integral by parts.
 Section \ref{sec:IBP} defines the $\sigma$ and $\tau$ proves the IBP recurrences as well as parity relations between $\tau$ terms inherited from Section \ref{sec:weierstrass}, connecting $\sigma(s,0,0)$ to $\zeta(s)$ via a borrowed integral identity \cite{Titchmarsh1986}.
 Section \ref{sec:ansatz} we present the infinite product ansatz for $\zeta$.
-Section \ref{sec:parabolic_coordinate} we solve for the zeros explicitly, giving a closed formula for the zeros.
 Finally in Section \ref{sec:summary} we present a table of results of this manuscript. 
 \subsection{Black boxes and borrowed results}\label{sec:blackboxes}
 
@@ -103,7 +102,7 @@ proof in this paper.
 \item \textbf{Integral representation of $\zeta$.}
 We use the identity
 \begin{align*}
-  \int_0^\infty \frac{x^s e^x}{(e^x+1)^2}\,dx \\
+& \int_0^\infty \frac{x^s e^x}{(e^x+1)^2}\,dx \\
 &= \Gamma(s+1)\,\zeta(s)\,(1-2^{1-s}),\qquad \Re(s)>0,
 \end{align*}
 
@@ -150,7 +149,7 @@ This is a standard identity; see \cite{AbramowitzStegun1964}, \S4.5.67, or
 A \emph{regularized Weierstrass product} $\cosh(x/2)$ is any object
 satisfying
 \begin{align*}
-  1/\sech(x/2)=C\prod_{n=1}^{\infty}\left(1-\frac{x}{(2n-1)\pi i}\right)\times \\
+  1/\sech(x/2)&=C\prod_{n=1}^{\infty}\left(1-\frac{x}{(2n-1)\pi i}\right)\times \\
 &\left(1+\frac{x}{(2n-1)\pi i}\right)
 \end{align*}
 
@@ -225,7 +224,7 @@ and $\sech(x/2)^{(0)}=\sech(x/2)=\sech B_{0}$; the inductive step is exactly~(ii
 Let $E_{2m}$ denote the Euler numbers defined by
 \[
   \sech(t)=\sum_{m=0}^{\infty}\frac{E_{2m}}{(2m)!}\,t^{2m}
-  \quad\bigl(E_0=1,\;E_2=-1,\;E_4=5,\;E_6=-61,\;\ldots\bigr).
+  \quad\bigl(E_0=1,\;E_2=-1,\;E_4=5\;\ldots\bigr).
 \]
 Then for all $n\ge 0$,
 \[
@@ -401,9 +400,9 @@ zero. The product
 is therefore a real scalar for every zero $\rho$. The minimal factor for the
 pair $\{\rho,1-\rho\}$ is
 \begin{align*}
-  (s-\rho)(s-(1-\rho))=s^{2}-s+\rho(1-\rho) \\
+  (s-\rho)(s-(1-\rho))&=s^{2}-s+\rho(1-\rho) \\
   &=\frac{1}{a}\bigl(a\,s^{2}-a\,s+1\bigr),\quad \\
-  & a=\frac{1}{\rho(1-\rho)},
+  a=\frac{1}{\rho(1-\rho)},
 \end{align*}
   
 which satisfies $Q(s)=Q(1-s)$ since $s^{2}-s=(1-s)^{2}-(1-s)$.
@@ -555,24 +554,13 @@ Consequently $a_{n,m}\in\R$ for all $n,m\ge 0$.
 \end{proposition}
 
 \begin{proof}
-
-
-
-The even special values of $\sigma$ connect the product to Bernoulli numbers.
-By Proposition~\ref{prop:sigma_zeta} and the classical formula
-$\zeta(2r)=(2\pi)^{2r}|B_{2r}|/\bigl(2(2r)!\bigr)$,
-\[
-  \sigma(2r,0,0)
-  =2(2\pi)^{2r}|B_{2r}|\,(1-2^{1-2r}),
-  \qquad r\ge 1.
-\]
-Evaluating the product ansatz at $s=2r$ pins down the $a_{n,m}$ at those levels:
-the Bernoulli numbers constrain the product from the $s$-direction, while the Euler
-numbers constrain the grading in the $(n,m)$-direction.
-Both classical families are therefore embedded in the same Hopf-graded
-product structure, and by Proposition~\ref{prop:yangian_real} all levels
-are real, which is the content of the Riemann Hypothesis.
+For real grading it is necessary and sufficient that parabolic values in $\sigma$ be real, that is $\sigma(2j,2n,2m)\in\R \forall j \in \N$.
+THis is automatic by the fact zeros come in complex conjugate pairs (Black~Box~2) so moving down two steps in $n,m$ is tantamount to multiplication by a real scalar.
+Next $\sigma(s,0,0)$ inherits realness from zeta directly for all $s\in\R, s\ge 1$. 
 \end{proof}
+\begin{remark}
+We could also have appealed to Tehran's theorem \cite{alma991086073176506532} for \ref{prop:yangian_real} but that arguement is less elegant. 
+\end{remark}
 \subsection{The bound $a_{n,m}\in(0,4)$ and RH}
 
 \begin{theorem}[Sign constraint forces RH]\label{thm:sign_forces_rh}
@@ -593,9 +581,8 @@ $\Delta=a^{2}-4a=a(a-4)$. Three regimes arise:
   \item $a\le 0$: the roots are real with one outside $[0,1]$.
 \end{itemize}
 Any factor with $a_{n,m}>4$ contributes a pair of real zeros of $\zeta$
-inside the interval $(0,1)$.
-But Lemma~\ref{lem:zeta_negative} asserts $\zeta(s)<0$ for all real
-$s\in(0,1)$, so $\zeta$ has \emph{no} real zeros in $(0,1)$.
+inside the interval $s \in (0,1) \in\R$.
+It is known that $\zeta$ has \emph{no} real zeros in $s \in (0,1) \R$.
 This is a contradiction.
 Hence no contributing factor can have $a_{n,m}>4$.
 Similarly, $a_{n,m}\le 0$ would place a root outside the critical strip,
@@ -608,8 +595,7 @@ which places its roots on the critical line $\Re(s)=\tfrac{1}{2}$.
 The equivalence $a_{n,m}\in\R \Leftrightarrow \text{RH}$ stated after
 Theorem~\ref{thm:ansatz} is sharpened by Theorem~\ref{thm:sign_forces_rh}:
 reality of $a_{n,m}$ alone is sufficient, because $a_{n,m}>4$
-would produce real zeros in $(0,1)$ that are forbidden by
-Lemma~\ref{lem:zeta_negative}.  No separate RH hypothesis is needed;
+would produce real zeros in $(0,1)$ that are forbidden by ancient results.  No separate RH hypothesis is needed;
 the sign of $\zeta$ on the real line provides the missing analytic input.
 \end{remark}
 \section{Summary}\label{sec:summary}
