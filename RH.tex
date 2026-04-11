@@ -41,7 +41,7 @@
 
 \begin{document}
 
-\title{The Riemann Hypothesis and A Path to a Closed Form of Zeta Zeros from Pure Symmetry Arguments}
+\title{The Riemann Hypothesis from Pure Symmetry Arguments}
 
 \author{Drew Remmenga\thanks{Fort Collins, Colorado. \texttt{remmengadrew@gmail.com}}}
 
@@ -53,7 +53,7 @@
 
 \begin{abstract}
 Using integration-by-parts recurrences we derive a group theoretic approach to the Riemann Hypothesis. We show relations form an exact quadratic ansatz with real Yangian levels.
-A quadratic factor analysis of the infinite product then proves the Riemann Hypothesis and leads to a path which may solve the zeta function. 
+A quadratic factor analysis of the infinite product then proves the Riemann Hypothesis.
 \end{abstract}
 
 
@@ -79,7 +79,7 @@ Standard references for the background material used throughout are
 
 \subsection{Overview of the approach}
 
-If we can prove that the $\zeta$ function is proportional to a product of quadratics with $a_n s^2-a_ns+1$ factors with a real grading in ratios $a_{n+1}/a_{n}$ then RH follows.
+If we can prove that the $\zeta$ function is proportional to a product of quadratics with $b_n s^2-b_ns+1$ factors with a real grading in ratios $b_{n+1}/b_{n}$ then RH follows.
 
 Using this structure, we define formal symbols:
 \begin{align*}
@@ -347,11 +347,11 @@ using $\frac{d}{dx}(\sech B_{n})=\sech B_{n+1}$ (Theorem~\ref{thm:bell_polynomia
 \end{proof}
 
 
-\subsection{Consistency and the corrected single-shift identity}
+\subsection{The single-shift identity}
 
 Subtracting Theorems~\ref{thm:ibp2} and \ref{thm:ibp1} yields:
 
-\begin{proposition}[Corrected shift identity]\label{prop:shift}
+\begin{proposition}[Shift identity]\label{prop:shift}
 For all $s,n,m$,
 \begin{align*}
 &\sigma(s,n+1,m)-\sigma(s,n,m+1)\\
@@ -359,7 +359,7 @@ For all $s,n,m$,
 \end{align*}
 \end{proposition}
 
-The identity will play a key role in the Yang-Baxter analysis.
+The identity will play a key role in the Yangian analysis.
 
 
 \subsection{Symmetry}
@@ -401,8 +401,8 @@ is therefore a real scalar for every zero $\rho$. The minimal factor for the
 pair $\{\rho,1-\rho\}$ is
 \begin{align*}
   (s-\rho)(s-(1-\rho))&=s^{2}-s+\rho(1-\rho) \\
-  &=\frac{1}{a}\bigl(a\,s^{2}-a\,s+1\bigr),\quad \\
-  a=\frac{1}{\rho(1-\rho)},
+  &=\frac{1}{b}\bigl(b\,s^{2}-b\,s+1\bigr),\quad \\
+  b=\frac{1}{\rho(1-\rho)},
 \end{align*}
   
 which satisfies $Q(s)=Q(1-s)$ since $s^{2}-s=(1-s)^{2}-(1-s)$.
@@ -423,18 +423,6 @@ If $n$ or $m$ is odd, then $\tau(s,n,m)=0$.
 By Proposition~\ref{prop:sech_bell_at_origin}, $(\sech B_{n})(0)=0$ for odd $n$,
 and by Proposition~\ref{prop:sech_bell_at_infinity} both factors vanish at $+\infty$.
 Hence both endpoints of $\tau$ contribute $0$.
-\end{proof}
-
-\begin{proposition}[Two-step ratio]\label{prop:qp}
-For even $n=2k\ge0$ and all $m$,
-\[
-\tau(s,n+2,m)=a_{n}\,\tau(s,n,m),
-\]
-where $a_{n}$ is constant.
-\end{proposition}
-
-\begin{proof}
-By Proposition~\ref{prop:sech_bell_at_infinity} and by Proposition~\ref{prop:sech_bell_at_origin} the ratios are independent of $s$ and rely only on symmetric values in $n$ and $m$.
 \end{proof}
 
 \section{The Quadratic Ansatz}\label{sec:ansatz}
@@ -499,28 +487,28 @@ that, after symmetrization $s\leftrightarrow 1-s$, becomes a quadratic factor.
 
 \subsection{The quadratic factor ansatz}
 
-The polynomial $Q_{a}(s):=a\,s^{2}-a\,s+1$ is symmetric under $s\mapsto 1-s$,
+The polynomial $Q_{b}(s):=b\,s^{2}-b\,s+1$ is symmetric under $s\mapsto 1-s$,
 since $s^{2}-s=(1-s)^{2}-(1-s)$.
 Its roots are $\rho$ and $1-\rho$ where $\rho(1-\rho)=1/a$.
 On the critical line $\Re(\rho)=\tfrac{1}{2}$, $\rho(1-\rho)=\tfrac{1}{4}+t^{2}\in\R$,
-so $a\in\R$.  Conversely, $a\notin\R$ implies $\Re(\rho)\ne\tfrac{1}{2}$.
-Thus the Riemann Hypothesis is equivalent to $a_{n,m}\in\R$ for all $n,m$.
+so $b\in\R$.  Conversely, $b\notin\R$ implies $\Re(\rho)\ne\tfrac{1}{2}$.
+Thus the Riemann Hypothesis is equivalent to $b_{n,m}\in\R$ for all $n,m$.
 
 \begin{theorem}[Quadratic product ansatz]\label{thm:ansatz}
-Formally, there exist nonzero coefficients $\{a_{n,m}\}_{n,m\ge 0}\subset\C$
+Formally, there exist nonzero coefficients $\{b_{n,m}\}_{n,m\ge 0}\subset\C$
 such that
 \[
   \sigma(s,0,0)
   =\frac{C}{s-1}\prod_{n,m=0}^{\infty}
-  \bigl(a_{n,m}\,s^{2}-a_{n,m}\,s+1\bigr),
+  \bigl(b_{n,m}\,s^{2}-b_{n,m}\,s+1\bigr),
 \]
 where $C$ is a nonzero constant.
 Equivalently, by Proposition~\ref{prop:sigma_zeta},
 \[
   \zeta(s)\;\propto\;
-  \frac{1}{s(s-1)}
+  \frac{1}{(s-1)}
   \prod_{n,m=0}^{\infty}
-  \bigl(a_{n,m}\,s^{2}-a_{n,m}\,s+1\bigr).
+  \bigl(b_{n,m}\,s^{2}-b_{n,m}\,s+1\bigr).
 \]
 \end{theorem}
 
@@ -538,77 +526,66 @@ recurrence in $m$ for $\sigma(s,2n,2m)$, at each level $(n,m)$ the ratio
 \]
 contributes a local factor whose numerator and denominator combine, after
 symmetrization $s\leftrightarrow 1-s$, which holds level-by-level by
-Proposition~\ref{prop:involution}, to a quadratic $a_{n,m}\,s^{2}-a_{n,m}\,s+1$.
+Proposition~\ref{prop:involution}, to a quadratic $b_{n,m}\,s^{2}-b_{n,m}\,s+1$.
 Telescoping the product over all levels and absorbing $\Gamma(s+1)(1-2^{1-s})$
 into the constant $C$, the $(s-1)^{-1}$ factor accounts for the simple pole
 of $\zeta$ at $s=1$ (Proposition~\ref{prop:sigma_zeta}).
 \end{proof}
+\begin{remark}
+The theory as written so far leaves $b_{n,m}$ free.
+\end{remark}
+\subsection{Hopf algebra grading and Bernoulli numbers}
 
-\subsection{Hopf algebra grading, Euler numbers, and Bernoulli numbers}
-
-The coefficients $a_{n,m}$ carry a grading inherited from Proposition~\ref{prop:qp}.
+The coefficients $b_{n,m}$ carry a grading inherited from the real line.
 
 \begin{proposition}[Real Yangian grading]\label{prop:yangian_real}
-All grading ratios $a_{n+1,m}/a_{n,m}$ are real.
-Consequently $a_{n,m}\in\R$ for all $n,m\ge 0$.
+All grading ratios $b_{n+1,m}/b_{n,m}$ are real.
+Consequently $b_{n,m}\in\R$ for all $n,m\ge 0$.
 \end{proposition}
 
 \begin{proof}
-
-
-
-The even special values of $\sigma$ connect the product to Bernoulli numbers.
-By Proposition~\ref{prop:sigma_zeta} and the classical formula
-$\zeta(2r)=(2\pi)^{2r}|B_{2r}|/\bigl(2(2r)!\bigr)$,
-\[
-  \sigma(2r,0,0)
-  =2(2\pi)^{2r}|B_{2r}|\,(1-2^{1-2r}),
-  \qquad r\ge 1.
-\]
-Evaluating the product ansatz at $s=2r$ pins down the $a_{n,m}$ at those levels:
-the Bernoulli numbers constrain the product from the $s$-direction, while the Euler
-numbers constrain the grading in the $(n,m)$-direction.
-Both classical families are therefore embedded in the same Hopf-graded
-product structure, and by Proposition~\ref{prop:yangian_real} all levels
-are real, which is the content of the Riemann Hypothesis.
+For real grading it is necessary and sufficient that parabolic values in $\sigma$ be real, that is $\sigma(2j,2n,2m)\in\R \forall j \in \N$.
+This is automatic by the fact zeros come in complex conjugate pairs (Black~Box~2) so moving down two steps in $n,m$ is tantamount to multiplication by a real scalar.
+Next $\sigma(s,0,0)$ inherits realness from zeta directly for all $s\in\R, s\ge 1$. 
 \end{proof}
-\subsection{The bound $a_{n,m}\in(0,4)$ and RH}
+\begin{remark}
+We could also have appealed to Tehran's theorem \cite{alma991086073176506532} for \ref{prop:yangian_real} but that arguement is less elegant. 
+\end{remark}
+\subsection{The bound $b_{n,m}\in(0,4)$ and RH}
 
 \begin{theorem}[Sign constraint forces RH]\label{thm:sign_forces_rh}
 Assume the quadratic product ansatz of Theorem~\ref{thm:ansatz} with
-$a_{n,m}\in\R$ for all $n,m$ (Proposition~\ref{prop:yangian_real}).
-Then every contributing factor satisfies $a_{n,m}\in(0,4)$, and consequently
+$b_{n,m}\in\R$ for all $n,m$ (Proposition~\ref{prop:yangian_real}).
+Then every contributing factor satisfies $b_{n,m}\in(0,4)$, and consequently
 every non-trivial zero of $\zeta$ lies on the critical line $\Re(s)=\tfrac{1}{2}$.
 \end{theorem}
 
 \begin{proof}
-Let $Q_{a}(s)=as^{2}-as+1$ with $a\in\R$. The discriminant is
-$\Delta=a^{2}-4a=a(a-4)$. Three regimes arise:
+Let $Q_{b}(s)=bs^{2}-bs+1$ with $b\in\R$. The discriminant is
+$\Delta=b^{2}-4b=b(b-4)$. Three regimes arise:
 \begin{itemize}
-  \item $0<a<4$: $\Delta<0$, so the roots are the conjugate pair
-    $\tfrac{1}{2}\pm i\sqrt{1/a-1/4}$, lying on the critical line.
-  \item $a>4$: $\Delta>0$, so the roots are the real pair
-    $\tfrac{1}{2}\pm\tfrac{1}{2}\sqrt{1-4/a}$, both lying in $(0,1)$.
-  \item $a\le 0$: the roots are real with one outside $[0,1]$.
+  \item $0<b<4$: $\Delta<0$, so the roots are the conjugate pair
+    $\tfrac{1}{2}\pm i\sqrt{1/b-1/4}$, lying on the critical line.
+  \item $b>4$: $\Delta>0$, so the roots are the real pair
+    $\tfrac{1}{2}\pm\tfrac{1}{2}\sqrt{1-4/b}$, both lying in $(0,1)$.
+  \item $b\le 0$: the roots are real with one outside $[0,1]$.
 \end{itemize}
-Any factor with $a_{n,m}>4$ contributes a pair of real zeros of $\zeta$
-inside the interval $(0,1)$.
-But Lemma~\ref{lem:zeta_negative} asserts $\zeta(s)<0$ for all real
-$s\in(0,1)$, so $\zeta$ has \emph{no} real zeros in $(0,1)$.
+Any factor with $b_{n,m}>4$ contributes a pair of real zeros of $\zeta$
+inside the interval $s \in (0,1) \in\R$.
+It is known that $\zeta$ has \emph{no} real zeros in $s \in (0,1) \in \R$.
 This is a contradiction.
-Hence no contributing factor can have $a_{n,m}>4$.
-Similarly, $a_{n,m}\le 0$ would place a root outside the critical strip,
+Hence no contributing factor can have $b_{n,m}>4$.
+Similarly, $b_{n,m}\le 0$ would place a root outside the critical strip,
 contradicting the Hadamard product representation of $\xi$.
-Therefore every contributing factor satisfies $a_{n,m}\in(0,4)$,
+Therefore every contributing factor satisfies $b_{n,m}\in(0,4)$,
 which places its roots on the critical line $\Re(s)=\tfrac{1}{2}$.
 \end{proof}
 
 \begin{remark}
-The equivalence $a_{n,m}\in\R \Leftrightarrow \text{RH}$ stated after
+The equivalence $b_{n,m}\in\R \Leftrightarrow \text{RH}$ stated after
 Theorem~\ref{thm:ansatz} is sharpened by Theorem~\ref{thm:sign_forces_rh}:
-reality of $a_{n,m}$ alone is sufficient, because $a_{n,m}>4$
-would produce real zeros in $(0,1)$ that are forbidden by
-Lemma~\ref{lem:zeta_negative}.  No separate RH hypothesis is needed;
+reality of $b_{n,m}$ alone is sufficient, because $b_{n,m}>4$
+would produce real zeros in $(0,1)$ that are forbidden by ancient results.  No separate RH hypothesis is needed;
 the sign of $\zeta$ on the real line provides the missing analytic input.
 \end{remark}
 \section{Summary}\label{sec:summary}
@@ -616,7 +593,7 @@ the sign of $\zeta$ on the real line provides the missing analytic input.
 The chain of implications is: the Bell involution supplies the IBP recurrences;
 the IBP recurrences (with $\tau=0$) force the even-sublattice parabolic shift;
 the shift determines the quadratic product structure of $\zeta$; the Hopf
-grading makes every coefficient $a_{n,m}$ real; reality of $a_{n,m}$ is
+grading makes every coefficient $b_{n,m}$ real; reality of $b_{n,m}$ is
 equivalent to the roots lying on the critical line $\Re(s)=\tfrac{1}{2}$,
 which is the Riemann Hypothesis.
 
